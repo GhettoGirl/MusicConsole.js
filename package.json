@@ -12,6 +12,7 @@
     "main": "main.js",
     "dependencies": {
         "ansi-escape-sequences": ">=2.2.2",
-        "pidlock": "^0.1.0"
+        "pidlock": "^0.1.0",
+        "electron-settings": "^2.2.1"
     }
 }

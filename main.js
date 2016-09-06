@@ -1,7 +1,21 @@
-var pjson = require(__dirname + "/package.json");
-var ansi = require('ansi-escape-sequences');
+/* Music Console
+ * @main.js
+ *
+ * App Launcher
+ *
+ */
+
+// global objects
+global.pjson = require(__dirname + "/package.json");
+global.ansi = require('ansi-escape-sequences');
+
+var MusicConsole = require('./console.js');
+global.musicconsole = new MusicConsole();
+
+// local objects
 var pidlock = require('pidlock');
 
+// print application header to terminal
 function print_header()
 {
     var cols = process.stdout.columns;
@@ -49,14 +63,14 @@ function print_header()
 
     console.log(header);
 
-    cols = null;
-    line = null;
-    header = null;
+    delete cols;
+    delete line;
+    delete header;
 }
 
+// ensure only a single instance of this application is running
 function singleinstance_check()
 {
-    // ensure only a single instance of this application is running
     pidlock.guard('/tmp', pjson.name + '_singleton.lock', function(error, data, cleanup)
     {
         if (error)
@@ -71,3 +85,5 @@ function singleinstance_check()
 
 print_header();
 singleinstance_check();
+
+musicconsole.cmd();
