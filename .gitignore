@@ -1,0 +1,14 @@
+# NodeJS
+node_modules/
+
+# Common
+*~
+*.bak
+*.old
+
+# CodeLite IDE
+*.workspace
+*.workspace.*
+.codelite/
+.tern-port
+.tern-project
