@@ -15,14 +15,25 @@ A simple console app which organizes all of your media files for fast and easy a
 
 ## Requirements
 
-[NodeJS](https://www.nodejs.org) and `npm`
+ - OS: anything, but Windows (except you install Cygwin, or something similar)
+</br></br>
+ - [NodeJS](https://www.nodejs.org) 6.5+ and `npm`
+ - [node-gyp](https://github.com/nodejs/node-gyp): to build the native addons </br>
+   Install with `npm install -g node-gyp` (if it not comes bundled with `npm` already)
+ - GNU/[Readline](http://ftp.gnu.org/gnu/readline/) 6.3+
 
-#### Running the application
+**NOTE:** I'm not using Node's readline library, because I'm relatively new to Node and JavaScript and I can't get it to work like GNU/Readline does it.
 
- - Issue `npm install` to install all dependencies to run the application.
- - Now just type `node .` to get started.
+#### Building
 
-I will create a proper startup script in the future.
+ - Run `npm install` to install all runtime dependencies.
+ - Run `node-gyp configure build` to build the native C++ addons.
+
+#### Running
+
+ - Just issue `node .` to execute the application.
+
+I will create a proper install and run script in the future.
 
 </br></br></br>
 
