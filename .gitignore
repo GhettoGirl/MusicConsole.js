@@ -13,3 +13,7 @@ build/
 .codelite/
 .tern-port
 .tern-project
+
+# for testing purposes only
+history.hist
+test.js

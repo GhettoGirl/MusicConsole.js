@@ -26,8 +26,8 @@ A simple console app which organizes all of your media files for fast and easy a
 
 #### Building
 
- - Run `npm install` to install all runtime dependencies.
- - Run `node-gyp configure build` to build the native C++ addons.
+ - Run `npm install` to install and build all dependencies. </br>
+   If this command doesn't build the native C++ addons for some reason, run `node-gyp configure build`.
 
 #### Running
 

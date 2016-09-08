@@ -5,8 +5,9 @@
  *
  */
 
-// local objects
-const readline = require('./build/Release/gnu_readline');
+// global objects
+const GnuReadline = require('./build/Release/GnuReadline');
+global.readline = new GnuReadline.GnuReadline();
 
 var method = MusicConsole.prototype;
 
@@ -17,16 +18,12 @@ function MusicConsole()
 method.cmd = function()
 {
     // run some tests
-    console.log(readline.prompt());
-    console.log(readline.prompt("> ", 33));
-    console.log(readline.prompt("> ", "", 84));
-
-    // loop test - this one actually works
-    // note: this is where Node's readline lib failed for me...
-    //       the behavior was rather stupid and always ended in ascii clutter in the terminal
-    for (var i = 0; i != 3; i++)
+    readline.historySet("./history.hist");
+    readline.historyLoad();
+    for (var i = 0; i != 6; i++)
     {
-        console.log(readline.prompt("# "));
+        var input = readline.prompt("# ");
+        readline.historyAppend(input);
     }
 }
 
