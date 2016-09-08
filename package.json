@@ -13,6 +13,6 @@
     "dependencies": {
         "ansi-escape-sequences": ">=2.2.2",
         "pidlock": "^0.1.0",
-        "electron-settings": "^2.2.1"
+        "xdg": ">=0.1.1"
     }
 }

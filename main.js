@@ -9,6 +9,9 @@
 global.pjson = require(__dirname + "/package.json");
 global.ansi = require('ansi-escape-sequences');
 
+var SettingsManager = require('./settings.js');
+global.settings = new SettingsManager();
+
 var MusicConsole = require('./console.js');
 global.musicconsole = new MusicConsole();
 
@@ -83,7 +86,12 @@ function singleinstance_check()
     });
 }
 
-print_header();
-singleinstance_check();
+function main()
+{
+    print_header();
+    singleinstance_check();
 
-musicconsole.cmd();
+    musicconsole.main();
+}
+
+main();
