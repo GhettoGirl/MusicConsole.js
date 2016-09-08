@@ -15,7 +15,7 @@ A simple console app which organizes all of your media files for fast and easy a
 
 ## Requirements
 
- - OS: anything, but Windows (except you install Cygwin, or something similar)
+ - OS: anything UN*X-related (Linux, *BSD, macOS, etc.) [there is no Windows support]
 </br></br>
  - [NodeJS](https://www.nodejs.org) 6.5+ and `npm`
  - [node-gyp](https://github.com/nodejs/node-gyp): to build the native addons </br>
