@@ -103,9 +103,14 @@ method.userInput = function()
 
 method.main = function()
 {
-    // this.userInput();
+    // load history
+    readline.historySet(settings.directory() + "/history");
+    readline.historyLoad();
 
-    console.log(global.settings.directory());
+
+
+
+
 }
 
 module.exports = MusicConsole;
