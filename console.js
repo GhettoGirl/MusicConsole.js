@@ -25,6 +25,7 @@ method.cmd = function()
         var input = readline.prompt("# ");
         readline.historyAppend(input);
     }
+    readline.historyAppend();
 }
 
 module.exports = MusicConsole;

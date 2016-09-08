@@ -178,10 +178,15 @@ void GnuReadline::HistoryLoad(const FunctionCallbackInfo<Value> &args)
 
 void GnuReadline::HistoryAppend(const FunctionCallbackInfo<Value> &args)
 {
-    //Isolate *isolate = args.GetIsolate();
+    Isolate *isolate = args.GetIsolate();
     GnuReadline *obj = ObjectWrap::Unwrap<GnuReadline>(args.Holder());
 
     static const std::string method_name = "historyAppend";
+
+    if (args.Length() != 1)
+    {
+        THROW_EXCEPTION("Takes only 1 parameter, which must be a string!");
+    }
 
     String::Utf8Value param(args[0]->ToString());
     std::string item = std::string(*param);
