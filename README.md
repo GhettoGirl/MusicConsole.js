@@ -21,6 +21,7 @@ A simple console app which organizes all of your media files for fast and easy a
  - [node-gyp](https://github.com/nodejs/node-gyp): to build the native addons </br>
    Install with `npm install -g node-gyp` (if it not comes bundled with `npm` already)
  - GNU/[Readline](http://ftp.gnu.org/gnu/readline/) 6.3+
+ - [TagLib](https://taglib.github.io/) 1.10+ (1.11 highly recommended)
 
 **NOTE:** I'm not using Node's readline library, because I'm relatively new to Node and JavaScript and I can't get it to work like GNU/Readline does it.
 
