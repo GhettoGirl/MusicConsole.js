@@ -24,7 +24,6 @@ function MusicConsole()
 //   'args' may be empty, but NEVER undefined
 method.userInput = function()
 {
-    var append_to_history = true;
     var inputbuf = "";
     var splitbuf;
     var commands = [];
@@ -42,11 +41,15 @@ method.userInput = function()
         return [];
     }
 
-    // set history preference
+    // add to history when not starting with a space
     if (inputbuf.startsWith(" "))
     {
         inputbuf = inputbuf.substr(1);
-        append_to_history = false;
+    }
+
+    else
+    {
+        readline.historyAppend(inputbuf);
     }
 
     // split input
@@ -80,14 +83,6 @@ method.userInput = function()
                 args: splitbuf[i].substr(splitbuf[i].indexOf(' ') + 1)
             });
         }
-    }
-
-    // append to history file
-    if (append_to_history)
-    {
-        // todo:---implement basic user settings manager first
-        //         we need a place where to store the file
-        //         which is $XDG_CONFIG_DIR/MusicConsole etc.
     }
 
     return commands;

@@ -159,21 +159,17 @@ void GnuReadline::HistoryLoad(const FunctionCallbackInfo<Value> &args)
 
     static const std::string method_name = "historyLoad";
 
-    std::vector<std::string> history;
+    std::string line;
 
     obj->m_history_file.open(obj->m_history_loc.c_str(),
         std::ios_base::out | std::ios_base::in | std::ios_base::app);
-    std::copy(std::istream_iterator<std::string>(obj->m_history_file),
-         std::istream_iterator<std::string>(),
-         std::back_inserter(history));
+    while (std::getline(obj->m_history_file, line))
+    {
+        add_history(line.c_str());
+    }
     obj->m_history_file.close();
 
-    for (const std::string &item : history)
-    {
-        add_history(item.c_str());
-    }
-
-    history.clear();
+    line.clear();
 }
 
 void GnuReadline::HistoryAppend(const FunctionCallbackInfo<Value> &args)
