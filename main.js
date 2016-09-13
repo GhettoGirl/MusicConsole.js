@@ -8,6 +8,7 @@
 // global objects
 global.pjson = require(__dirname + "/package.json");
 global.ansi = require('ansi-escape-sequences');
+global.termcolor = require('./utils/termcolor.js');
 
 const pkg_version = require('./extern/version.js');
 global.pkg_version = new pkg_version();
@@ -76,7 +77,7 @@ function singleinstance_check()
     {
         if (error)
         {
-            console.log(ansi.style.bold + '\033[38;2;166;74;0m' +
+            console.log(ansi.style.bold + termcolor.foreground.rgb(166, 74, 0) +
                         "NOTICE:" + ansi.style.reset + " " + ansi.style.italic +
                         "only one instance is allowed!" + ansi.style.reset);
             process.exit(5);
