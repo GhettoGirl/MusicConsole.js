@@ -9,13 +9,13 @@
 global.pjson = require(__dirname + "/package.json");
 global.ansi = require('ansi-escape-sequences');
 
-var pkg_version = require('./extern/version.js');
+const pkg_version = require('./extern/version.js');
 global.pkg_version = new pkg_version();
 
-var SettingsManager = require('./settings.js');
+const SettingsManager = require('./settings.js');
 global.settings = new SettingsManager();
 
-var MusicConsole = require('./console.js');
+const MusicConsole = require('./console.js');
 global.musicconsole = new MusicConsole();
 
 // local objects
@@ -42,9 +42,9 @@ function print_header()
         header += ansi.style.reset + "┌" + line + "┐\n";
 
         // second line
-        header += "│ " + ansi.style.bold +
-                  pjson.display_name + ansi.style.reset + " " +
-                  global.pkg_version.version();
+        header += "│ "
+               + ansi.style.bold + pjson.display_name + ansi.style.reset
+               + " " + global.pkg_version.version();
 
         for (var i = 2 + pjson.display_name.length
                        + global.pkg_version.version().length; i < cols; i++)
@@ -61,16 +61,12 @@ function print_header()
     // generate normal header, when terminal size cannot be determined
     else
     {
-        header += ansi.style.reset + ansi.style.bold +
-                  pjson.display_name + ansi.style.reset + " " +
-                  global.pkg_version.version() + "\n";
+        header += ansi.style.reset
+               + ansi.style.bold + pjson.display_name + ansi.style.reset
+               + " " + global.pkg_version.version() + "\n";
     }
 
     console.log(header);
-
-    delete cols;
-    delete line;
-    delete header;
 }
 
 // ensure only a single instance of this application is running

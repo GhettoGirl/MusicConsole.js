@@ -15,21 +15,19 @@ function MusicConsole()
 {
 }
 
-
-// --- currently a ripoff from the c++ version
-//     has bad performance in js
-//     needs to be improved anyway
-// returns ???, split at '&&'
+// reads user input from the console and generates commands
+// splits at every '&&' and generates an array of structs
+// eliminates empty entries and simplifies the input
+// returns an array of the following object
+//   {command, args}
+//   'command' is never empty
+//   'args' may be empty, but NEVER undefined
 method.userInput = function()
 {
     var append_to_history = true;
     var inputbuf = "";
-    var splitbuf; // ???
-        // ref: in c++ mc this is
-        // struct ConsoleCommand {
-        //     QString cmd;
-        //     QString args;
-        // };
+    var splitbuf;
+    var commands = [];
 
     inputbuf = readline.prompt("# ");
 
@@ -39,11 +37,9 @@ method.userInput = function()
 
     // skip empty input
     // todo: check if string has only spaces, (same as above)
-    if (false)
+    if (inputbuf == "")
     {
-        delete inputbuf;
-        delete splitbuf;
-        return "";
+        return [];
     }
 
     // set history preference
@@ -56,38 +52,35 @@ method.userInput = function()
     // split input
     splitbuf = inputbuf.split("&&");
 
-    // skip empty input
-    if (splitbuf.length == 0)
-    {
-        delete inputbuf;
-        delete splitbuf;
-        return "";
-    }
-
     // eliminate empty entries
+    // and trim leading and trailing spaces
     // todo: requires unicode char tools
 
     // check if list got empty
     if (splitbuf.length == 0)
     {
-        delete inputbuf;
-        delete splitbuf;
-        return "";
+        return [];
     }
 
     // build commands
-    // todo:---learn more javascript first :^)
-
-    // skip empty command list
-    if (splitbuf.length == 0)
+    for (var i in splitbuf)
     {
-        delete inputbuf;
-        delete splitbuf;
-        return "";
-    }
+        if (splitbuf[i].indexOf(' ') == -1)
+        {
+            commands.push({
+                command: splitbuf[i],
+                args: ""
+            });
+        }
 
-    // clear temporaries
-    delete splitbuf;
+        else
+        {
+            commands.push({
+                command: splitbuf[i].substr(0, splitbuf[i].indexOf(' ')),
+                args: splitbuf[i].substr(splitbuf[i].indexOf(' ') + 1)
+            });
+        }
+    }
 
     // append to history file
     if (append_to_history)
@@ -97,8 +90,7 @@ method.userInput = function()
         //         which is $XDG_CONFIG_DIR/MusicConsole etc.
     }
 
-    // clear input buffer
-    delete inputbuf;
+    return commands;
 }
 
 method.main = function()
@@ -107,10 +99,15 @@ method.main = function()
     readline.historySet(settings.directory() + "/history");
     readline.historyLoad();
 
-
-
-
-
+    // test user input
+    var test = this.userInput();
+    console.log("len: " + test.length);
+    for (var i in test)
+    {
+        console.log("cmd: " + test[i].command);
+        console.log("arg: " + test[i].args);
+        console.log("-----");
+    }
 }
 
 module.exports = MusicConsole;

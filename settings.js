@@ -14,24 +14,24 @@ var method = SettingsManager.prototype;
 
 function SettingsManager()
 {
-    this.dir = xdg.configPath(global.pjson.author + "/" + global.pjson.name);
+    this.m_dir = xdg.configPath(global.pjson.author + "/" + global.pjson.name);
 
-    mkdirp.sync(this.dir);
+    mkdirp.sync(this.m_dir);
 
     try
     {
-        fs.accessSync(this.dir, fs.F_OK);
+        fs.accessSync(this.m_dir, fs.F_OK);
     }
 
     catch (error)
     {
-        console.error("Unable to create/access config directory: " + this.dir);
+        console.error("Unable to create/access config directory: " + this.m_dir);
     }
 }
 
 method.directory = function()
 {
-    return this.dir;
+    return this.m_dir;
 }
 
 module.exports = SettingsManager;
