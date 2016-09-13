@@ -19,3 +19,7 @@
  - [ ] Port all the search path gens to Node (maybe use C++ addons for assistence)
  - [ ] Implement all the commands `:^)`
 
+ - [ ] Write "installer" which minifies the code to a bare minimum to reduce the size of release builds </br>
+       There is no point in hundreds of empty lines and code comment when you are never see the code anyway. </br>
+       As an extend this can also improve the performance a little bit.
+
