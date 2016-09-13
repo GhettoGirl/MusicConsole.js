@@ -9,6 +9,9 @@
 global.pjson = require(__dirname + "/package.json");
 global.ansi = require('ansi-escape-sequences');
 
+var pkg_version = require('./extern/version.js');
+global.pkg_version = new pkg_version();
+
 var SettingsManager = require('./settings.js');
 global.settings = new SettingsManager();
 
@@ -41,11 +44,10 @@ function print_header()
         // second line
         header += "│ " + ansi.style.bold +
                   pjson.display_name + ansi.style.reset + " " +
-                  pjson.version + "-" + pjson.revision;
+                  global.pkg_version.version();
 
-        for (var i = 3 + pjson.display_name.length
-                       + pjson.version.length
-                       + pjson.revision.length; i < cols; i++)
+        for (var i = 2 + pjson.display_name.length
+                       + global.pkg_version.version().length; i < cols; i++)
         {
             header += " ";
         }
@@ -61,7 +63,7 @@ function print_header()
     {
         header += ansi.style.reset + ansi.style.bold +
                   pjson.display_name + ansi.style.reset + " " +
-                  pjson.version + "-" + pjson.revision + "\n";
+                  global.pkg_version.version() + "\n";
     }
 
     console.log(header);
