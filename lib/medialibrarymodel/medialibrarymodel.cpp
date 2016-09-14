@@ -1,5 +1,7 @@
 #include "medialibrarymodel.hpp"
 
+#include <iostream>
+
 using namespace v8;
 
 // note: 'Function' conflicts with something else somewhere
@@ -25,7 +27,10 @@ void MediaLibraryModel::Init(Local<Object> exports)
     tpl->InstanceTemplate()->SetInternalFieldCount(1);
 
     // Prototype
-    NODE_SET_PROTOTYPE_METHOD(tpl, "stub",           Stub);
+    NODE_SET_PROTOTYPE_METHOD(tpl, "init",           Init);
+
+    // Just for quick unit testing
+    NODE_SET_PROTOTYPE_METHOD(tpl, "testme",         TestMe);
 
     constructor.Reset(isolate, tpl->GetFunction());
     exports->Set(String::NewFromUtf8(isolate, "MediaLibraryModel"), tpl->GetFunction());
@@ -55,8 +60,35 @@ void MediaLibraryModel::New(const FunctionCallbackInfo<Value> &args)
     }
 }
 
-void MediaLibraryModel::Stub(const FunctionCallbackInfo<Value> &args)
+void MediaLibraryModel::Init(const FunctionCallbackInfo<Value> &args)
 {
-    Isolate *isolate = args.GetIsolate();
+    //Isolate *isolate = args.GetIsolate();
     MediaLibraryModel *obj = ObjectWrap::Unwrap<MediaLibraryModel>(args.Holder());
+
+    obj->m_fsm = new FileSystemModel();
+}
+
+void MediaLibraryModel::TestMe(const FunctionCallbackInfo<Value> &args)
+{
+    //Isolate *isolate = args.GetIsolate();
+    MediaLibraryModel *obj = ObjectWrap::Unwrap<MediaLibraryModel>(args.Holder());
+
+    String::Utf8Value param(args[0]->ToString());
+    std::string path = std::string(*param);
+
+    std::cout << "Path = '" << path << '\'' << std::endl;
+
+    if (obj->m_fsm->setPath(path))
+    {
+        obj->m_fsm->scan();
+        for (auto&& file : obj->m_fsm->files())
+        {
+            std::cout << file << std::endl;
+        }
+    }
+
+    else
+    {
+        std::cout << "given path does not exists or not readable" << std::endl;
+    }
 }

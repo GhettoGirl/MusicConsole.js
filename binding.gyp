@@ -16,7 +16,10 @@
         "libraries": [
             "-ltag"
         ]
-      }
+      },
+      "cflags": [
+        "-std=c++14"
+      ]
     }
   ]
 }

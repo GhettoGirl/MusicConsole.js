@@ -1,8 +1,12 @@
 # Todo list
 
  - [x] Implement native GNU/Readline addon
- - [ ] Implement native FileSystemModel/MediaLibraryModel/MediaCache/TagReader addon </br>
+ - [ ] Implement native MediaLibraryModel addon </br>
        <sub>For the sake of memory usage and performance I will **NOT** use JavaScript for this.</sub>
+      - [x] FileSystemModel </br>
+      - [ ] MediaFile </br>
+      - [ ] MediaCache </br>
+      - [ ] TagReader </br>
  - [x] Implement command prompt
  - [ ] Implement unicode tools
  - [ ] Improve the command prompt with the unicode tools
@@ -13,11 +17,13 @@
  - [ ] Implement a user settings manager
  - [ ] Implement a media player controller
  - [ ] Implement a playlist parser (for my custom playlist format, see README of old Music Console for syntax)
- - [ ] Implement a path expander (if there is not a module for this already)
+ - [ ] Implement a path expander (if there is not a node module for this already)
  - [ ] Port the *SearchKeys* class from the C++ version to Node
  - [ ] Implement a search path generator (comprehensive universal unicode/intl lookup)
  - [ ] Port all the search path gens to Node (maybe use C++ addons for assistence)
  - [ ] Implement all the commands `:^)`
+
+</br>
 
  - [ ] Write "installer" which minifies the code to a bare minimum to reduce the size of release builds </br>
        There is no point in hundreds of empty lines and code comment when you are never see the code anyway. </br>

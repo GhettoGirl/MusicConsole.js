@@ -35,6 +35,7 @@ private:
     // js: (string: append item to history and flushes the file)
     static void HistoryAppend(const v8::FunctionCallbackInfo<v8::Value> &args);
 
+private:
     std::string m_history_loc;
     std::fstream m_history_file;
 };
