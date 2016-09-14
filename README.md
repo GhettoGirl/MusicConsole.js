@@ -28,6 +28,8 @@ A simple console app which organizes all of your media files for fast and easy a
  - Run `npm install` to install and build all dependencies. </br>
    If this command doesn't build the native C++ addons for some reason, run `node-gyp configure build`.
 
+> The native addons are copied to `./lib`. You can issue `node-gyp clean` to delete the build directory and still have the modules in place. The modules are re-copied each time you issue `node-gyp build` so no worries about outdated code.
+
 #### Running
 
  - Just issue `node .` to execute the application.

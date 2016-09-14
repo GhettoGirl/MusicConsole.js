@@ -6,7 +6,7 @@
  */
 
 // global objects
-const GnuReadline = require('./build/Release/GnuReadline');
+const GnuReadline = require('./lib/GnuReadline');
 global.readline = new GnuReadline.GnuReadline();
 
 var method = MusicConsole.prototype;
