@@ -19,7 +19,8 @@ A simple console app which organizes all of your media files for fast and easy a
 </br></br>
  - [NodeJS](https://www.nodejs.org) 6.5+ and `npm`
  - [node-gyp](https://github.com/nodejs/node-gyp): to build the native addons </br>
-   Install with `npm install -g node-gyp` (if it not comes bundled with `npm` already)
+   Install with `npm install -g node-gyp` (if it not comes bundled with `npm` already) </br>
+   *C++14 compiler required*
  - GNU/[Readline](http://ftp.gnu.org/gnu/readline/) 6.3+
  - [TagLib](https://taglib.github.io/) 1.10+ (1.11 highly recommended)
 

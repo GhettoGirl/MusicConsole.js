@@ -100,8 +100,6 @@ method.main = function()
         console.log("arg: " + test[i].args);
         console.log("-----");
     }
-
-    setTimeout(function(){}, 10000);
 }
 
 module.exports = MusicConsole;

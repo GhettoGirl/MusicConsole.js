@@ -24,10 +24,16 @@ void MediaLibraryModel::Init(Local<Object> exports)
     // Prepare constructor template
     Local<FunctionTemplate> tpl = FunctionTemplate::New(isolate, New);
     tpl->SetClassName(String::NewFromUtf8(isolate, "MediaLibraryModel"));
-    tpl->InstanceTemplate()->SetInternalFieldCount(1);
+    tpl->InstanceTemplate()->SetInternalFieldCount(6);
 
     // Prototype
     NODE_SET_PROTOTYPE_METHOD(tpl, "init",           Init);
+    NODE_SET_PROTOTYPE_METHOD(tpl, "clear",          Clear);
+
+    NODE_SET_PROTOTYPE_METHOD(tpl, "setRootPath",    SetRootPath);
+    NODE_SET_PROTOTYPE_METHOD(tpl, "rootPath",       RootPath);
+
+    NODE_SET_PROTOTYPE_METHOD(tpl, "scan",           Scan);
 
     // Just for quick unit testing
     NODE_SET_PROTOTYPE_METHOD(tpl, "testme",         TestMe);
@@ -66,6 +72,50 @@ void MediaLibraryModel::Init(const FunctionCallbackInfo<Value> &args)
     MediaLibraryModel *obj = ObjectWrap::Unwrap<MediaLibraryModel>(args.Holder());
 
     obj->m_fsm = new FileSystemModel();
+}
+
+void MediaLibraryModel::Clear(const v8::FunctionCallbackInfo<v8::Value> &args)
+{
+    //Isolate *isolate = args.GetIsolate();
+    MediaLibraryModel *obj = ObjectWrap::Unwrap<MediaLibraryModel>(args.Holder());
+
+    obj->m_fsm->clear();
+    obj->m_files.clear();
+}
+
+void MediaLibraryModel::SetRootPath(const v8::FunctionCallbackInfo<v8::Value> &args)
+{
+    Isolate *isolate = args.GetIsolate();
+    MediaLibraryModel *obj = ObjectWrap::Unwrap<MediaLibraryModel>(args.Holder());
+
+    String::Utf8Value param(args[0]->ToString());
+    std::string path = std::string(*param);
+
+    bool success = obj->m_fsm->setPath(path);
+
+    args.GetReturnValue().Set(BooleanObject::New(isolate, success));
+}
+
+void MediaLibraryModel::RootPath(const v8::FunctionCallbackInfo<v8::Value> &args)
+{
+    Isolate *isolate = args.GetIsolate();
+    MediaLibraryModel *obj = ObjectWrap::Unwrap<MediaLibraryModel>(args.Holder());
+
+    args.GetReturnValue().Set(String::NewFromUtf8(isolate,
+        obj->m_fsm->path().c_str()
+    ));
+}
+
+void MediaLibraryModel::Scan(const v8::FunctionCallbackInfo<v8::Value> &args)
+{
+    //Isolate *isolate = args.GetIsolate();
+    MediaLibraryModel *obj = ObjectWrap::Unwrap<MediaLibraryModel>(args.Holder());
+
+    obj->m_fsm->scan();
+    for (auto&& file : obj->m_fsm->files())
+    {
+        // this is were we need the 'MediaFile' class to be implemented first :^)
+    }
 }
 
 void MediaLibraryModel::TestMe(const FunctionCallbackInfo<Value> &args)

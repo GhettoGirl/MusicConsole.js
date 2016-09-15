@@ -34,6 +34,11 @@ bool FileSystemModel::setPath(const std::string &path)
     return m_valid;
 }
 
+const std::string &FileSystemModel::path() const
+{
+    return m_path;
+}
+
 void FileSystemModel::scan()
 {
     // skip if there is nothing to do

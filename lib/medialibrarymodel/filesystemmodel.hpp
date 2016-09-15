@@ -15,6 +15,9 @@ public:
     // returns false if the path doesn't exists or isn't accessible
     bool setPath(const std::string &path);
 
+    // returns the root path
+    const std::string &path() const;
+
     // scans the directory recursively for files and appends them
     // to the internal file list
     // errors should not happen here
