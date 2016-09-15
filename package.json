@@ -14,8 +14,7 @@
         "ansi-escape-sequences": ">=2.2.2",
         "pidlock": "^0.1.0",
         "xdg": ">=0.1.1",
-        "mkdirp": "^0.5.1",
-        "taglib": "^0.8.1"
+        "mkdirp": "^0.5.1"
     },
     "devDependencies": {
         "uglify-js": "^2.7.3"

@@ -1,5 +1,7 @@
 # NodeJS
 node_modules/
+build/
+lib/*.node
 
 # Common
 *~
