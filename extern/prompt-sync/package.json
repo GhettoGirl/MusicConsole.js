@@ -1,0 +1,6 @@
+{
+  "name": "prompt-sync",
+  "version": "4.1.4",
+  "description": "a synchronous prompt for node.js",
+  "main": "index.js"
+}

@@ -6,7 +6,7 @@
  *
  */
 
-function cleanup()
+global.process_cleanup_and_exit = function()
 {
     //if (typeof myVar != 'undefined')
 
@@ -18,13 +18,6 @@ function cleanup()
     process.exit(0);
 }
 
-// === fixme
-// signal handling suspended or blocked while native addon has "focus"?
-// happens while in the gnu/readline prompt
-// sigterm even causes segmentation fault?????
-//
-// *needs research*
-
-//process.on('SIGINT', cleanup);
-//process.on('SIGTERM', cleanup);
-//process.on('SIGHUP', cleanup);
+process.on('SIGINT', global.process_cleanup_and_exit);
+process.on('SIGTERM', global.process_cleanup_and_exit);
+process.on('SIGHUP', global.process_cleanup_and_exit);

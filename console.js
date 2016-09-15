@@ -6,9 +6,8 @@
  */
 
 // initialize prompt and history manager
-const prompt = require('prompt-sync') ({
+const prompt = require('./extern/prompt-sync') ({
     history: require('./utils/prompt-history.js')(settings.directory() + "/history"),
-    sigint: true // don't handle sigint in prompt, it is used to terminate the app
 });
 
 var method = MusicConsole.prototype;
@@ -101,6 +100,8 @@ method.main = function()
         console.log("arg: " + test[i].args);
         console.log("-----");
     }
+
+    setTimeout(function(){}, 10000);
 }
 
 module.exports = MusicConsole;
