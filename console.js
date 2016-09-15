@@ -5,9 +5,11 @@
  *
  */
 
-// global objects
-const GnuReadline = require('./lib/GnuReadline');
-global.readline = new GnuReadline.GnuReadline();
+// initialize prompt and history manager
+const prompt = require('prompt-sync') ({
+    history: require('./utils/prompt-history.js')(settings.directory() + "/history"),
+    sigint: true // don't handle sigint in prompt, it is used to terminate the app
+});
 
 var method = MusicConsole.prototype;
 
@@ -28,7 +30,7 @@ method.userInput = function()
     var splitbuf;
     var commands = [];
 
-    inputbuf = readline.prompt("# ");
+    inputbuf = prompt("# ");
 
     // todo: simplify string, keep first whitespace if any
     //       needs comprehensive unicode character tools to be implemented first
@@ -49,7 +51,7 @@ method.userInput = function()
 
     else
     {
-        readline.historyAppend(inputbuf);
+        prompt.history.save();
     }
 
     // split input
@@ -90,10 +92,6 @@ method.userInput = function()
 
 method.main = function()
 {
-    // load history
-    readline.historySet(settings.directory() + "/history");
-    readline.historyLoad();
-
     // test user input
     var test = this.userInput();
     console.log("len: " + test.length);

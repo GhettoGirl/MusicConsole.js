@@ -1,6 +1,6 @@
 # Todo list
 
- - [x] Implement native GNU/Readline addon
+ - [x] ~~Implement native GNU/Readline addon~~ **REMOVED AND REPLACED BY NODE MODULE**
  - [ ] Implement native MediaLibraryModel addon </br>
        <sub>For the sake of memory usage and performance I will **NOT** use JavaScript for this.</sub>
       - [x] FileSystemModel </br>
@@ -10,8 +10,7 @@
  - [x] Implement command prompt
  - [ ] Implement unicode tools
  - [ ] Improve the command prompt with the unicode tools
- - [x] ~~Implement history manager (some stuff got implemented in readline already)~~ </br>
-       Everything is part of the native GNU/Readline addon
+ - [x] Implement history manager
  - [ ] Find out how I can do this in Node -> **kbhit** [cpp](https://github.com/GhettoGirl/MusicConsole/blob/master/Sys/kbhit.cpp), [hpp](https://github.com/GhettoGirl/MusicConsole/blob/master/Sys/kbhit.hpp) </br>
        This is very important and I need this for this project!!
  - [ ] Implement a user settings manager
