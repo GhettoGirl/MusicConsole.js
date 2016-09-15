@@ -1,12 +1,12 @@
 # Todo list
 
  - [x] ~~Implement native GNU/Readline addon~~ **REMOVED AND REPLACED BY NODE MODULE**
- - [ ] Implement native MediaLibraryModel addon </br>
-       <sub>For the sake of memory usage and performance I will **NOT** use JavaScript for this.</sub>
-      - [x] FileSystemModel </br>
-      - [ ] MediaFile </br>
-      - [ ] MediaCache </br>
-      - [ ] TagReader </br>
+ - [ ] Implement ~~native~~ MediaLibraryModel ~~addon~~ (in JavaScript) </br>
+       <sub>First I wanted to Implement this in C++, but it got to tricky...</sub>
+      - [ ] FileSystemModel ─ recursive file system scanner </br>
+      - [ ] MediaFile ─ to store data, like tags etc. </br>
+      - [ ] MediaCache ─ to cache tags for fast loading </br>
+      - [ ] TagReader ─ read tags using taglib </br>
  - [x] Implement command prompt
  - [ ] Implement unicode tools
  - [ ] Improve the command prompt with the unicode tools
@@ -20,7 +20,20 @@
  - [ ] Port the *SearchKeys* class from the C++ version to Node
  - [ ] Implement a search path generator (comprehensive universal unicode/intl lookup)
  - [ ] Port all the search path gens to Node (maybe use C++ addons for assistence)
- - [ ] Implement all the commands `:^)`
+ - [ ] Implement all the commands `:^)` </br>
+       <sub>For a detailed description of all the commands see the README of the old Music Console.</sub>
+      - [ ] The 'command-less' command, alias 'hidden audio command'
+      - [ ] Media filter commands, *audio*, *video*, *module*
+      - [ ] *random*
+      - [ ] *shuffle*
+      - [ ] *repeat*
+      - [ ] *search*
+      - [ ] *browse*
+      - [ ] *history* (print history to screen)
+      - [ ] *statistics*
+      - [ ] *playlist*
+      - [ ] *rescan* (to rescan the filesystem without restarting the app)
+      - [ ] *exit*
 
 </br>
 

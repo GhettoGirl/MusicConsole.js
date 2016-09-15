@@ -1,10 +1,5 @@
 # NodeJS
 node_modules/
-build/
-lib/*.node
-
-# Unused files
-lib/readline/*
 
 # Common
 *~
