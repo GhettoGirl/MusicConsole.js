@@ -4,9 +4,6 @@
 
 using namespace v8;
 
-// note: 'Function' conflicts with something else somewhere
-//       use 'v8::Function' explicitly
-
 Persistent<v8::Function> MediaLibraryModel::constructor;
 
 MediaLibraryModel::MediaLibraryModel()
@@ -24,7 +21,7 @@ void MediaLibraryModel::Init(Local<Object> exports)
     // Prepare constructor template
     Local<FunctionTemplate> tpl = FunctionTemplate::New(isolate, New);
     tpl->SetClassName(String::NewFromUtf8(isolate, "MediaLibraryModel"));
-    tpl->InstanceTemplate()->SetInternalFieldCount(6);
+    tpl->InstanceTemplate()->SetInternalFieldCount(7);
 
     // Prototype
     NODE_SET_PROTOTYPE_METHOD(tpl, "init",           Init);
@@ -34,6 +31,8 @@ void MediaLibraryModel::Init(Local<Object> exports)
     NODE_SET_PROTOTYPE_METHOD(tpl, "rootPath",       RootPath);
 
     NODE_SET_PROTOTYPE_METHOD(tpl, "scan",           Scan);
+
+    NODE_SET_PROTOTYPE_METHOD(tpl, "mediaAt",        MediaAt);
 
     // Just for quick unit testing
     NODE_SET_PROTOTYPE_METHOD(tpl, "testme",         TestMe);
@@ -66,7 +65,7 @@ void MediaLibraryModel::New(const FunctionCallbackInfo<Value> &args)
     }
 }
 
-void MediaLibraryModel::Init(const FunctionCallbackInfo<Value> &args)
+void MediaLibraryModel::Init(const v8::FunctionCallbackInfo<Value> &args)
 {
     //Isolate *isolate = args.GetIsolate();
     MediaLibraryModel *obj = ObjectWrap::Unwrap<MediaLibraryModel>(args.Holder());
@@ -80,6 +79,13 @@ void MediaLibraryModel::Clear(const v8::FunctionCallbackInfo<v8::Value> &args)
     MediaLibraryModel *obj = ObjectWrap::Unwrap<MediaLibraryModel>(args.Holder());
 
     obj->m_fsm->clear();
+    //for (auto file : obj->m_files)
+    //{
+    //    if (file)
+    //    {
+    //        delete file;
+    //    }
+    //}
     obj->m_files.clear();
 }
 
@@ -108,14 +114,36 @@ void MediaLibraryModel::RootPath(const v8::FunctionCallbackInfo<v8::Value> &args
 
 void MediaLibraryModel::Scan(const v8::FunctionCallbackInfo<v8::Value> &args)
 {
-    //Isolate *isolate = args.GetIsolate();
+    Isolate *isolate = args.GetIsolate();
     MediaLibraryModel *obj = ObjectWrap::Unwrap<MediaLibraryModel>(args.Holder());
 
     obj->m_fsm->scan();
     for (auto&& file : obj->m_fsm->files())
     {
-        // this is were we need the 'MediaFile' class to be implemented first :^)
+        //MediaFile *media_file = new MediaFile(file);
+        //obj->m_files.push_back(media_file);
+        //v8::Local<v8::Object> media = v8::Object::New(isolate, MediaObject);
     }
+}
+
+void MediaLibraryModel::MediaAt(const v8::FunctionCallbackInfo<v8::Value> &args)
+{
+    //Isolate *isolate = args.GetIsolate();
+    //MediaLibraryModel *obj = ObjectWrap::Unwrap<MediaLibraryModel>(args.Holder());
+
+    //unsigned int pos = args[0]->ToInteger()->Value();
+
+    //v8::Local<v8::Array> media = v8::Array::New(isolate, 1);
+    //media->Set(0, String::NewFromUtf8(isolate, "test123"));
+
+    //if (pos >= 0 && pos < obj->m_files.size() - 1)
+    //{
+
+    //}
+
+    //args.GetReturnValue().Set(media);
+
+    // throw exception
 }
 
 void MediaLibraryModel::TestMe(const FunctionCallbackInfo<Value> &args)

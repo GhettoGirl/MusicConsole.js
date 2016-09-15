@@ -1,12 +1,14 @@
 #ifndef TAGREADER_HPP
 #define TAGREADER_HPP
 
+#include "mediafile.hpp"
+
 #include <string>
 
 namespace TagReader
 {
 
-bool read(const std::string &file);
+bool read(MediaFile &file);
 
 } // namespace TagReader
 

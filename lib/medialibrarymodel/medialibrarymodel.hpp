@@ -34,12 +34,16 @@ private:
     static void RootPath(const v8::FunctionCallbackInfo<v8::Value> &args);
 
     // builds the media library
-    //  × scans the filesystem from the root path
+    //  × scans the filesystem from the root path for media files
     //  × reads the tags
     //  × caches the tags into a ??? (not sure at the moment)
     //
     // js: [none]
     static void Scan(const v8::FunctionCallbackInfo<v8::Value> &args);
+
+    // get media at position n
+    // js (int, index)
+    static void MediaAt(const v8::FunctionCallbackInfo<v8::Value> &args);
 
     // === for testing ===
     // js: (string: path)
@@ -48,7 +52,7 @@ private:
 private:
     FileSystemModel *m_fsm = nullptr;
 
-    std::vector<MediaFile> m_files;
+    std::vector<MediaObject*> m_files;
 };
 
 #endif // MEDIALIBRARYMODEL_HPP
