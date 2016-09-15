@@ -5,6 +5,9 @@
  *
  */
 
+// install signal handler
+require('./signalhandler.js');
+
 // global objects
 global.pjson = require(__dirname + "/package.json");
 global.ansi = require('ansi-escape-sequences');
