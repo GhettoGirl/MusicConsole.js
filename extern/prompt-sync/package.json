@@ -3,7 +3,7 @@
   "version": "4.1.4",
   "description": "a synchronous prompt for node.js",
   "author": "0x00A",
-  "homepage", "https://github.com/0x00A/prompt-sync",
+  "homepage": "https://github.com/0x00A/prompt-sync",
   "license": "MIT",
   "main": "index.js"
 }

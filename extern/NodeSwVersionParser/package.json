@@ -1,0 +1,9 @@
+{
+  "name": "NodeSwVersionParser",
+  "version": "1.0.0",
+  "description": "https://github.com/GhettoGirl/common/blob/master/docs/Software Versioning Scheme.md",
+  "author": "GhettoGirl",
+  "homepage": "https://github.com/GhettoGirl",
+  "license": "MIT",
+  "main": "index.js"
+}

@@ -13,7 +13,7 @@ global.pjson = require(__dirname + "/package.json");
 global.ansi = require('ansi-escape-sequences');
 global.termcolor = require('./utils/termcolor.js');
 
-const pkg_version = require('./extern/version.js');
+const pkg_version = require('./extern/NodeSwVersionParser');
 global.pkg_version = new pkg_version();
 
 const SettingsManager = require('./sys/settings.js');
