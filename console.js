@@ -10,7 +10,7 @@ const prompt = require('./extern/prompt-sync') ({
     history: require('./sys/history.js')(settings.directory() + "/history"),
 });
 
-var method = MusicConsole.prototype;
+const method = MusicConsole.prototype;
 
 function MusicConsole()
 {
