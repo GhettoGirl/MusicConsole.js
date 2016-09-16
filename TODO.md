@@ -6,7 +6,7 @@
       - [ ] FileSystemModel ─ recursive file system scanner </br>
       - [ ] MediaFile ─ to store data, like tags etc. </br>
       - [ ] MediaCache ─ to cache tags for fast loading </br>
-      - [ ] TagReader ─ read tags using taglib </br>
+      - [x] TagReader ─ read tags using taglib </br>
  - [x] Implement command prompt
  - [ ] Implement unicode tools
  - [ ] Improve the command prompt with the unicode tools
