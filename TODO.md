@@ -3,7 +3,7 @@
  - [x] ~~Implement native GNU/Readline addon~~ **REMOVED AND REPLACED BY NODE MODULE**
  - [ ] Implement ~~native~~ MediaLibraryModel ~~addon~~ (in JavaScript) </br>
        <sub>First I wanted to Implement this in C++, but it got to tricky...</sub>
-      - [ ] FileSystemModel ─ recursive file system scanner </br>
+      - [x] ~~FileSystemModel ─ recursive file system scanner~~ **REPLACED BY NODE MODULE** </br>
       - [ ] MediaFile ─ to store data, like tags etc. </br>
       - [ ] MediaCache ─ to cache tags for fast loading </br>
       - [x] TagReader ─ read tags using taglib </br>
