@@ -6,7 +6,7 @@
  *
  */
 
-var foreground =
+const foreground =
 {
     // returns escape sequence
     rgb: function(r, g, b)
@@ -21,7 +21,7 @@ var foreground =
     }
 }
 
-var background =
+const background =
 {
     // returns escape sequence
     rgb: function(r, g, b)

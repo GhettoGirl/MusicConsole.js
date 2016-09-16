@@ -7,7 +7,7 @@
 
 // initialize prompt and history manager
 const prompt = require('./extern/prompt-sync') ({
-    history: require('./utils/prompt-history.js')(settings.directory() + "/history"),
+    history: require('./sys/history.js')(settings.directory() + "/history"),
 });
 
 var method = MusicConsole.prototype;

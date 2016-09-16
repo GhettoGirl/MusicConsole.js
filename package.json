@@ -2,7 +2,7 @@
     "name": "musicconsole-js",
     "display_name": "Music Console",
     "description": "A simple console app which organizes all of your media files for fast and easy access.",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "revision": "1",
     "author": "GhettoGirl",
     "homepage": "https://github.com/GhettoGirl/MusicConsole.js",

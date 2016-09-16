@@ -6,7 +6,7 @@
  */
 
 // install signal handler
-require('./signalhandler.js');
+require('./sys/signalhandler.js');
 
 // global objects
 global.pjson = require(__dirname + "/package.json");
@@ -16,7 +16,7 @@ global.termcolor = require('./utils/termcolor.js');
 const pkg_version = require('./extern/version.js');
 global.pkg_version = new pkg_version();
 
-const SettingsManager = require('./settings.js');
+const SettingsManager = require('./sys/settings.js');
 global.settings = new SettingsManager();
 
 const MusicConsole = require('./console.js');
