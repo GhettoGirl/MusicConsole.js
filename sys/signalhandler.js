@@ -6,16 +6,22 @@
  *
  */
 
-global.process_cleanup_and_exit = function()
+global.process_cleanup_and_exit = function(ret)
 {
-    //if (typeof myVar != 'undefined')
-
     // devnote
     // in the c++ version i don't do any clean ups
     // so this may not be necessary here either
     // but lets see when the medialibrarymodel is finished
 
-    process.exit(0);
+    if (typeof ret == "number")
+    {
+        process.exit(ret);
+    }
+
+    else
+    {
+        process.exit(0);
+    }
 }
 
 process.on('SIGINT', global.process_cleanup_and_exit);

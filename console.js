@@ -67,12 +67,12 @@ method.userInput = function()
     }
 
     // build commands
-    for (var i in splitbuf)
+    for (var i of splitbuf)
     {
-        if (splitbuf[i].indexOf(' ') == -1)
+        if (i.indexOf(' ') == -1)
         {
             commands.push({
-                command: splitbuf[i],
+                command: i,
                 args: ""
             });
         }
@@ -80,8 +80,8 @@ method.userInput = function()
         else
         {
             commands.push({
-                command: splitbuf[i].substr(0, splitbuf[i].indexOf(' ')),
-                args: splitbuf[i].substr(splitbuf[i].indexOf(' ') + 1)
+                command: i.substr(0, i.indexOf(' ')),
+                args: i.substr(i.indexOf(' ') + 1)
             });
         }
     }
@@ -94,10 +94,10 @@ method.main = function()
     // test user input
     var test = this.userInput();
     console.log("len: " + test.length);
-    for (var i in test)
+    for (var i of test)
     {
-        console.log("cmd: " + test[i].command);
-        console.log("arg: " + test[i].args);
+        console.log("cmd: " + i.command);
+        console.log("arg: " + i.args);
         console.log("-----");
     }
 }

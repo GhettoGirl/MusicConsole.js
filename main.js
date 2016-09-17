@@ -22,6 +22,10 @@ global.settings = new SettingsManager();
 const MusicConsole = require('./console.js');
 global.musicconsole = new MusicConsole();
 
+const MediaLibraryModel = require('./lib/medialibrarymodel');
+global.MediaType = MediaLibraryModel.MediaType;
+global.medialib = new MediaLibraryModel.MediaLibraryModel();
+
 // local objects
 var pidlock = require('pidlock');
 
@@ -88,10 +92,22 @@ function singleinstance_check()
     });
 }
 
+function init_medialib()
+{
+    if (!medialib.setPath(settings.library().rootpath))
+    {
+        console.error("Unable to read from the specific path: " + settings.library().rootpath);
+        console.error("There is nothing to do, exiting...");
+        global.process_cleanup_and_exit(3);
+    }
+}
+
 function main()
 {
     print_header();
     singleinstance_check();
+
+    init_medialib();
 
     musicconsole.main();
 }
