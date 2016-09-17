@@ -24,6 +24,11 @@
       ],
       "cflags": [
         "-std=c++11"
+      ],
+      # for some reason node-gyp disables some features which are required by cereal
+      "cflags_cc!": [
+        "-fno-rtti",
+        "-fno-exceptions"
       ]
     },
 
