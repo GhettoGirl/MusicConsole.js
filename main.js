@@ -100,6 +100,12 @@ function init_medialib()
         console.error("There is nothing to do, exiting...");
         global.process_cleanup_and_exit(3);
     }
+
+    medialib.setMediaTypes(MediaType.Audio, settings.library().audioformats);
+    medialib.setMediaTypes(MediaType.Video, settings.library().videoformats);
+    medialib.setMediaTypes(MediaType.ModuleTracker, settings.library().moduleformats);
+
+    medialib.setPrefixDeletionPatterns(settings.library().prefixdeletionpatterns);
 }
 
 function main()

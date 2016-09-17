@@ -1,6 +1,22 @@
 #include "tagreader.hpp"
 
 #include <sys/stat.h>
+#include <unistd.h>
+#include <limits.h>
+
+std::string do_readlink(const std::string &path)
+{
+    char buf[PATH_MAX];
+    int len = ::readlink(path.c_str(), buf, sizeof(buf) - 1);
+
+    if (len != -1)
+    {
+        buf[len] = '\0';
+        return std::string(buf);
+    }
+
+    return std::string();
+}
 
 using namespace v8;
 
