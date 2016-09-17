@@ -96,6 +96,15 @@ function SettingsManager()
     // resolve environment variables in [library.rootpath]
     this.m_settings.library.rootpath = resolve_env(this.m_settings.library.rootpath);
     this.m_default_settings.library.rootpath = this.m_settings.library.rootpath;
+
+    // convert prefix deletion patterns to lowercase
+    for (var i in this.m_settings.library.prefixdeletionpatterns)
+    {
+        this.m_settings.library.prefixdeletionpatterns[i] =
+            this.m_settings.library.prefixdeletionpatterns[i].toLowerCase();
+    }
+    this.m_default_settings.library.prefixdeletionpatterns =
+        this.m_settings.library.prefixdeletionpatterns;
 }
 
 ////////////////////////////////////////////
