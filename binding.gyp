@@ -15,19 +15,33 @@
       ]
     },
 
+    # binary-serialize
+    {
+      "target_name": "binary-serialize",
+      "sources": [ '<!@(ls -1 lib/binary-serialize/*.cpp)' ],
+      "include_dirs": [
+        "lib/binary-serialize/cereal/include"
+      ],
+      "cflags": [
+        "-std=c++11"
+      ]
+    },
+
 
     # copies all modules to a universal location to keep the code simple
     {
       "target_name": "_LibCopy",
       "type": "none",
       "dependencies": [
-        "TagReader"
+        "TagReader",
+        "binary-serialize"
       ],
       "copies": [
         {
           "destination": "<(module_root_dir)/lib",
           "files": [
-            "<(module_root_dir)/build/$(BUILDTYPE)/TagReader.node"
+            "<(module_root_dir)/build/$(BUILDTYPE)/TagReader.node",
+            "<(module_root_dir)/build/$(BUILDTYPE)/binary-serialize.node"
           ]
         }
       ]
