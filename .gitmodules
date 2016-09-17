@@ -1,0 +1,3 @@
+[submodule "lib/binary-serialize/cereal"]
+	path = lib/binary-serialize/cereal
+	url = https://github.com/USCiLab/cereal.git

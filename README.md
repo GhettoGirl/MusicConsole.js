@@ -23,6 +23,10 @@ A simple console app which organizes all of your media files for fast and easy a
    *C++11 compiler required*
  - [TagLib](https://taglib.github.io/) 1.10+ (1.11 highly recommended)
 
+#### Preparation
+
+There are submodules, either clone the repository with `git clone --recursive` or if you already cloned it, issue `git submodule update --init` to clone into the submodules.
+
 #### Building
 
  - Run `npm install` to install and build all dependencies. </br>
