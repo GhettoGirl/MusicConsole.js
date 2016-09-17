@@ -95,6 +95,7 @@ function SettingsManager()
 
     // resolve environment variables in [library.rootpath]
     this.m_settings.library.rootpath = resolve_env(this.m_settings.library.rootpath);
+    this.m_default_settings.library.rootpath = this.m_settings.library.rootpath;
 }
 
 ////////////////////////////////////////////
