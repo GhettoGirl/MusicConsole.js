@@ -82,9 +82,16 @@ void BinarySerialize::AddData(const FunctionCallbackInfo<Value> &args)
 {
     BinarySerialize *obj = ObjectWrap::Unwrap<BinarySerialize>(args.Holder());
 
-    for (int i = 0; i < args.Length(); i++)
+    obj->m_priv_data.clear();
+
+    Local<Array> input = Local<Array>::Cast(args[0]);
+    unsigned int size = input->Length();
+
+    for (unsigned int i = 0; i < size; i++)
     {
-        obj->m_priv_data.push_back(*(String::Utf8Value(args[i]->ToString())));
+        obj->m_priv_data.push_back(
+            *(String::Utf8Value(input->Get(i)->ToString()))
+        );
     }
 
     obj->m_data.setData(obj->m_priv_data);
