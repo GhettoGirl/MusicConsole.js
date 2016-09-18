@@ -8,12 +8,13 @@
       - [ ] MediaCache ─ to cache tags for fast loading </br>
       - [x] TagReader ─ read tags using taglib </br>
  - [x] Implement command prompt
- - [ ] Implement unicode tools
- - [ ] Improve the command prompt with the unicode tools
+ - [ ] *Implement unicode tools?* </br>
+       Now that I know more JavaScipt and I played around with strings a lot, I'm not sure if this is actually necessary :/
+ - [ ] *Improve the command prompt with the unicode tools?* (same as above)
  - [x] Implement history manager
  - [ ] Find out how I can do this in Node -> **kbhit** [cpp](https://github.com/GhettoGirl/MusicConsole/blob/master/Sys/kbhit.cpp), [hpp](https://github.com/GhettoGirl/MusicConsole/blob/master/Sys/kbhit.hpp) </br>
        This is very important and I need this for this project!!
- - [ ] Implement a user settings manager
+ - [x] Implement a user settings manager
  - [ ] Implement a media player controller
  - [ ] Implement a playlist parser (for my custom playlist format, see README of old Music Console for syntax)
  - [ ] Implement a path expander (if there is not a node module for this already)
