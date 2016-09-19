@@ -25,7 +25,7 @@
  - [ ] Implement search term generators (comprehensive universal unicode/intl lookup)
       - [x] Basic Implementation
       - [x] Latin-1/WideLatin
-      - [ ] Japanese Kana
+      - [x] Japanese Kana
            - [ ] Enhanced DAKUTEN(濁点) support
  - [ ] Implement all the commands `:^)` </br>
        <sub>For a detailed description of all the commands see the README of the old Music Console.</sub>
