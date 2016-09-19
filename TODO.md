@@ -26,6 +26,7 @@
       - [x] Basic Implementation
       - [ ] Latin-1/WideLatin
       - [ ] Japanese Kana
+           - [ ] Enhanced DAKUTEN(濁点) support
  - [ ] Implement all the commands `:^)` </br>
        <sub>For a detailed description of all the commands see the README of the old Music Console.</sub>
       - [ ] The 'command-less' command, alias 'hidden audio command'
