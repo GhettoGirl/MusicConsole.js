@@ -22,11 +22,11 @@
  - [ ] Implement a path expander (if there is not a node module for this already) </br>
        Send only absolute paths to players
  - [ ] Port the *SearchKeys* class from the C++ version to Node
- - [ ] Implement search term generators (comprehensive universal unicode/intl lookup)
+ - [x] Implement search term generators (comprehensive universal unicode/intl lookup)
       - [x] Basic Implementation
       - [x] Latin-1/WideLatin
       - [x] Japanese Kana
-           - [ ] Enhanced DAKUTEN(濁点) support
+           - [x] Enhanced DAKUTEN(濁点) support
  - [ ] Implement all the commands `:^)` </br>
        <sub>For a detailed description of all the commands see the README of the old Music Console.</sub>
       - [ ] The 'command-less' command, alias 'hidden audio command'

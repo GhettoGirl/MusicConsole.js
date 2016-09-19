@@ -28,3 +28,10 @@ String.prototype.replaceAt = function(index, character)
 {
     return this.substr(0, index) + character + this.substr(index + character.length);
 }
+
+// changes the content of a string by removing a range of
+// characters and/or adding new characters
+String.prototype.splice = function(start, delCount, newSubStr)
+{
+    return this.slice(0, start) + newSubStr + this.slice(start + Math.abs(delCount));
+};
