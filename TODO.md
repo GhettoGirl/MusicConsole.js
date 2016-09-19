@@ -19,8 +19,10 @@
  - [ ] Implement a playlist parser (for my custom playlist format, see README of old Music Console for syntax)
  - [ ] Implement a path expander (if there is not a node module for this already)
  - [ ] Port the *SearchKeys* class from the C++ version to Node
- - [ ] Implement a search path generator (comprehensive universal unicode/intl lookup)
- - [ ] Port all the search path gens to Node (maybe use C++ addons for assistence)
+ - [ ] Implement search term generators (comprehensive universal unicode/intl lookup)
+      - [x] Basic Implementation
+      - [ ] Latin-1/WideLatin
+      - [ ] Japanese Kana
  - [ ] Implement all the commands `:^)` </br>
        <sub>For a detailed description of all the commands see the README of the old Music Console.</sub>
       - [ ] The 'command-less' command, alias 'hidden audio command'
