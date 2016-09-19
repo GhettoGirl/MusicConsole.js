@@ -9,6 +9,7 @@
       - [x] TagReader ─ read tags using taglib
       - [ ] Search functionality
       - [ ] Optimizations and bug fixing
+ - [ ] Replace 'binary-serialize' (C++ addon) with 'node-pack', because its serialized content is way smaller than cerials
  - [x] Implement command prompt
  - [ ] Implement string simplifier for user input </br>
        Trim unnecessary whitespaces, etc.
