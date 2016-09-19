@@ -1,6 +1,12 @@
 # Todo list
 
- - [x] ~~Implement native GNU/Readline addon~~ **REMOVED AND REPLACED BY NODE MODULE**
+ - [x] ~~Implement native GNU/Readline addon~~ **REMOVED AND REPLACED BY NODE MODULE** </br>
+       **REPLACE BY ANOTHER NODE MODULE OR GO BACK TO GNU/READLINE!!** </br>
+       Noticed the prompt I'm using has no proper Unicode support. The spacing gets fucked up when typing wide characters like widelatin, Japanese, Chinese, Korean, etc. </br>
+       I need a modern Unicode and wide character friendly prompt (like GNU/Readline) </br>
+       Wide characters usually take up 2 (or in rare cases even more than 3) columns in the terminal </br>
+       Maybe start another attempt to integrate GNU/Readline and try to handle SIGINT
+      - [ ] Replace 'prompt-sync' with better prompt which has proper has wide-char support
  - [ ] Implement ~~native~~ MediaLibraryModel ~~addon~~ (in JavaScript) </br>
        <sub>First I wanted to Implement this in C++, but it got to tricky...</sub>
       - [x] ~~FileSystemModel ─ recursive file system scanner~~ **REPLACED BY NODE MODULE**

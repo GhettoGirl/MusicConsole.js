@@ -10,6 +10,8 @@ const prompt = require('./extern/prompt-sync') ({
     history: require('./sys/history.js')(settings.directory() + "/history"),
 });
 
+const simplifystring = require('./utils/stringsimplify.js');
+
 const method = MusicConsole.prototype;
 
 function MusicConsole()
@@ -31,9 +33,8 @@ method.userInput = function()
 
     inputbuf = prompt("# ");
 
-    // todo: simplify string, keep first whitespace if any
-    //       needs comprehensive unicode character tools to be implemented first
-    //       example: U+3000 == 0x20
+    // simplify string, keep first whitespace if any
+    inputbuf = simplifystring(inputbuf);
 
     // skip empty input
     // todo: check if string has only spaces, (same as above)
@@ -58,7 +59,14 @@ method.userInput = function()
 
     // eliminate empty entries
     // and trim leading and trailing spaces
-    // todo: requires unicode char tools
+    splitbuf = splitbuf.filter(v => v != '');
+    for (var i in splitbuf)
+    {
+        if (typeof splitbuf[i] == "string")
+        {
+            splitbuf[i] = splitbuf[i].trim();
+        }
+    }
 
     // check if list got empty
     if (splitbuf.length == 0)
@@ -96,8 +104,8 @@ method.main = function()
     console.log("len: " + test.length);
     for (var i of test)
     {
-        console.log("cmd: " + i.command);
-        console.log("arg: " + i.args);
+        console.log("cmd: '" + i.command + "'");
+        console.log("arg: '" + i.args + "'");
         console.log("-----");
     }
 }
