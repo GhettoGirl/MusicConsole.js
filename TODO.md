@@ -24,7 +24,7 @@
  - [ ] Port the *SearchKeys* class from the C++ version to Node
  - [ ] Implement search term generators (comprehensive universal unicode/intl lookup)
       - [x] Basic Implementation
-      - [ ] Latin-1/WideLatin
+      - [x] Latin-1/WideLatin
       - [ ] Japanese Kana
            - [ ] Enhanced DAKUTEN(濁点) support
  - [ ] Implement all the commands `:^)` </br>
