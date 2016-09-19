@@ -10,9 +10,9 @@
       - [ ] Search functionality
       - [ ] Optimizations and bug fixing
  - [x] Implement command prompt
- - [ ] *Implement unicode tools?* </br>
-       Now that I know more JavaScipt and I played around with strings a lot, I'm not sure if this is actually necessary :/
- - [ ] *Improve the command prompt with the unicode tools?* (same as above)
+ - [ ] Implement string simplifier for user input </br>
+       Trim unnecessary whitespaces, etc.
+      - [ ] Extend the command prompt with it
  - [x] Implement history manager
  - [ ] Find out how I can do this in Node -> **kbhit** [cpp](https://github.com/GhettoGirl/MusicConsole/blob/master/Sys/kbhit.cpp), [hpp](https://github.com/GhettoGirl/MusicConsole/blob/master/Sys/kbhit.hpp) </br>
        This is very important and I need this for this project!!
