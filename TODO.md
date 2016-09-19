@@ -3,10 +3,12 @@
  - [x] ~~Implement native GNU/Readline addon~~ **REMOVED AND REPLACED BY NODE MODULE**
  - [ ] Implement ~~native~~ MediaLibraryModel ~~addon~~ (in JavaScript) </br>
        <sub>First I wanted to Implement this in C++, but it got to tricky...</sub>
-      - [x] ~~FileSystemModel ─ recursive file system scanner~~ **REPLACED BY NODE MODULE** </br>
-      - [ ] MediaFile ─ to store data, like tags etc. </br>
-      - [ ] MediaCache ─ to cache tags for fast loading </br>
-      - [x] TagReader ─ read tags using taglib </br>
+      - [x] ~~FileSystemModel ─ recursive file system scanner~~ **REPLACED BY NODE MODULE**
+      - [x] MediaFile ─ to store data, like tags etc.
+      - [x] MediaCache ─ to cache tags for fast loading
+      - [x] TagReader ─ read tags using taglib
+      - [ ] Search functionality
+      - [ ] Optimizations and bug fixing
  - [x] Implement command prompt
  - [ ] *Implement unicode tools?* </br>
        Now that I know more JavaScipt and I played around with strings a lot, I'm not sure if this is actually necessary :/
@@ -17,7 +19,8 @@
  - [x] Implement a user settings manager
  - [ ] Implement a media player controller
  - [ ] Implement a playlist parser (for my custom playlist format, see README of old Music Console for syntax)
- - [ ] Implement a path expander (if there is not a node module for this already)
+ - [ ] Implement a path expander (if there is not a node module for this already) </br>
+       Send only absolute paths to players
  - [ ] Port the *SearchKeys* class from the C++ version to Node
  - [ ] Implement search term generators (comprehensive universal unicode/intl lookup)
       - [x] Basic Implementation
@@ -41,6 +44,6 @@
 </br>
 
  - [ ] Write "installer" which minifies the code to a bare minimum to reduce the size of release builds </br>
-       There is no point in hundreds of empty lines and code comment when you are never see the code anyway. </br>
+       There is no point in hundreds of empty lines and code comments when you are never see the code anyway. </br>
        As an extend this can also improve the performance a little bit.
 
