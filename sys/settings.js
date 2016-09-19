@@ -58,7 +58,7 @@ function SettingsManager()
         },
         library: {
             rootpath: "$HOME", // scan the whole users home directory by default
-            prefixdeletionpatterns: ["Music/", "Video/", "Vidoes/"],
+            prefixdeletionpatterns: ["Music/", "Video/", "Videos/"],
             audioformats: ["wav", "flac", "tta",  "aiff", "ape",  "pcm", "alac", "dts",
                            "m4a", "ogg",  "mka",  "wma",  "asf",  "ra",  "aac",  "mp3"],
             videoformats: ["mp4", "h264", "h263", "ts",   "m2ts", "mov", "ogm",  "avi",
@@ -100,8 +100,11 @@ function SettingsManager()
     // convert prefix deletion patterns to lowercase
     for (var i in this.m_settings.library.prefixdeletionpatterns)
     {
-        this.m_settings.library.prefixdeletionpatterns[i] =
-            this.m_settings.library.prefixdeletionpatterns[i].toLowerCase();
+        if (typeof this.m_settings.library.prefixdeletionpatterns[i] == "string")
+        {
+            this.m_settings.library.prefixdeletionpatterns[i] =
+                this.m_settings.library.prefixdeletionpatterns[i].toLowerCase();
+        }
     }
     this.m_default_settings.library.prefixdeletionpatterns =
         this.m_settings.library.prefixdeletionpatterns;
