@@ -16,14 +16,9 @@ global.pjson = require(__dirname + "/package.json");
 global.ansi = require('ansi-escape-sequences');
 global.termcolor = require('./utils/termcolor.js');
 
-const pkg_version = require('./extern/NodeSwVersionParser');
-global.pkg_version = new pkg_version();
-
-const SettingsManager = require('./sys/settings.js');
-global.settings = new SettingsManager();
-
-const MusicConsole = require('./console.js');
-global.musicconsole = new MusicConsole();
+global.pkg_version = new (require('./extern/NodeSwVersionParser'));
+global.settings = new (require('./sys/settings.js'));
+global.musicconsole = new (require('./console.js'));
 
 const MediaLibraryModel = require('./lib/medialibrarymodel');
 global.MediaType = MediaLibraryModel.MediaType;
