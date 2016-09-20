@@ -78,7 +78,7 @@ function singleinstance_check()
             console.log(ansi.style.bold + termcolor.foreground.rgb(166, 74, 0) +
                         "NOTICE:" + ansi.style.reset + " " + ansi.style.italic +
                         "only one instance is allowed!" + ansi.style.reset);
-            process.exit(5);
+            global.process_cleanup_and_exit(5);
         }
     });
 }

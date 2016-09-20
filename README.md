@@ -39,6 +39,19 @@ I will create a proper install and run script in the future.
 
 </br></br></br>
 
+
+## Basics
+
+#### Exit Codes
+
+ - `0` No error
+ - `1` *`<unused>`*
+ - `2` Problem in the command list, most likely due to duplicate names
+ - `3` *`<unused>`*
+ - `4` *`<unused>`*
+ - `5` An instance of **Music Console** is already running
+
+
 ## ~ Dev Notice ~
 
 This project is a continuation of my old [Music Console](https://github.com/GhettoGirl/MusicConsole) written in C++14 and Qt5. I'm in the progess of learning NodeJS and Electron for any of my apps I will write in the future. C++ for GUI development got too lazy for me and it takes way too long. I need something future proof and Node/Electron got really popular these days.
