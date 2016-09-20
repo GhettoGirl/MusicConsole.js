@@ -15,14 +15,7 @@ require('./sys/extensions.js');
 global.pjson = require(__dirname + "/package.json");
 global.ansi = require('ansi-escape-sequences');
 global.termcolor = require('./utils/termcolor.js');
-
 global.pkg_version = new (require('./extern/NodeSwVersionParser'));
-global.settings = new (require('./sys/settings.js'));
-global.musicconsole = new (require('./console.js'));
-
-const MediaLibraryModel = require('./lib/medialibrarymodel');
-global.MediaType = MediaLibraryModel.MediaType;
-global.medialib = new MediaLibraryModel.MediaLibraryModel();
 
 // local objects
 var pidlock = require('pidlock');
@@ -92,6 +85,10 @@ function singleinstance_check()
 
 function init_medialib()
 {
+    const MediaLibraryModel = require('./lib/medialibrarymodel');
+    global.MediaType = MediaLibraryModel.MediaType;
+    global.medialib = new MediaLibraryModel.MediaLibraryModel();
+
     if (!medialib.setPath(settings.library().rootpath))
     {
         console.error("Unable to read from the specific path: " + settings.library().rootpath);
@@ -110,6 +107,10 @@ function main()
 {
     print_header();
     singleinstance_check();
+
+    // initialize components
+    global.settings = new (require('./sys/settings.js'));
+    global.musicconsole = new (require('./console.js'));
 
     init_medialib();
 
