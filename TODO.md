@@ -39,7 +39,7 @@
       - [x] Japanese Kana
            - [x] Enhanced DAKUTEN(濁点) support
       - [x] Whitespace Fixer
- - [ ] Implement a solid and extendable command line parser
+ - [x] Implement a solid and extendable command line parser
  - [ ] Implement all the commands `:^)` </br>
        <sub>For a detailed description of all the commands see the README of the old Music Console.</sub>
       - [ ] The 'command-less' command, alias 'hidden audio command'
@@ -53,7 +53,7 @@
       - [ ] *statistics*
       - [ ] *playlist*
       - [ ] *rescan* (to rescan the filesystem without restarting the app)
-      - [ ] *exit*
+      - [x] *exit*
 
 </br>
 

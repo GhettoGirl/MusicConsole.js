@@ -10,6 +10,9 @@ global.readline = new (require('./lib/GnuReadline')).GnuReadline();
 global.history = new (require('./sys/history.js'))(global.settings.directory() + "/history");
 global.readline.setPrompt("# ");
 
+// initialize commands
+global.commands = require('./sys/commands.js');
+
 const simplifystring = require('./utils/simplifystring.js');
 
 const method = MusicConsole.prototype;
@@ -82,7 +85,7 @@ method.userInput = function()
         if (i.indexOf(' ') == -1)
         {
             commands.push({
-                command: i,
+                command: i.toLowerCase(),
                 args: ""
             });
         }
@@ -90,8 +93,8 @@ method.userInput = function()
         else
         {
             commands.push({
-                command: i.substr(0, i.indexOf(' ')),
-                args: i.substr(i.indexOf(' ') + 1)
+                command: i.substr(0, i.indexOf(' ')).toLowerCase(),
+                args: i.substr(i.indexOf(' ') + 1).toLowerCase()
             });
         }
     }
@@ -101,14 +104,19 @@ method.userInput = function()
 
 method.main = function()
 {
-    // test user input
-    var test = this.userInput();
-    console.log("len: " + test.length);
-    for (var i of test)
+    while (true)
     {
-        console.log("cmd: '" + i.command + "'");
-        console.log("arg: '" + i.args + "'");
-        console.log("-----");
+        var commands = this.userInput();
+        for (var i of commands)
+        {
+            for (var c of global.commands)
+            {
+                if (i.command == c.m_name)
+                {
+                    c.execute(i.args);
+                }
+            }
+        }
     }
 }
 
