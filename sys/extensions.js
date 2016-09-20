@@ -34,4 +34,31 @@ String.prototype.replaceAt = function(index, character)
 String.prototype.splice = function(start, delCount, newSubStr)
 {
     return this.slice(0, start) + newSubStr + this.slice(start + Math.abs(delCount));
-};
+}
+
+// replace all occurrences in a string and return it
+String.prototype.replaceAll = function(search, replacement)
+{
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+}
+
+// improved string convertion for the RegExp object
+// removes the first slash and everything after and including the last slash
+RegExp.prototype.toStringRaw = function()
+{
+    var buf = this.toString();
+
+    if (buf.startsWith('/'))
+    {
+        buf = buf.splice(0, 1, '');
+    }
+
+    var pos_last_slash = buf.lastIndexOf('/');
+    if (pos_last_slash != -1)
+    {
+        buf = buf.splice(pos_last_slash, buf.length - pos_last_slash, '');
+    }
+
+    return buf;
+}

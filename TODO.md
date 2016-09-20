@@ -32,7 +32,8 @@
  - [ ] Implement a playlist parser (for my custom playlist format, see README of old Music Console for syntax)
  - [x] ~~Implement a path expander (if there is not a node module for this already)~~ </br>
        ~~Send only absolute paths to players~~ alternative paths are ok
- - [ ] Port the *SearchKeys* class from the C++ version to Node
+ - [x] Port the *SearchKeys* class from the C++ version to Node </br>
+       Don't change anything because it works great and it took me weeks to write this class.
  - [x] Implement search term generators (comprehensive universal unicode/intl lookup)
       - [x] Basic Implementation
       - [x] Latin-1/WideLatin
