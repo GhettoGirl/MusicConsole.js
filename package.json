@@ -13,7 +13,6 @@
     "dependencies": {
         "ansi-escape-sequences": ">=2.2.2",
         "pidlock": "^0.1.0",
-        "mkdirp": "^0.5.1",
         "readdir-enhanced": "^1.4.3",
         "jsonfile": "^2.4.0",
         "sha1": ">=1.1.1",

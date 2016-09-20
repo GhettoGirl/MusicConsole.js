@@ -17,6 +17,8 @@ global.ansi = require('ansi-escape-sequences');
 global.termcolor = require('./utils/termcolor.js');
 global.pkg_version = new (require('./extern/NodeSwVersionParser'));
 
+global.mkdirp = require('./extern/node-mkdirp');
+
 // local objects
 var pidlock = require('pidlock');
 

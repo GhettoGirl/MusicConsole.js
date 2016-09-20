@@ -7,7 +7,6 @@
 
 const join = require("path").join;
 const env = process.env;
-const mkdirp = require('mkdirp');
 const fs = require('fs');
 const jsonfile = require('jsonfile');
 const touch = require('../extern/node-touch');
@@ -38,7 +37,7 @@ function SettingsManager()
     this.m_file = this.m_dir + "/settings.json";
 
     // attempt to create the settings directory
-    mkdirp.sync(this.m_dir);
+    global.mkdirp.sync(this.m_dir);
 
     // make sure the config directory exists and is readable
     try
