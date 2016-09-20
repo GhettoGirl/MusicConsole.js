@@ -6,9 +6,9 @@
  */
 
 // initialize prompt and history manager
-const prompt = require('./extern/prompt-sync') ({
-    history: require('./sys/history.js')(settings.directory() + "/history"),
-});
+global.readline = new (require('./lib/GnuReadline')).GnuReadline();
+global.history = new (require('./sys/history.js'))(global.settings.directory() + "/history");
+global.readline.setPrompt("# ");
 
 const simplifystring = require('./utils/simplifystring.js');
 
@@ -31,7 +31,7 @@ method.userInput = function()
     var splitbuf;
     var commands = [];
 
-    inputbuf = prompt("# ");
+    inputbuf = readline.prompt();
 
     // simplify string, keep first whitespace if any
     inputbuf = simplifystring(inputbuf, true);
@@ -50,7 +50,7 @@ method.userInput = function()
 
     else
     {
-        prompt.history.save();
+        history.append(inputbuf);
     }
 
     // split input

@@ -1,75 +1,32 @@
 /* Music Console
- * @prompt-history.fs
+ * @history.fs
  *
- * History Manager for 'prompt-sync'
+ * History Manager for GNU/Readline native addon
  *
- * This history manager has no file size limit
- * and also uses the logic from the original
- * C++ version of Music Console.
- *
- * --> no duplicate entries for the past 2 items
- * --> case insensitive duplicate checks
+ *  --> no duplicate entries for the past 2 items
+ *  --> case insensitive duplicate checks
  *
  */
 
-const fs = require('fs');
+const method = HistoryManager.prototype;
 
-module.exports = function history(file) {
-    var HIST = [];
-
-    try
-    {
-        HIST = fs.readFileSync(file, {encoding: 'utf8'}).split('\n').slice(0, -1);
-    }
-
-    catch (error)
-    {
-        console.error("HistoryManager: " + error.name + ": " + error.message);
-    }
-
-    var ix = HIST.length;
-
-    return {
-        atStart: function()
-        {
-            return ix <= 0;
-        },
-        atPenultimate: function()
-        {
-            return  ix == HIST.length - 1;
-        },
-        pastEnd: function()
-        {
-            return ix >= HIST.length;
-        },
-        atEnd: function()
-        {
-            return ix == HIST.length;
-        },
-        prev: function()
-        {
-            return HIST[--ix];
-        },
-        next: function()
-        {
-            return HIST[++ix];
-        },
-        reset: function()
-        {
-            ix = HIST.length;
-        },
-        push: function(str)
-        {
-            // skip if last 2 items match the current one in unicode case insensitive way
-            str = str.toLowerCase();
-            if (!(HIST[HIST.length - 1] == str || HIST[HIST.length - 2] == str))
-            {
-                HIST.push(str);
-            }
-        },
-        save: function()
-        {
-            fs.writeFileSync(file, HIST.join('\n') + '\n');
-        }
-    };
+function HistoryManager(file)
+{
+    global.readline.historySet(file);
+    global.readline.historyLoad();
 }
+
+method.append = function(string)
+{
+    var item = string.toLowerCase();
+    var HIST = global.readline.historyGet(2);
+
+    if (!(HIST[HIST.length - 1] == item || HIST[HIST.length - 2] == item))
+    {
+        global.readline.historyAppend(item);
+    }
+
+    HIST.length = 0;
+}
+
+module.exports = HistoryManager;
