@@ -5,7 +5,8 @@
  *
  */
 
-const xdg = require('xdg').basedir;
+const join = require("path").join;
+const env = process.env;
 const mkdirp = require('mkdirp');
 const fs = require('fs');
 const jsonfile = require('jsonfile');
@@ -16,7 +17,24 @@ const method = SettingsManager.prototype;
 
 function SettingsManager()
 {
-    this.m_dir = xdg.configPath(global.pjson.author + "/" + global.pjson.name);
+    this.m_dir = (function()
+    {
+        function find_xdg_config_dir()
+        {
+            if (env["XDG_CONFIG_HOME"])
+            {
+                return env[key];
+            }
+
+            else
+            {
+                return join(env.HOME, ".config");
+            }
+        };
+
+        return find_xdg_config_dir() + '/' + global.pjson.author + "/" + global.pjson.name;
+    })();
+
     this.m_file = this.m_dir + "/settings.json";
 
     // attempt to create the settings directory
