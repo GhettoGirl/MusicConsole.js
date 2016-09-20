@@ -34,11 +34,10 @@ method.userInput = function()
     inputbuf = prompt("# ");
 
     // simplify string, keep first whitespace if any
-    inputbuf = simplifystring(inputbuf);
+    inputbuf = simplifystring(inputbuf, true);
 
     // skip empty input
-    // todo: check if string has only spaces, (same as above)
-    if (inputbuf == "")
+    if (inputbuf == "" || inputbuf == " ")
     {
         return [];
     }
@@ -59,7 +58,10 @@ method.userInput = function()
 
     // eliminate empty entries
     // and trim leading and trailing spaces
-    splitbuf = splitbuf.filter(v => v != '');
+    splitbuf = splitbuf.filter(function(value)
+    {
+        return (simplifystring(value) != '');
+    });
     for (var i in splitbuf)
     {
         if (typeof splitbuf[i] == "string")
