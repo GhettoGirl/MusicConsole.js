@@ -17,8 +17,6 @@ notes
 .tern-project
 
 # for testing purposes only
-history.hist
-cereal-test.bin
 test.js
 ftw_test/
 cache_test/
