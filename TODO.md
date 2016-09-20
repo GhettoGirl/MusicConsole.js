@@ -1,12 +1,14 @@
 # Todo list
 
- - [x] ~~Implement native GNU/Readline addon~~ **REMOVED AND REPLACED BY NODE MODULE** </br>
-       **REPLACE BY ANOTHER NODE MODULE OR GO BACK TO GNU/READLINE!!** </br>
+ - [x] Implement native GNU/Readline addon ~~**REMOVED AND REPLACED BY NODE MODULE**~~ </br>
+       ~~**REPLACE BY ANOTHER NODE MODULE OR GO BACK TO GNU/READLINE!!**~~ </br>
        Noticed the prompt I'm using has no proper Unicode support. The spacing gets fucked up when typing wide characters like widelatin, Japanese, Chinese, Korean, etc. </br>
        I need a modern Unicode and wide character friendly prompt (like GNU/Readline) </br>
        Wide characters usually take up 2 (or in rare cases even more than 3) columns in the terminal </br>
        Maybe start another attempt to integrate GNU/Readline and try to handle SIGINT
-      - [ ] Replace 'prompt-sync' with better prompt which has proper has wide-char support
+      - [x] Replace 'prompt-sync' with better prompt which has proper wide-char support </br>
+            *REPLACED WITH AN IMPROVED VERSION OF MY GNU/READLINE ADDON!*
+ - [ ] **[Maybe?]** GNU/Readline: implement custom auto-completer for the media library
  - [ ] Implement ~~native~~ MediaLibraryModel ~~addon~~ (in JavaScript) </br>
        <sub>First I wanted to Implement this in C++, but it got to tricky...</sub>
       - [x] ~~FileSystemModel ─ recursive file system scanner~~ **REPLACED BY NODE MODULE**
@@ -22,7 +24,8 @@
       - [x] Extend the command prompt with it
  - [x] Implement history manager
  - [ ] Find out how I can do this in Node -> **kbhit** [cpp](https://github.com/GhettoGirl/MusicConsole/blob/master/Sys/kbhit.cpp), [hpp](https://github.com/GhettoGirl/MusicConsole/blob/master/Sys/kbhit.hpp) </br>
-       This is very important and I need this for this project!!
+       This is very important and I need this for this project!! </br>
+       *I'm unable to find a way to do this in Node, so lets create another native addon for this...*
  - [x] Implement a user settings manager
  - [ ] Implement a media player controller
  - [ ] Implement a playlist parser (for my custom playlist format, see README of old Music Console for syntax)
@@ -35,6 +38,7 @@
       - [x] Japanese Kana
            - [x] Enhanced DAKUTEN(濁点) support
       - [x] Whitespace Fixer
+ - [ ] Implement a solid and extendable command line parser
  - [ ] Implement all the commands `:^)` </br>
        <sub>For a detailed description of all the commands see the README of the old Music Console.</sub>
       - [ ] The 'command-less' command, alias 'hidden audio command'
