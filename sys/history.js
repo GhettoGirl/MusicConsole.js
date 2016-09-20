@@ -19,13 +19,22 @@ function HistoryManager(file)
 method.append = function(string)
 {
     var item = string.toLowerCase();
-    var HIST = global.readline.historyGet(2);
 
+    // skip every item which matches any of the ignore patterns
+    for (var i of global.settings.histignore())
+    {
+        if (item.match(i) != null)
+        {
+            return;
+        }
+    }
+
+    // check if last 2 items are identical to current item
+    var HIST = global.readline.historyGet(2);
     if (!(HIST[HIST.length - 1] == item || HIST[HIST.length - 2] == item))
     {
         global.readline.historyAppend(item);
     }
-
     HIST.length = 0;
 }
 

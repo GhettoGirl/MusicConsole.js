@@ -74,7 +74,7 @@ function SettingsManager()
             browser: "mc",
         },
         history: {
-            histignore: ["statistics*", "browse*", "exit*", "rescan*", "history*"]
+            histignore: ["statistics.*", "browse.*", "exit.*", "rescan.*", "history.*"]
         }
     };
 
@@ -96,6 +96,13 @@ function SettingsManager()
     // resolve environment variables in [library.rootpath]
     this.m_settings.library.rootpath = resolve_env(this.m_settings.library.rootpath);
     this.m_default_settings.library.rootpath = this.m_settings.library.rootpath;
+
+    // create histignore regex array
+    this.m_histignore = [];
+    for (var i of this.m_settings.history.histignore)
+    {
+        this.m_histignore.push(new RegExp(i, 'i'));
+    }
 }
 
 ////////////////////////////////////////////
@@ -210,6 +217,11 @@ method.tools = function()
 method.history = function()
 {
     return this.m_settings.history;
+}
+
+method.histignore = function()
+{
+    return this.m_histignore;
 }
 
 module.exports = SettingsManager;
