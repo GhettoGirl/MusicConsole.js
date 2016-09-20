@@ -15,11 +15,11 @@
       - [x] TagReader ─ read tags using taglib
       - [ ] Search functionality
       - [ ] Optimizations and bug fixing
- - [ ] Replace 'binary-serialize' (C++ addon) with 'node-pack', because its serialized content is way smaller than cerials
+ - [x] Replace 'binary-serialize' (C++ addon) with 'node-pack', because its serialized content is way smaller than cereal (can safe a lot of disk space)
  - [x] Implement command prompt
- - [ ] Implement string simplifier for user input </br>
+ - [x] Implement string simplifier for user input </br>
        Trim unnecessary whitespaces, etc.
-      - [ ] Extend the command prompt with it
+      - [x] Extend the command prompt with it
  - [x] Implement history manager
  - [ ] Find out how I can do this in Node -> **kbhit** [cpp](https://github.com/GhettoGirl/MusicConsole/blob/master/Sys/kbhit.cpp), [hpp](https://github.com/GhettoGirl/MusicConsole/blob/master/Sys/kbhit.hpp) </br>
        This is very important and I need this for this project!!

@@ -19,7 +19,7 @@ function MusicConsole()
 }
 
 // reads user input from the console and generates commands
-// splits at every '&&' and generates an array of structs
+// splits at every '&&' and generates an array of objects
 // eliminates empty entries and simplifies the input
 // returns an array of the following object
 //   {command, args}
