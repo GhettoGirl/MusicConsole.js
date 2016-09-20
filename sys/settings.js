@@ -73,7 +73,8 @@ function SettingsManager()
         tools: {
             browser: "mc",
         },
-        history: {
+        prompt: {
+            line: "# ",
             histignore: ["statistics.*", "browse.*", "exit.*", "rescan.*", "history.*"]
         }
     };
@@ -99,7 +100,7 @@ function SettingsManager()
 
     // create histignore regex array
     this.m_histignore = [];
-    for (var i of this.m_settings.history.histignore)
+    for (var i of this.m_settings.prompt.histignore)
     {
         this.m_histignore.push(new RegExp(i, 'i'));
     }
@@ -183,8 +184,10 @@ method.validateSettings = function()
     if (!isString(this.m_settings.tools.browser))
         this.m_settings.tools.browser = this.m_default_settings.tools.browser;
 
-    if (!isObject(this.m_settings.history.histignore))
-        this.m_settings.history.histignore = this.m_default_settings.history.histignore;
+    if (!isString(this.m_settings.prompt.line))
+        this.m_settings.prompt.line = this.m_default_settings.prompt.line;
+    if (!isObject(this.m_settings.prompt.histignore))
+        this.m_settings.prompt.histignore = this.m_default_settings.prompt.histignore;
 
     jsonfile.writeFileSync(this.m_file, this.m_settings, {spaces: 2});
 }
@@ -214,9 +217,9 @@ method.tools = function()
     return this.m_settings.tools;
 }
 
-method.history = function()
+method.prompt = function()
 {
-    return this.m_settings.history;
+    return this.m_settings.prompt;
 }
 
 method.histignore = function()
