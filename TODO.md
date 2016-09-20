@@ -30,8 +30,8 @@
  - [x] Implement a user settings manager
  - [ ] Implement a media player controller
  - [ ] Implement a playlist parser (for my custom playlist format, see README of old Music Console for syntax)
- - [ ] Implement a path expander (if there is not a node module for this already) </br>
-       Send only absolute paths to players
+ - [x] ~~Implement a path expander (if there is not a node module for this already)~~ </br>
+       ~~Send only absolute paths to players~~ alternative paths are ok
  - [ ] Port the *SearchKeys* class from the C++ version to Node
  - [x] Implement search term generators (comprehensive universal unicode/intl lookup)
       - [x] Basic Implementation
