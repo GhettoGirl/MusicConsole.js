@@ -23,9 +23,10 @@
        Trim unnecessary whitespaces, etc.
       - [x] Extend the command prompt with it
  - [x] Implement history manager
- - [ ] Find out how I can do this in Node -> **kbhit** [cpp](https://github.com/GhettoGirl/MusicConsole/blob/master/Sys/kbhit.cpp), [hpp](https://github.com/GhettoGirl/MusicConsole/blob/master/Sys/kbhit.hpp) </br>
+ - [x] ~~Find out how I can do this in Node~~ -> **kbhit** [cpp](https://github.com/GhettoGirl/MusicConsole/blob/master/Sys/kbhit.cpp), [hpp](https://github.com/GhettoGirl/MusicConsole/blob/master/Sys/kbhit.hpp) </br>
        This is very important and I need this for this project!! </br>
-       *I'm unable to find a way to do this in Node, so lets create another native addon for this...*
+       *I'm unable to find a way to do this in Node, so lets create another native addon for this...* </br>
+       Feature implemented in a native addon, and it works like a charm :)
  - [x] Implement a user settings manager
  - [ ] Implement a media player controller
  - [ ] Implement a playlist parser (for my custom playlist format, see README of old Music Console for syntax)
