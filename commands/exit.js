@@ -13,7 +13,7 @@ function CmdExit(name)
     Command.call(this, name);
 }
 
-CmdExit.prototype = Object.create(CmdExit.prototype);
+CmdExit.prototype = Object.create(Command.prototype);
 CmdExit.prototype = {
 
 execute: function(args)

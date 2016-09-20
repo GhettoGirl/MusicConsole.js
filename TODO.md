@@ -49,7 +49,7 @@
       - [ ] *repeat*
       - [ ] *search*
       - [ ] *browse*
-      - [ ] *history* (print history to screen)
+      - [x] *history* (print history to screen)
       - [ ] *statistics*
       - [ ] *playlist*
       - [ ] *rescan* (to rescan the filesystem without restarting the app)
