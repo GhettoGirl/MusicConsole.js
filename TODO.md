@@ -53,7 +53,7 @@
       - [x] *history* (print history to screen)
       - [ ] *statistics*
       - [ ] *playlist*
-      - [ ] *rescan* (to rescan the filesystem without restarting the app)
+      - [x] *rescan* (to rescan the filesystem without restarting the app)
       - [x] *exit*
 
 </br>

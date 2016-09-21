@@ -103,6 +103,8 @@ function init_medialib()
     medialib.setMediaTypes(MediaType.ModuleTracker, settings.library().moduleformats);
 
     medialib.setPrefixDeletionPatterns(settings.library().prefixdeletionpatterns);
+
+    medialib.setCachePath(settings.directory() + "/cache");
 }
 
 function main()

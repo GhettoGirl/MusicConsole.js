@@ -42,6 +42,24 @@ I will create a proper install and run script in the future.
 
 ## Basics
 
+#### First Start
+
+Starting the program for the first time will create a directory with a configuration file in
+```
+$XDG_CONFIG_DIR/GhettoGirl/musicconsole-js
+```
+and than start to scan your `$HOME` folder for media files.
+
+The first start, depending on how much music and videos you own, can take up to 3 minutes.
+During this process *Music Console* search for media files, read tags and generate advanced
+search terms for convenient lookups in the prompt. All this data is written to the cache,
+which will be re-used every time you startup the program. This means the second startup
+is more or less instant ─ because Music Console only needs to scan the filesystem for media
+files and than greps all the generated content from the cache.
+
+You can manually rescan the filesystem if your library has changed using the `rescan` command.
+The rescan process repeats the scan and uses data from the cache if any.
+
 #### Exit Codes
 
  - `0` No error

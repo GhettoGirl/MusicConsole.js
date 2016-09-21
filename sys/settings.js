@@ -61,7 +61,6 @@ function SettingsManager()
             audio: "audio",
             video: "video",
             module: "module",
-            playlist: "playlist",
             search: "search",
             browse: "browse",
             random: "random",
@@ -69,9 +68,10 @@ function SettingsManager()
             repeat: "repeat",
             history: "history",
             statistics: "statistics",
-            exit: "exit",
             rescan: "rescan",
-            playlist_fileload: "load"
+            playlist: "playlist",
+            playlist_fileload: "load", // fixme: find a better name
+            exit: "exit"
         },
         library: {
             rootpath: "$HOME", // scan the whole users home directory by default
