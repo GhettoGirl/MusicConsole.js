@@ -55,6 +55,7 @@
       - [ ] *playlist*
       - [x] *rescan* (to rescan the filesystem without restarting the app)
       - [x] *exit*
+ - [ ] Simplify `require` statements, get rid of relative paths
 
 </br>
 
