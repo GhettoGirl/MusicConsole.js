@@ -143,6 +143,28 @@ function SettingsManager()
     }
 }
 
+// tries to find a player override for the given filetype
+// returns either a object of '{command: "", arguments: []}'
+// or undefined
+//
+// todo: use a separate file for this
+method.findPlayerForFiletype = function(filetype)
+{
+    if (typeof filetype != "string" || filetype == '')
+    {
+        return;
+    }
+
+    if (filetype in this.m_settings.player)
+    {
+        if (typeof this.m_settings.player[filetype].command == "string" &&
+            typeof this.m_settings.player[filetype].arguments == "object")
+        {
+            return this.m_settings.player[filetype];
+        }
+    }
+}
+
 ////////////////////////////////////////////
 ///                                      ///
 /// FIXME!! simplify this asap !         ///
