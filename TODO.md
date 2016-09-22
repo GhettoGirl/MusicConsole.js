@@ -15,7 +15,7 @@
       - [x] MediaCache ─ to cache tags for fast loading
       - [x] TagReader ─ read tags using taglib
       - [x] Search functionality
-      - [ ] Implement everything which is still missing (from the C++ version)
+      - [x] Implement everything which is still missing (from the C++ version)
       - [ ] Optimizations and bug fixing
  - [x] Replace 'binary-serialize' (C++ addon) with 'node-pack', because its serialized content is way smaller than cereal (can safe a lot of disk space)
  - [x] Implement command prompt
@@ -28,10 +28,10 @@
        *I'm unable to find a way to do this in Node, so lets create another native addon for this...* </br>
        Feature implemented in a native addon, and it works like a charm :)
  - [x] Implement a user settings manager
- - [ ] Implement a media player controller
+ - [x] Implement a media player controller
  - [ ] Implement a playlist parser (for my custom playlist format, see README of old Music Console for syntax)
  - [x] ~~Implement a path expander (if there is not a node module for this already)~~ </br>
-       ~~Send only absolute paths to players~~ alternative paths are ok
+       Send only absolute paths to players `path.resolve()` ~~alternative paths are ok~~ <- they are **NOT**
  - [x] Port the *SearchKeys* class from the C++ version to Node </br>
        Don't change anything because it works great and it took me weeks to write this class.
  - [x] Implement search term generators (comprehensive universal unicode/intl lookup)
