@@ -9,8 +9,8 @@ const join = require("path").join;
 const env = process.env;
 const fs = require('fs');
 const jsonfile = require('jsonfile');
-const touch = require('../extern/node-touch');
-const resolve_env = require('../extern/node-resolve-env');
+const touch = require('extern/node-touch');
+const resolve_env = require('extern/node-resolve-env');
 
 const method = SettingsManager.prototype;
 

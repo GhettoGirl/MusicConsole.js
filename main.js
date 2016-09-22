@@ -5,19 +5,22 @@
  *
  */
 
+// add root path to require()
+require('rootpath')();
+
 // install signal handler
-require('./sys/signalhandler.js');
+require('sys/signalhandler.js');
 
 // javascript extensions
-global.jsext = require('./utils/js-extensions');
+global.jsext = require('utils/js-extensions');
 
 // global objects
 global.pjson = require(__dirname + "/package.json");
 global.ansi = require('ansi-escape-sequences');
-global.termcolor = require('./utils/termcolor.js');
-global.pkg_version = new (require('./extern/NodeSwVersionParser'));
+global.termcolor = require('utils/termcolor.js');
+global.pkg_version = new (require('extern/NodeSwVersionParser'));
 
-global.mkdirp = require('./extern/node-mkdirp');
+global.mkdirp = require('extern/node-mkdirp');
 
 // local objects
 var pidlock = require('pidlock');

@@ -5,7 +5,7 @@
  *
  */
 
-const WhitespaceGen = require('../lib/searchtermgen').WhitespaceGen;
+const WhitespaceGen = require('lib/searchtermgen').WhitespaceGen;
 
 module.exports = function(string, keepfirstspace)
 {
