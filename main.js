@@ -118,7 +118,7 @@ function main()
     singleinstance_check();
 
     // initialize components
-    global.settings = new (require('./sys/settings.js'));
+    global.settings = new (require('sys/settings.js'));
     global.musicconsole = new (require('./console.js'));
 
     init_medialib();
