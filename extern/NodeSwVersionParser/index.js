@@ -31,8 +31,7 @@
  */
 
 // Usage:
-//  var pkg_version = require('version.js');
-//  global.pkg_version = new pkg_version();
+//  global.pkg_version = new (require('version.js'));
 //
 //  .version     receive the full version string [n.nn-n(n...)]
 //  .main        receive the main number as integer
@@ -48,7 +47,7 @@ function pkg_version_error(msg)
     console.error("version: " + msg);
 }
 
-var method = pkg_version.prototype;
+const method = pkg_version.prototype;
 
 function pkg_version()
 {
