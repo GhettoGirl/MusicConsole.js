@@ -35,6 +35,7 @@ function SettingsManager()
     })();
 
     this.m_file = this.m_dir + "/settings.json";
+    this.m_file_players = this.m_dir + "/players.json";
 
     // attempt to create the settings directory
     global.mkdirp.sync(this.m_dir);
@@ -54,6 +55,7 @@ function SettingsManager()
 
     // make sure a file exists
     touch(this.m_file);
+    touch(this.m_file_players);
 
     // create default settings
     this.m_settings = {
@@ -141,26 +143,56 @@ function SettingsManager()
     {
         this.m_histignore.push(new RegExp(i, 'i'));
     }
+
+    // players.json
+    try
+    {
+        this.m_players = jsonfile.readFileSync(this.m_file_players);
+        this.m_players_valid = true;
+    }
+
+    catch (error)
+    {
+        if (fs.readFileSync(this.m_file_players) == '')
+        {
+            // write example file
+            const example = {
+                "extension": {
+                    "command": "your_player",
+                    "arguments": [
+                        "%f"
+                    ]
+                }
+            };
+
+            jsonfile.writeFileSync(this.m_file_players, example, {spaces: 2});
+        }
+
+        else
+        {
+            console.error("Settings: players.json has syntax errors!");
+        }
+
+        this.m_players_valid = false;
+    }
 }
 
 // tries to find a player override for the given filetype
 // returns either a object of '{command: "", arguments: []}'
 // or undefined
-//
-// todo: use a separate file for this
 method.findPlayerForFiletype = function(filetype)
 {
-    if (typeof filetype != "string" || filetype == '')
+    if (!this.m_players_valid || typeof filetype != "string" || filetype == '')
     {
         return;
     }
 
-    if (filetype in this.m_settings.player)
+    if (filetype in this.m_players)
     {
-        if (typeof this.m_settings.player[filetype].command == "string" &&
-            typeof this.m_settings.player[filetype].arguments == "object")
+        if (typeof this.m_players[filetype].command == "string" &&
+            typeof this.m_players[filetype].arguments == "object")
         {
-            return this.m_settings.player[filetype];
+            return this.m_players[filetype];
         }
     }
 }
