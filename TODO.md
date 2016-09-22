@@ -9,13 +9,13 @@
       - [x] Replace 'prompt-sync' with better prompt which has proper wide-char support </br>
             *REPLACED WITH AN IMPROVED VERSION OF MY GNU/READLINE ADDON!*
  - [ ] **[Maybe?]** GNU/Readline: implement custom auto-completer for the media library
- - [ ] Implement ~~native~~ MediaLibraryModel ~~addon~~ (in JavaScript) </br>
-       <sub>First I wanted to Implement this in C++, but it got to tricky...</sub>
+ - [x] Implement MediaLibraryModel
       - [x] ~~FileSystemModel ─ recursive file system scanner~~ **REPLACED BY NODE MODULE**
       - [x] MediaFile ─ to store data, like tags etc.
       - [x] MediaCache ─ to cache tags for fast loading
       - [x] TagReader ─ read tags using taglib
-      - [ ] Search functionality
+      - [x] Search functionality
+      - [ ] Implement everything which is still missing (from the C++ version)
       - [ ] Optimizations and bug fixing
  - [x] Replace 'binary-serialize' (C++ addon) with 'node-pack', because its serialized content is way smaller than cereal (can safe a lot of disk space)
  - [x] Implement command prompt
