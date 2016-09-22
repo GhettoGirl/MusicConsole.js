@@ -90,7 +90,7 @@ function singleinstance_check()
 
 function init_medialib()
 {
-    const MediaLibraryModel = require('./lib/medialibrarymodel');
+    const MediaLibraryModel = require('lib/medialibrarymodel');
     global.MediaType = MediaLibraryModel.MediaType;
     global.medialib = new MediaLibraryModel.MediaLibraryModel();
 
@@ -112,6 +112,22 @@ function init_medialib()
     medialib.setRandomizerHistorySize(settings.randomizer().historysize);
 }
 
+function init_mediaplayercontroller()
+{
+    global.mediaplayer = new (require('lib/mediaplayercontroller'));
+
+    // set default players
+    mediaplayer.setPlayerForMediatype(MediaType.Audio, settings.player().audioplayer);
+    mediaplayer.setPlayerForMediatype(MediaType.Video, settings.player().videoplayer);
+    mediaplayer.setPlayerForMediatype(MediaType.ModuleTracker, settings.player().modplayer);
+
+    // set player overrides per filetype
+    for (const type of medialib.mediaTypes(MediaType.None))
+    {
+        mediaplayer.setPlayerForFiletype(type, settings.findPlayerForFiletype(type));
+    }
+}
+
 function main()
 {
     print_header();
@@ -122,6 +138,7 @@ function main()
     global.musicconsole = new (require('./console.js'));
 
     init_medialib();
+    init_mediaplayercontroller();
 
     musicconsole.main();
 }
