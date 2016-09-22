@@ -19,9 +19,9 @@ const commands = [
 ];
 
 // check command list for duplicate names
-for (var i = 0; i < commands.length; i++)
+for (let i = 0; i < commands.length; i++)
 {
-    for (var j = 0; j < commands.length; j++)
+    for (let j = 0; j < commands.length; j++)
     {
         if (i != j && commands[i].m_name == commands[j].m_name)
         {

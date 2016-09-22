@@ -21,7 +21,7 @@ method.append = function(string)
     var item = string.toLowerCase();
 
     // skip every item which matches any of the ignore patterns
-    for (var i of global.settings.histignore())
+    for (const i of global.settings.histignore())
     {
         if (item.match(i) != null)
         {

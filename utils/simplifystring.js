@@ -23,11 +23,11 @@ module.exports = function(string, keepfirstspace)
     buf = WhitespaceGen.toRegularSpace(buf.trim());
 
     // remove inner whitespace chains, replace them by one regular space
-    for (var i = 0; i < buf.length; i++)
+    for (let i = 0; i < buf.length; i++)
     {
         if (buf[i] == ' ' && buf[i + 1] == ' ')
         {
-            buf = buf.splice(i, 2, ' ');
+            buf = global.jsext.String.splice(buf, i, 2, ' ');
             i--;
         }
     }

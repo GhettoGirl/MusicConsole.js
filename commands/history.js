@@ -18,7 +18,7 @@ CmdHistory.prototype = {
 
 execute: function(args)
 {
-    for (var i of global.readline.historyGet())
+    for (const i of global.readline.historyGet())
     {
         console.log(i);
     }

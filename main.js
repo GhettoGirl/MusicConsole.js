@@ -8,8 +8,8 @@
 // install signal handler
 require('./sys/signalhandler.js');
 
-// install extensions
-require('./sys/extensions.js');
+// javascript extensions
+global.jsext = require('./utils/js-extensions');
 
 // global objects
 global.pjson = require(__dirname + "/package.json");
@@ -34,7 +34,7 @@ function print_header()
         cols -= 2;
 
         // generate base line
-        for (var i = 0; i < cols; i++)
+        for (let i = 0; i < cols; i++)
         {
             line += "─";
         }
@@ -47,7 +47,7 @@ function print_header()
                + ansi.style.bold + pjson.display_name + ansi.style.reset
                + " " + global.pkg_version.version();
 
-        for (var i = 2 + pjson.display_name.length
+        for (let i = 2 + pjson.display_name.length
                        + global.pkg_version.version().length; i < cols; i++)
         {
             header += " ";

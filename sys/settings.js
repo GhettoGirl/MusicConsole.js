@@ -117,7 +117,7 @@ function SettingsManager()
 
     // create histignore regex array
     this.m_histignore = [];
-    for (var i of this.m_settings.prompt.histignore)
+    for (const i of this.m_settings.prompt.histignore)
     {
         this.m_histignore.push(new RegExp(i, 'i'));
     }

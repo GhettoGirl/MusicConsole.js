@@ -65,7 +65,7 @@ method.userInput = function()
     {
         return (simplifystring(value) != '');
     });
-    for (var i in splitbuf)
+    for (const i in splitbuf)
     {
         if (typeof splitbuf[i] == "string")
         {
@@ -80,7 +80,7 @@ method.userInput = function()
     }
 
     // build commands
-    for (var i of splitbuf)
+    for (const i of splitbuf)
     {
         if (i.indexOf(' ') == -1)
         {
@@ -107,9 +107,9 @@ method.main = function()
     while (true)
     {
         var commands = this.userInput();
-        for (var i of commands)
+        for (const i of commands)
         {
-            for (var c of global.commands)
+            for (const c of global.commands)
             {
                 if (i.command == c.m_name)
                 {
