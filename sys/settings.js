@@ -83,9 +83,26 @@ function SettingsManager()
             moduleformats: ["xm", "it", "mod", "med", "sid", "s3m"]
         },
         player: {
-            audioplayer: "mplayer -novideo -really-quiet %f",
-            videoplayer: "mpv -fs -really-quiet %f",
-            modplayer: "xmp"
+            audioplayer: {
+                command: "mplayer",
+                arguments: [
+                    "-novideo",
+                    "-really-quiet",
+                    "%f"
+                ]
+            },
+            videoplayer: {
+                command: "mpv",
+                arguments: [
+                    "-fs",
+                    "-really-quiet",
+                    "%f"
+                ]
+            },
+            modplayer: {
+                command: "xmp",
+                arguments: []
+            }
         },
         tools: {
             browser: "mc",
@@ -93,6 +110,9 @@ function SettingsManager()
         prompt: {
             line: "# ",
             histignore: ["statistics.*", "browse.*", "exit.*", "rescan.*", "history.*"]
+        },
+        randomizer: {
+            historysize: 2
         }
     };
 
@@ -140,6 +160,11 @@ method.validateSettings = function()
         return (typeof obj == "string");
     };
 
+    const isNumber = function(num)
+    {
+        return (typeof num == "number");
+    }
+
     if (!isObject(this.m_settings.commands))
         this.m_settings.commands = this.m_default_settings.commands;
     if (!isObject(this.m_settings.library))
@@ -150,6 +175,8 @@ method.validateSettings = function()
         this.m_settings.tools = this.m_default_settings.tools;
     if (!isObject(this.m_settings.history))
         this.m_settings.history = this.m_default_settings.history;
+    if (!isObject(this.m_settings.randomizer))
+        this.m_settings.randomizer = this.m_default_settings.randomizer;
 
     if (!isString(this.m_settings.commands.audio))
         this.m_settings.commands.audio = this.m_default_settings.commands.audio;
@@ -191,12 +218,25 @@ method.validateSettings = function()
     if (!isObject(this.m_settings.library.moduleformats))
         this.m_settings.library.moduleformats = this.m_default_settings.library.moduleformats;
 
-    if (!isString(this.m_settings.player.audioplayer))
+    if (!isObject(this.m_settings.player.audioplayer))
         this.m_settings.player.audioplayer = this.m_default_settings.player.audioplayer;
-    if (!isString(this.m_settings.player.videoplayer))
+    if (!isObject(this.m_settings.player.videoplayer))
         this.m_settings.player.videoplayer = this.m_default_settings.player.videoplayer;
-    if (!isString(this.m_settings.player.modplayer))
+    if (!isObject(this.m_settings.player.modplayer))
         this.m_settings.player.modplayer = this.m_default_settings.player.modplayer;
+
+    if (!isString(this.m_settings.player.audioplayer.command))
+        this.m_settings.player.audioplayer.command = this.m_default_settings.player.audioplayer.command;
+    if (!isObject(this.m_settings.player.audioplayer.arguments))
+        this.m_settings.player.audioplayer.arguments = this.m_default_settings.player.audioplayer.arguments;
+    if (!isString(this.m_settings.player.videoplayer.command))
+        this.m_settings.player.videoplayer.command = this.m_default_settings.player.videoplayer.command;
+    if (!isObject(this.m_settings.player.videoplayer.arguments))
+        this.m_settings.player.videoplayer.arguments = this.m_default_settings.player.videoplayer.arguments;
+    if (!isString(this.m_settings.player.modplayer.command))
+        this.m_settings.player.modplayer.command = this.m_default_settings.player.modplayer.command;
+    if (!isObject(this.m_settings.player.modplayer.arguments))
+        this.m_settings.player.modplayer.arguments = this.m_default_settings.player.modplayer.arguments;
 
     if (!isString(this.m_settings.tools.browser))
         this.m_settings.tools.browser = this.m_default_settings.tools.browser;
@@ -205,6 +245,9 @@ method.validateSettings = function()
         this.m_settings.prompt.line = this.m_default_settings.prompt.line;
     if (!isObject(this.m_settings.prompt.histignore))
         this.m_settings.prompt.histignore = this.m_default_settings.prompt.histignore;
+
+    if (!isNumber(this.m_settings.randomizer.historysize))
+        this.m_settings.randomizer.historysize = this.m_default_settings.randomizer.historysize;
 
     jsonfile.writeFileSync(this.m_file, this.m_settings, {spaces: 2});
 }
@@ -237,6 +280,11 @@ method.tools = function()
 method.prompt = function()
 {
     return this.m_settings.prompt;
+}
+
+method.randomizer = function()
+{
+    return this.m_settings.randomizer;
 }
 
 method.histignore = function()

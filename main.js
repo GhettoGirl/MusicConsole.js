@@ -101,13 +101,15 @@ function init_medialib()
         global.process_cleanup_and_exit(3);
     }
 
+    medialib.setCachePath(settings.directory() + "/cache");
+
     medialib.setMediaTypes(MediaType.Audio, settings.library().audioformats);
     medialib.setMediaTypes(MediaType.Video, settings.library().videoformats);
     medialib.setMediaTypes(MediaType.ModuleTracker, settings.library().moduleformats);
 
     medialib.setPrefixDeletionPatterns(settings.library().prefixdeletionpatterns);
 
-    medialib.setCachePath(settings.directory() + "/cache");
+    medialib.setRandomizerHistorySize(settings.randomizer().historysize);
 }
 
 function main()
