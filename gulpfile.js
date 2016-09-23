@@ -6,8 +6,7 @@
  * Installer
  *
  *  - (Runs tests) - at the moment there aren't any
- *  - Minifies every JavaScript and JSON file
- *      todo: remove devDependencies from all package.json files
+ *  - Minifies every JavaScript and JSON file, removes the 'devDependencies' array too
  *  - Skips every unneeded files, except LICENSES
  *  - Builds native addons
  *  - Installs node modules in production mode
@@ -32,6 +31,7 @@ const gp_babel = require('gulp-babel');
 const gp_jsonmin = require('gulp-jsonminify');
 const gp_sourcemaps = require('gulp-sourcemaps');
 const gp_install = require('gulp-install');
+const gp_jeditor = require('gulp-json-editor');
 const combiner = require('stream-combiner2');
 const del = require('del');
 const exec = require('child_process').exec;
@@ -98,6 +98,11 @@ gulp.task('pjsons', ['clean', 'install-modules'], function()
 {
     var combined = combiner.obj([
         gulp.src(paths.pjsons, {base: '.'}),
+        gp_jeditor(function(json)
+        {
+            delete json.devDependencies;
+            return json;
+        }),
         gp_jsonmin(),
         gulp.dest("./dist")
     ]);
