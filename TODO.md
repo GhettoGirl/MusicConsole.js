@@ -57,7 +57,7 @@
       - [x] *exit*
  - [x] Simplify `require` statements, get rid of relative paths </br>
        Every relative path was removed, except `./`
- - [ ] `MediaFile.print()` allow custom appearance </br>
+ - [x] `MediaFile.print()` allow custom appearance </br>
        Add new settings and allow the user to easily customize the display appearance of media files.
 
 </br>

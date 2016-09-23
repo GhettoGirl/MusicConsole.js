@@ -106,6 +106,21 @@ function SettingsManager()
                 arguments: []
             }
         },
+        appearance: { // needs to be evaled
+            extension: "\\x1b[1;38;2;0;97;167m"
+                     + "[%s]",
+            artist:    "\\x1b[3m"
+                     + "%s",
+            album:     "\\x1b[4m"
+                     + "%s",
+            title:     "\\x1b[1m"
+                     + "%s",
+            genre:   "%s",
+            path:    "%s",
+
+            print_tagged: "$extension $artist $title $album",
+            print_path:   "$extension $path"
+        },
         tools: {
             browser: "mc",
         },
@@ -225,6 +240,8 @@ method.validateSettings = function()
         this.m_settings.library = this.m_default_settings.library;
     if (!isObject(this.m_settings.player))
         this.m_settings.player = this.m_default_settings.player;
+    if (!isObject(this.m_settings.appearance))
+        this.m_settings.appearance = this.m_default_settings.appearance;
     if (!isObject(this.m_settings.tools))
         this.m_settings.tools = this.m_default_settings.tools;
     if (!isObject(this.m_settings.history))
@@ -292,6 +309,23 @@ method.validateSettings = function()
     if (!isObject(this.m_settings.player.modplayer.arguments))
         this.m_settings.player.modplayer.arguments = this.m_default_settings.player.modplayer.arguments;
 
+    if (!isString(this.m_settings.appearance.extension))
+        this.m_settings.appearance.extension = this.m_default_settings.appearance.extension;
+    if (!isString(this.m_settings.appearance.artist))
+        this.m_settings.appearance.artist = this.m_default_settings.appearance.artist;
+    if (!isString(this.m_settings.appearance.album))
+        this.m_settings.appearance.album = this.m_default_settings.appearance.album;
+    if (!isString(this.m_settings.appearance.title))
+        this.m_settings.appearance.title = this.m_default_settings.appearance.title;
+    if (!isString(this.m_settings.appearance.genre))
+        this.m_settings.appearance.genre = this.m_default_settings.appearance.genre;
+    if (!isString(this.m_settings.appearance.path))
+        this.m_settings.appearance.path = this.m_default_settings.appearance.path;
+    if (!isString(this.m_settings.appearance.print_tagged))
+        this.m_settings.appearance.print_tagged = this.m_default_settings.appearance.print_tagged;
+    if (!isString(this.m_settings.appearance.print_path))
+        this.m_settings.appearance.print_path = this.m_default_settings.appearance.print_path;
+
     if (!isString(this.m_settings.tools.browser))
         this.m_settings.tools.browser = this.m_default_settings.tools.browser;
 
@@ -324,6 +358,11 @@ method.library = function()
 method.player = function()
 {
     return this.m_settings.player;
+}
+
+method.appearance = function()
+{
+    return this.m_settings.appearance;
 }
 
 method.tools = function()
