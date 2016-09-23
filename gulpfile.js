@@ -14,6 +14,7 @@
  *  - Cleans up everything after the installation
  *
  *  - Installs the release in the './dist' directory
+ *  - Installs a launcher script (shell)
  *
  * TODO:
  *  - write tests
@@ -32,6 +33,7 @@ const gp_jsonmin = require('gulp-jsonminify');
 const gp_sourcemaps = require('gulp-sourcemaps');
 const gp_install = require('gulp-install');
 const gp_jeditor = require('gulp-json-editor');
+const gp_rename = require('gulp-rename');
 const combiner = require('stream-combiner2');
 const del = require('del');
 const exec = require('child_process').exec;
@@ -74,6 +76,20 @@ const paths = {
 gulp.task('clean', function()
 {
     return del(["./build/**", "./dist/**"]);
+});
+
+// install launcher script
+gulp.task('launcher-script', ['clean'], function()
+{
+    var combined = combiner.obj([
+        gulp.src("./music.sh", {base: '.'}),
+        gp_rename("music"),
+        gulp.dest("./dist")
+    ]);
+
+    combined.on('error', console.error.bind(console));
+
+    return combined;
 });
 
 // minify scripts and install them
@@ -168,6 +184,7 @@ gulp.task('native-clear', ['clean', 'native-install'], function()
 gulp.task('default', [
     'clean',
     'install-modules',
+    'launcher-script',
     'scripts',
     'pjsons',
     'licenses',
