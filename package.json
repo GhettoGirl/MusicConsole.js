@@ -21,9 +21,9 @@
     },
     "devDependencies": {
         "gulp": "^3.9.1",
+        "gulp-concat": "^2.6.0",
         "gulp-babel": "^6.1.2",
         "babel-preset-babili": "*",
-        "gulp-concat": "^2.6.0",
         "gulp-jsonminify": ">=1.0.0",
         "gulp-sourcemaps": "^1.6.0",
         "stream-combiner2": ">=1.1.1",

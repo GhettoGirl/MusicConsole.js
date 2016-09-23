@@ -3,6 +3,9 @@ node_modules/
 build/
 lib/*.node
 
+# Release distribution
+dist/
+
 # Common
 *~
 *.bak
