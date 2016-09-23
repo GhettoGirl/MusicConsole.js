@@ -11,16 +11,16 @@
  *  - Skips every unneeded files, except LICENSES
  *  - Builds native addons
  *  - Installs node modules in production mode
+ *  - Copies LICENSES into their respective place
+ *  - Cleans up everything after the installation
  *
  *  - Installs the release in the './dist' directory
  *
  * TODO:
  *  - write tests
  *
- *  - include LICENSE files
- *  - clean up after install
- *
- *  - trim comments from JavaScript files
+ *  - FIND BETTER JS MINIFIER
+ *    |- trim comments from JavaScript files
  *
  *
  */
@@ -61,6 +61,10 @@ const paths = {
         "utils/js-extensions/package.json",
         "extern/**/package.json"
     ],
+    licenses: [
+        "LICENSE",
+        "extern/**/LICENSE"
+    ],
     native_modules: [
         "lib/*.node"
     ]
@@ -90,7 +94,7 @@ gulp.task('scripts', ['clean'], function()
 });
 
 // minify package.json's and install them
-gulp.task('pjsons', ['clean'], function()
+gulp.task('pjsons', ['clean', 'install-modules'], function()
 {
     var combined = combiner.obj([
         gulp.src(paths.pjsons, {base: '.'}),
@@ -103,11 +107,24 @@ gulp.task('pjsons', ['clean'], function()
     return combined;
 });
 
+// install licenses
+gulp.task('licenses', ['clean'], function()
+{
+    var combined = combiner.obj([
+        gulp.src(paths.licenses, {base: '.'}),
+        gulp.dest("./dist")
+    ]);
+
+    combined.on('error', console.error.bind(console));
+
+    return combined;
+});
+
 // install nodule modules (production)
-gulp.task('install-modules', ['clean', 'pjsons'], function()
+gulp.task('install-modules', ['clean'], function()
 {
     gulp.src('./package.json')
-        .pipe(gulp.dest('./dist'))
+        .pipe(gulp.dest("./dist"))
         .pipe(gp_install({
             production: true,
             noOptional: true
@@ -137,4 +154,19 @@ gulp.task('native-install', ['clean', 'native-build'], function()
     return combined;
 });
 
-gulp.task('default', ['clean', 'scripts', 'pjsons', 'install-modules','native-build', 'native-install']);
+// clear native build dir
+gulp.task('native-clear', ['clean', 'native-install'], function()
+{
+    return del(["./build/**"]);
+});
+
+gulp.task('default', [
+    'clean',
+    'install-modules',
+    'scripts',
+    'pjsons',
+    'licenses',
+    'native-build',
+    'native-install',
+    'native-clear'
+]);
