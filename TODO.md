@@ -51,7 +51,7 @@
       - [ ] *search*
       - [ ] *browse*
       - [x] *history* (print history to screen)
-      - [ ] *statistics*
+      - [x] *statistics*
       - [ ] *playlist*
       - [x] *rescan* (to rescan the filesystem without restarting the app)
       - [x] *exit*

@@ -72,7 +72,7 @@ function SettingsManager()
             statistics: "statistics",
             rescan: "rescan",
             playlist: "playlist",
-            playlist_fileload: "load", // fixme: find a better name
+            playlistfile: "plistfile",
             exit: "exit"
         },
         library: {
@@ -232,7 +232,7 @@ method.validateSettings = function()
     const isNumber = function(num)
     {
         return (typeof num == "number");
-    }
+    };
 
     if (!isObject(this.m_settings.commands))
         this.m_settings.commands = this.m_default_settings.commands;
@@ -275,8 +275,8 @@ method.validateSettings = function()
         this.m_settings.commands.exit = this.m_default_settings.commands.exit;
     if (!isString(this.m_settings.commands.rescan))
         this.m_settings.commands.rescan = this.m_default_settings.commands.rescan;
-    if (!isString(this.m_settings.commands.playlist_fileload))
-        this.m_settings.commands.playlist_fileload = this.m_default_settings.commands.playlist_fileload;
+    if (!isString(this.m_settings.commands.playlistfile))
+        this.m_settings.commands.playlistfile = this.m_default_settings.commands.playlistfile;
 
     if (!isString(this.m_settings.library.rootpath))
         this.m_settings.library.rootpath = this.m_default_settings.library.rootpath;

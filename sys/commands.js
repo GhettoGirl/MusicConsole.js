@@ -13,9 +13,10 @@ function cmd(name)
 }
 
 const commands = [
-    new (require(cmd("history"))) (n_cmd.history),
-    new (require(cmd("rescan")))  (n_cmd.rescan),
-    new (require(cmd("exit")))    (n_cmd.exit)
+    new (require(cmd("history")))     (n_cmd.history),
+    new (require(cmd("statistics")))  (n_cmd.statistics),
+    new (require(cmd("rescan")))      (n_cmd.rescan),
+    new (require(cmd("exit")))        (n_cmd.exit)
 ];
 
 // check command list for duplicate names
