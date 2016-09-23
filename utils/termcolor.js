@@ -11,13 +11,13 @@ const foreground =
     // returns escape sequence
     rgb: function(r, g, b)
     {
-        return "\033[38;2;"+r+";"+g+";"+b+"m";
+        return "\x1b[38;2;"+r+";"+g+";"+b+"m";
     },
 
     // sets the color immediately
     set: function(r, g, b)
     {
-        process.stdout.write("\033[38;2;"+r+";"+g+";"+b+"m");
+        process.stdout.write("\x1b[38;2;"+r+";"+g+";"+b+"m");
     }
 }
 
@@ -26,13 +26,13 @@ const background =
     // returns escape sequence
     rgb: function(r, g, b)
     {
-        return "\033[48;2;"+r+";"+g+";"+b+"m";
+        return "\x1b[48;2;"+r+";"+g+";"+b+"m";
     },
 
     // sets the color immediately
     set: function(r, g, b)
     {
-        process.stdout.write("\033[48;2;"+r+";"+g+";"+b+"m");
+        process.stdout.write("\x1b[48;2;"+r+";"+g+";"+b+"m");
     }
 }
 
