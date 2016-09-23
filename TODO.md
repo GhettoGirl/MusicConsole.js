@@ -64,5 +64,5 @@
 
  - [ ] Write "installer" which minifies the code to a bare minimum to reduce the size of release builds </br>
        There is no point in hundreds of empty lines and code comments when you are never see the code anyway. </br>
-       As an extend this can also improve the performance a little bit.
-
+       As an extend this can also improve the performance.
+ - [ ] Write **test suite**, run **BEFORE** AND **AFTER** the installation, to make sure the minifier doesn't fuck up anything.
