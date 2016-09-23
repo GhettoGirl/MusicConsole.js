@@ -26,6 +26,7 @@
         "babel-preset-babili": "*",
         "gulp-jsonminify": ">=1.0.0",
         "gulp-sourcemaps": "^1.6.0",
+        "gulp-install": "^0.6.0",
         "stream-combiner2": ">=1.1.1",
         "del": "*"
     }

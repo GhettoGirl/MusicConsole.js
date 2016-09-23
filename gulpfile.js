@@ -10,15 +10,17 @@
  *      todo: remove devDependencies from all package.json files
  *  - Skips every unneeded files, except LICENSES
  *  - Builds native addons
+ *  - Installs node modules in production mode
  *
  *  - Installs the release in the './dist' directory
  *
  * TODO:
  *  - write tests
  *
- *  - install required node_modules
  *  - include LICENSE files
  *  - clean up after install
+ *
+ *  - trim comments from JavaScript files
  *
  *
  */
@@ -29,6 +31,7 @@ const gp_concat = require('gulp-concat');
 const gp_babel = require('gulp-babel');
 const gp_jsonmin = require('gulp-jsonminify');
 const gp_sourcemaps = require('gulp-sourcemaps');
+const gp_install = require('gulp-install');
 const combiner = require('stream-combiner2');
 const del = require('del');
 const exec = require('child_process').exec;
@@ -100,6 +103,17 @@ gulp.task('pjsons', ['clean'], function()
     return combined;
 });
 
+// install nodule modules (production)
+gulp.task('install-modules', ['clean', 'pjsons'], function()
+{
+    gulp.src('./package.json')
+        .pipe(gulp.dest('./dist'))
+        .pipe(gp_install({
+            production: true,
+            noOptional: true
+        }));
+});
+
 // (re)-builds native addons
 gulp.task('native-build', ['clean'], function(cb)
 {
@@ -123,4 +137,4 @@ gulp.task('native-install', ['clean', 'native-build'], function()
     return combined;
 });
 
-gulp.task('default', ['clean', 'scripts', 'pjsons', 'native-build', 'native-install']);
+gulp.task('default', ['clean', 'scripts', 'pjsons', 'install-modules','native-build', 'native-install']);
