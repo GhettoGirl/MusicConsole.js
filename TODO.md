@@ -55,14 +55,17 @@
       - [ ] *playlist*
       - [x] *rescan* (to rescan the filesystem without restarting the app)
       - [x] *exit*
+</br></br>
  - [x] Simplify `require` statements, get rid of relative paths </br>
        Every relative path was removed, except `./`
  - [x] `MediaFile.print()` allow custom appearance </br>
        Add new settings and allow the user to easily customize the display appearance of media files.
  - [ ] Command line parser and options </br>
        To modify first start options, like the library path
+</br></br>
+ - [ ] Make use of [check-types](https://www.npmjs.com/package/check-types) to simplify a lot of things and make my application robust against JavaScript's data type madness.
 
-</br>
+</br></br>
 
  - [x] Write "installer" which minifies the code to a bare minimum to reduce the size of release builds </br>
        There is no point in hundreds of empty lines and code comments when you are never see the code anyway. </br>
