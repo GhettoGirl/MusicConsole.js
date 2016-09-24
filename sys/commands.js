@@ -15,6 +15,7 @@ function cmd(name)
 }
 
 const commands = [
+    new (require(cmd("browse")))      (n_cmd.browse),
     new (require(cmd("history")))     (n_cmd.history),
     new (require(cmd("statistics")))  (n_cmd.statistics),
     new (require(cmd("rescan")))      (n_cmd.rescan),

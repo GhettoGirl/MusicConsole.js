@@ -124,7 +124,12 @@ function SettingsManager()
             print_path:   "$extension $path"
         },
         tools: {
-            browser: "mc",
+            browser: {
+                command: "mc",
+                arguments: [
+                    "%d"
+                ]
+            }
         },
         prompt: {
             line: "# ",
@@ -353,8 +358,12 @@ method.validateSettings = function()
     if (!isString(this.m_settings.appearance.print_path))
         this.m_settings.appearance.print_path = this.m_default_settings.appearance.print_path;
 
-    if (!isString(this.m_settings.tools.browser))
+    if (!isObject(this.m_settings.tools.browser))
         this.m_settings.tools.browser = this.m_default_settings.tools.browser;
+    if (!isString(this.m_settings.tools.browser.command))
+        this.m_settings.tools.browser.command = this.m_default_settings.tools.browser.command;
+    if (!isObject(this.m_settings.tools.browser.arguments))
+        this.m_settings.tools.browser.arguments = this.m_default_settings.tools.browser.arguments;
 
     if (!isString(this.m_settings.prompt.line))
         this.m_settings.prompt.line = this.m_default_settings.prompt.line;
