@@ -6,7 +6,7 @@
  *
  */
 
-const Command = require('../sys/command.js');
+const Command = require('sys/command.js');
 
 function CmdHistory(name)
 {

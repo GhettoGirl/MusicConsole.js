@@ -8,7 +8,7 @@
 
 const tilde = require('utils/home-tilde.js');
 
-const Command = require('../sys/command.js');
+const Command = require('sys/command.js');
 
 function CmdStatistics(name)
 {
