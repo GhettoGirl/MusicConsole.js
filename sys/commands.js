@@ -5,6 +5,8 @@
  *
  */
 
+const ansi = require('ansi-escape-sequences');
+
 const n_cmd = global.settings.commands();
 
 function cmd(name)

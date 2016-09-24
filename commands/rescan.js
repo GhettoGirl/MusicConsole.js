@@ -20,7 +20,7 @@ CmdRescan.prototype = {
 
 execute: function(args)
 {
-    if (!global.medialib.rescan())
+    if (!medialib.rescan())
     {
         console.error("MediaLibraryModel: rescan failed!");
     }
