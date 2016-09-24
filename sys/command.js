@@ -14,7 +14,7 @@ Command.prototype = {
 
 execute: function(args)
 {
-    console.log("Command: warning: you should not use this class directly");
+    console.error("Command: warning: you should not use this class directly");
 }
 
 } // prototype
