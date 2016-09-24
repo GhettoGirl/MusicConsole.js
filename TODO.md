@@ -59,6 +59,8 @@
        Every relative path was removed, except `./`
  - [x] `MediaFile.print()` allow custom appearance </br>
        Add new settings and allow the user to easily customize the display appearance of media files.
+ - [ ] Command line parser and options </br>
+       To modify first start options, like the library path
 
 </br>
 

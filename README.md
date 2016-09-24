@@ -2,7 +2,7 @@
 
 A simple console app which organizes all of your media files for fast and easy access.
 
-#### What is it?
+#### What is Music Console?
 
 **Music Console** is a console application which scans your filesystem for media files and stores a list in memory. You can search this list using a simple search term, the first match is opened in a player of your choice.</br>
 *Sounds kinda boring?* Don't worry! Music Console has so much features to offer which makes it unique.
@@ -11,7 +11,18 @@ A simple console app which organizes all of your media files for fast and easy a
 
 **PLEASE NOTE THE DEV NOTICE BELOW, BEFORE CONTINUE READING**
 
-</br>
+## ~ Dev Notice ~
+
+This project is a continuation of my old [Music Console](https://github.com/GhettoGirl/MusicConsole) written in C++14 and Qt5. I'm in the progess of learning NodeJS and Electron for any of my apps I will write in the future. C++ for GUI development got too lazy for me and it takes way too long. I need something future proof and Node/Electron got really popular these days.
+
+For learning purposes and to gain experience in JavaScript, I decided to rewrite one of my favorite tools in Node. And not just rewrite it, but also improve it from the ground up :grinning:
+
+At the moment there isn't anything interesting in here. If you are interested in this app, head over to the old C++ version and use that. Make sure to regulary check back here, since the C++ version is deprecated and shouldn't be used anymore in the future.
+
+This rewrite will be finished soon™ :)
+
+</br></br>
+
 
 ## Requirements
 
@@ -21,7 +32,8 @@ A simple console app which organizes all of your media files for fast and easy a
  - [node-gyp](https://github.com/nodejs/node-gyp): to build the native addons </br>
    Install with `npm install -g node-gyp` (if it not comes bundled with `npm` already) </br>
    *C++11 compiler required*
- - GNU/[Readline](http://ftp.gnu.org/gnu/readline/) ─ for the prompt
+ - [Gulp](https://www.npmjs.com/package/gulp) ─ for the installer
+ - GNU/[Readline](http://ftp.gnu.org/gnu/readline/) ─ for the prompt; yes you read right, I'm using GNU/Readline together with NodeJS
  - [TagLib](https://taglib.github.io/) 1.10+ (1.11 highly recommended) ─ for the tag reader
 
 #### Building
@@ -35,7 +47,13 @@ A simple console app which organizes all of your media files for fast and easy a
 
  - Just issue `node .` to execute the application.
 
-I will create a proper install and run script in the future.
+### Creating a release distribution
+
+This is highly recommended if you plan to use the application on a daily basis. A release distribution contains just the files and node modules which are required for normal use.
+
+To create a release distribution just issue the command `gulp`. You will find the distribution in the `./dist` directory.
+
+To start the application use the provided launcher script `music` you will find in the release directory.
 
 </br></br></br>
 
@@ -48,10 +66,11 @@ Starting the program for the first time will create a directory with a configura
 ```
 $XDG_CONFIG_DIR/GhettoGirl/musicconsole-js
 ```
-and than start to scan your `$HOME` folder for media files.
+and than start to scan your `$HOME` folder for media files. </br>
+**Soon™ there will be command line options to modify the initial scan path.**
 
 The first start, depending on how much music and videos you own, can take up to 3 minutes.
-During this process *Music Console* search for media files, read tags and generate advanced
+During this process *Music Console* is searching for media files, reading tags and generating advanced
 search terms for convenient lookups in the prompt. All this data is written to the cache,
 which will be re-used every time you startup the program. This means the second startup
 is more or less instant ─ because Music Console only needs to scan the filesystem for media
@@ -69,11 +88,3 @@ The rescan process repeats the scan and uses data from the cache if any.
  - `4` *`<unused>`*
  - `5` An instance of **Music Console** is already running
 
-
-## ~ Dev Notice ~
-
-This project is a continuation of my old [Music Console](https://github.com/GhettoGirl/MusicConsole) written in C++14 and Qt5. I'm in the progess of learning NodeJS and Electron for any of my apps I will write in the future. C++ for GUI development got too lazy for me and it takes way too long. I need something future proof and Node/Electron got really popular these days.
-
-For learning purposes and to gain experience in JavaScript, I decided to rewrite one of my favorite tools in Node. And not just rewrite it, but also improve it from the ground up :grinning:
-
-At the moment there isn't anything interesting in here. If you are interested in this app, head over to the old C++ version and use that. Make sure to regulary check back here, since the C++ version is deprecated and shouldn't be used anymore in the future.
