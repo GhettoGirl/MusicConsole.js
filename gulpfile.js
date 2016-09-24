@@ -9,9 +9,9 @@
  *  - Minifies every JavaScript and JSON file, removes the 'devDependencies' array too
  *  - Skips every unneeded files, except LICENSES
  *  - Builds native addons
- *  - Installs node modules in production mode
+ *  - Installs node modules in production mode, excludes optimals
  *  - Copies LICENSES into their respective place
- *  - Cleans up everything after the installation
+ *  - Cleans up everything after the installation is complete
  *
  *  - Installs the release in the './dist' directory
  *  - Installs a launcher script (shell)
@@ -19,24 +19,21 @@
  * TODO:
  *  - write tests
  *
- *  - FIND BETTER JS MINIFIER
- *    |- trim comments from JavaScript files
- *
  *
  */
 
 const path = require('path');
-const gulp = require('gulp');
-const gp_concat = require('gulp-concat');
-const gp_babel = require('gulp-babel');
-const gp_jsonmin = require('gulp-jsonminify');
-const gp_sourcemaps = require('gulp-sourcemaps');
-const gp_install = require('gulp-install');
-const gp_jeditor = require('gulp-json-editor');
-const gp_rename = require('gulp-rename');
 const combiner = require('stream-combiner2');
 const del = require('del');
 const exec = require('child_process').exec;
+
+const gulp = require('gulp');
+const gp_babel = require('gulp-babel');
+const gp_jsonmin = require('gulp-jsonminify');
+const gp_install = require('gulp-install');
+const gp_jeditor = require('gulp-json-editor');
+const gp_rename = require('gulp-rename');
+const gp_stripcomments = require('gulp-strip-comments');
 
 const paths = {
     scripts: [
@@ -97,10 +94,8 @@ gulp.task('scripts', ['clean'], function()
 {
     var combined = combiner.obj([
         gulp.src(paths.scripts, {base: '.'}),
-        //.pipe(gp_sourcemaps.init())
+        gp_stripcomments(),
         gp_babel({presets: ['babili']}),
-        //.pipe(gp_concat('app.js'))
-        //.pipe(gp_sourcemaps.write())
         gulp.dest("./dist")
     ]);
 

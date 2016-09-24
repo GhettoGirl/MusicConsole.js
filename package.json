@@ -21,14 +21,13 @@
     },
     "devDependencies": {
         "gulp": "^3.9.1",
-        "gulp-concat": "^2.6.0",
         "gulp-babel": "^6.1.2",
         "babel-preset-babili": "*",
         "gulp-jsonminify": ">=1.0.0",
-        "gulp-sourcemaps": "^1.6.0",
         "gulp-install": "^0.6.0",
         "gulp-json-editor": "^2.2.1",
         "gulp-rename": "^1.2.2",
+        "gulp-strip-comments": "^2.3.4",
         "stream-combiner2": ">=1.1.1",
         "del": "*"
     }
