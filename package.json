@@ -10,6 +10,10 @@
     "private": true,
 
     "main": "main.js",
+    "engines": {
+        "node": ">=6.5.*"
+    },
+    "os": [ "!win32" ],
     "dependencies": {
         "ansi-escape-sequences": ">=2.2.2",
         "pidlock": "^0.1.0",
