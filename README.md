@@ -66,8 +66,7 @@ Starting the program for the first time will create a directory with a configura
 ```
 $XDG_CONFIG_DIR/GhettoGirl/musicconsole-js
 ```
-and than start to scan your `$HOME` folder for media files. </br>
-**Soon™ there will be command line options to modify the initial scan path.**
+and than start to scan your `$HOME` folder for media files.
 
 The first start, depending on how much music and videos you own, can take up to 3 minutes.
 During this process *Music Console* is searching for media files, reading tags and generating advanced
@@ -79,12 +78,19 @@ files and than greps all the generated content from the cache.
 You can manually rescan the filesystem if your library has changed using the `rescan` command.
 The rescan process repeats the scan and uses data from the cache if any.
 
+#### Command line options
+
+Command line options are only used to change settings. There are no plans for an interactive
+settings manager.
+
+Execute the app using the `-h/--help` parameter to get started.
+
 #### Exit Codes
 
  - `0` No error
  - `1` Failed to parse command line
  - `2` Problem in the command list, most likely due to duplicate names
- - `3` *`<unused>`*
+ - `3` The library path isn't valid or accessible
  - `4` *`<unused>`*
  - `5` An instance of **Music Console** is already running
 

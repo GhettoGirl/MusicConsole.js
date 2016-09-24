@@ -60,8 +60,8 @@
        Every relative path was removed, except `./`
  - [x] `MediaFile.print()` allow custom appearance </br>
        Add new settings and allow the user to easily customize the display appearance of media files.
- - [ ] Command line parser and options </br>
-       To modify first start options, like the library path
+ - [x] Command line parser and options </br>
+       To modify first start options, like the library path and other options in the future.
 </br></br>
  - [ ] Make use of [check-types](https://www.npmjs.com/package/check-types) to simplify a lot of things and make my application robust against JavaScript's data type madness.
 

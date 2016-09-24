@@ -12,6 +12,7 @@ const mkdirp = require('extern/node-mkdirp');
 const jsonfile = require('jsonfile');
 const touch = require('extern/node-touch');
 const resolve_env = require('extern/node-resolve-env');
+const _ = require('extern/lodash');
 
 const method = SettingsManager.prototype;
 
@@ -211,6 +212,18 @@ method.findPlayerForFiletype = function(filetype)
             return this.m_players[filetype];
         }
     }
+}
+
+method.set = function(key, value)
+{
+    // fixme: implement this by myself!
+    // don't use a 500kb external library for this
+    _.set(this.m_settings, key, value);
+}
+
+method.save = function()
+{
+    jsonfile.writeFileSync(this.m_file, this.m_settings, {spaces: 2});
 }
 
 ////////////////////////////////////////////

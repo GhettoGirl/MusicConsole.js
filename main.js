@@ -74,20 +74,19 @@ function print_header()
     console.log(header);
 }
 
-const STARTUP_MODE = {
-    NORMAL: 0,
-    COMMAND: 1,
-    OPTIONS: 2
+const startup_mode = {
+    normal: 0,
+    command: 1,
+    options: 2
 };
-var startup_mode = STARTUP_MODE.NORMAL;
 
 function parse_arguments()
 {
     // fixme: change the command line parsing library someday...
     //        or write my own :)
     const opt = require('extern/node-getopt').create([
-        ['s', "scan-path=path", "Initial scan path, affects only first start"],
-        ['h', "help",           "Display this help"]
+        ['',  "library-path[=path]", "Changes the library path of the media library"],
+        ['h', "help",                "Display this help"]
     ])
     .error(function(error)
     {
@@ -118,10 +117,9 @@ function parse_arguments()
         {
             switch (option)
             {
-                case "scan-path":
-                    console.error("You need to specify a scan path, or leave empty if scanning " +
-                                  "the whole home directory is ok for you.");
-                    break;
+                //case "library-path":
+                //    console.error("--scan-path: You need to specify a valid path.");
+                //    break;
 
                 default:
                     console.error("Option '%s' needs an argument!", option);
@@ -137,22 +135,40 @@ function parse_arguments()
                   + "\"command\" or " + ansi.style.italic + "{options}"
                   + ansi.style.reset + "\n\n" +
 
-        "[[OPTIONS]]\n"
+        "[[OPTIONS]]\n\n" +
+
+        "Notice:\n" +
+        " │ Starting the app with options just changes settings and quits it afterwards.\n" +
+        " │ To use it start it either without arguments to enter the console or just specify\n" +
+        " │ a simple search term.\n"
     )
     .parseSystem();
 
     // got options
     if (Object.keys(opt.options).length != 0)
     {
-        startup_mode = STARTUP_MODE.OPTIONS;
-        return opt.options;
+        return {
+            mode: startup_mode.options,
+            args: opt.options
+        };
     }
 
     // got command
     else if (opt.argv.length != 0)
     {
-        startup_mode = STARTUP_MODE.COMMAND;
-        return opt.argv.join(' ');
+        return {
+            mode: startup_mode.command,
+            args: opt.argv.join(' ')
+        };
+    }
+
+    // normal startup
+    else
+    {
+        return {
+            mode: startup_mode.normal,
+            args: undefined
+        };
     }
 }
 
@@ -215,7 +231,7 @@ function main()
 {
     print_header();
     singleinstance_check();
-    var arg = parse_arguments();
+    var opt = parse_arguments();
 
     // initialize components
     global.settings = new (require('sys/settings.js'));
@@ -224,9 +240,24 @@ function main()
     init_medialib();
     init_mediaplayercontroller();
 
-    if (startup_mode == STARTUP_MODE.NORMAL)
+    switch (opt.mode)
     {
-        musicconsole.console();
+        case startup_mode.normal:
+            musicconsole.console();
+            break;
+
+        case startup_mode.command:
+            musicconsole.runCommand(opt.args);
+            break;
+
+        case startup_mode.options:
+            if (opt.args["library-path"] != '')
+            {
+                global.settings.set("library.rootpath", opt.args["library-path"]);
+            }
+
+            global.settings.save();
+            break;
     }
 }
 

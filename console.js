@@ -123,6 +123,7 @@ method.console = function()
 // just run a commmand without entering the console
 method.runCommand = function(command)
 {
+    console.log(command);
 }
 
 module.exports = MusicConsole;
