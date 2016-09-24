@@ -214,6 +214,7 @@ method.findPlayerForFiletype = function(filetype)
     }
 }
 
+// changes an field within the settings
 method.set = function(key, value)
 {
     // fixme: implement this by myself!
@@ -221,9 +222,21 @@ method.set = function(key, value)
     _.set(this.m_settings, key, value);
 }
 
+// write the settings file back to a file
 method.save = function()
 {
     jsonfile.writeFileSync(this.m_file, this.m_settings, {spaces: 2});
+}
+
+// settings manager
+method.manager = function(args)
+{
+    if (args["library-path"] != '')
+    {
+        this.set("library.rootpath", args["library-path"]);
+    }
+
+    this.save();
 }
 
 ////////////////////////////////////////////

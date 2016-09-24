@@ -251,12 +251,7 @@ function main()
             break;
 
         case startup_mode.options:
-            if (opt.args["library-path"] != '')
-            {
-                global.settings.set("library.rootpath", opt.args["library-path"]);
-            }
-
-            global.settings.save();
+            global.settings.manager(opt.args);
             break;
     }
 }
