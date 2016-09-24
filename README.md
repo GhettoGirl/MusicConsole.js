@@ -82,7 +82,7 @@ The rescan process repeats the scan and uses data from the cache if any.
 #### Exit Codes
 
  - `0` No error
- - `1` *`<unused>`*
+ - `1` Failed to parse command line
  - `2` Problem in the command list, most likely due to duplicate names
  - `3` *`<unused>`*
  - `4` *`<unused>`*

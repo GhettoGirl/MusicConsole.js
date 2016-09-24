@@ -16,7 +16,7 @@ replaceAt: function(string, index, character)
 // Replaces all occurrences in a string with a new one.
 replaceAll: function(string, search, replacement)
 {
-    return string.replace(new RegExp(search, 'g'), replacement);
+    return string.replace(RegExp(search, 'g'), replacement);
 },
 
 // Changes the content of a string by removing a range of

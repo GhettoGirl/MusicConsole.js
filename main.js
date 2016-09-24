@@ -73,6 +73,88 @@ function print_header()
     console.log(header);
 }
 
+const STARTUP_MODE = {
+    NORMAL: 0,
+    COMMAND: 1,
+    OPTIONS: 2
+};
+var startup_mode = STARTUP_MODE.NORMAL;
+
+function parse_arguments()
+{
+    // fixme: change the command line parsing library someday...
+    //        or write my own :)
+    const opt = require('extern/node-getopt').create([
+        ['s', "scan-path=path", "Initial scan path, affects only first start"],
+        ['h', "help",           "Display this help"]
+    ])
+    .error(function(error)
+    {
+        // better and more informative error messages
+        //  error.message can has the following
+        //   - invalid option {}
+        //   - option {} need argument
+
+        var option = (function(msg)
+        {
+            var m;
+
+            m = msg.match(RegExp("invalid\\soption\\s(.*)", 'i'));
+            if (m) return m[1];
+
+            m = msg.match(RegExp("option\\s(.*)\\sneed\\sargument", 'i'));
+            if (m) return m[1];
+
+            return "";
+        })(error.message);
+
+        if (error.message.match(RegExp("invalid\\soption\\s.*", 'i')))
+        {
+            console.error("Invalid option: " + option);
+        }
+
+        else if (error.message.match(RegExp("option\\s.*\\sneed\\sargument", 'i')))
+        {
+            switch (option)
+            {
+                case "scan-path":
+                    console.error("You need to specify a scan path, or leave empty if scanning " +
+                                  "the whole home directory is ok for you.");
+                    break;
+
+                default:
+                    console.error("Option '%s' needs an argument!", option);
+                    break;
+            }
+        }
+
+        global.process_cleanup_and_exit(1);
+    })
+    .bindHelp()
+    .setHelp(
+        "Usage: " + ansi.style.bold + "music " + ansi.style.reset
+                  + "\"command\" or " + ansi.style.italic + "{options}"
+                  + ansi.style.reset + "\n\n" +
+
+        "[[OPTIONS]]\n"
+    )
+    .parseSystem();
+
+    // got options
+    if (Object.keys(opt.options).length != 0)
+    {
+        startup_mode = STARTUP_MODE.OPTIONS;
+        return opt.options;
+    }
+
+    // got command
+    else if (opt.argv.length != 0)
+    {
+        startup_mode = STARTUP_MODE.COMMAND;
+        return opt.argv.join(' ');
+    }
+}
+
 // ensure only a single instance of this application is running
 function singleinstance_check()
 {
@@ -132,6 +214,7 @@ function main()
 {
     print_header();
     singleinstance_check();
+    var arg = parse_arguments();
 
     // initialize components
     global.settings = new (require('sys/settings.js'));
@@ -140,7 +223,10 @@ function main()
     init_medialib();
     init_mediaplayercontroller();
 
-    musicconsole.main();
+    if (startup_mode == STARTUP_MODE.NORMAL)
+    {
+        musicconsole.console();
+    }
 }
 
 main();

@@ -1,0 +1,9 @@
+{
+  "name": "node-getopt",
+  "version": "0.2.3",
+  "author": "Jiang Miao <jiangfriend@gmail.com>",
+  "description": "featured command line args parser",
+  "repository": "https://github.com/jiangmiao/node-getopt",
+  "main" : "getopt.js",
+  "license": "MIT"
+}

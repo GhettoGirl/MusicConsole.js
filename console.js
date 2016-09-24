@@ -102,7 +102,7 @@ method.userInput = function()
     return commands;
 }
 
-method.main = function()
+method.console = function()
 {
     while (true)
     {
@@ -118,6 +118,11 @@ method.main = function()
             }
         }
     }
+}
+
+// just run a commmand without entering the console
+method.runCommand = function(command)
+{
 }
 
 module.exports = MusicConsole;

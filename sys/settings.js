@@ -106,7 +106,7 @@ function SettingsManager()
                 arguments: []
             }
         },
-        appearance: { // needs to be evaled
+        appearance: { // will be eval()-ed, reset happens automatically
             extension: "\\x1b[1;38;2;0;97;167m"
                      + "[%s]",
             artist:    "\\x1b[3m"
