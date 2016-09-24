@@ -25,67 +25,67 @@ function Printer(extension, artist, album, title, genre, path, print_tagged, pri
 
 method.extension = function(string)
 {
-    process.stdout.write(global.jsext.String.replaceAll(this.m_extension, "%s", string) + '\n');
+    process.stdout.write(jsext.String.replaceAll(this.m_extension, "%s", string) + '\n');
 }
 
 method.artist = function(string)
 {
-    process.stdout.write(global.jsext.String.replaceAll(this.m_artist, "%s", string) + '\n');
+    process.stdout.write(jsext.String.replaceAll(this.m_artist, "%s", string) + '\n');
 }
 
 method.album = function(string)
 {
-    process.stdout.write(global.jsext.String.replaceAll(this.m_album, "%s", string) + '\n');
+    process.stdout.write(jsext.String.replaceAll(this.m_album, "%s", string) + '\n');
 }
 
 method.title = function(string)
 {
-    process.stdout.write(global.jsext.String.replaceAll(this.m_title, "%s", string) + '\n');
+    process.stdout.write(jsext.String.replaceAll(this.m_title, "%s", string) + '\n');
 }
 
 method.genre = function(string)
 {
-    process.stdout.write(global.jsext.String.replaceAll(this.m_genre, "%s", string) + '\n');
+    process.stdout.write(jsext.String.replaceAll(this.m_genre, "%s", string) + '\n');
 }
 
 method.path = function(string)
 {
-    process.stdout.write(global.jsext.String.replaceAll(this.m_path, "%s", string) + '\n');
+    process.stdout.write(jsext.String.replaceAll(this.m_path, "%s", string) + '\n');
 }
 
 method.print_tagged = function(extension, artist, album, title, genre, path)
 {
     var string = this.m_print_tagged;
-    string = global.jsext.String.replaceAll(string, "\\$extension",
-                 global.jsext.String.replaceAll(this.m_extension, "%s", extension));
-    string = global.jsext.String.replaceAll(string, "\\$artist",
-                 global.jsext.String.replaceAll(this.m_artist, "%s", artist));
-    string = global.jsext.String.replaceAll(string, "\\$album",
-                 global.jsext.String.replaceAll(this.m_album, "%s", album));
-    string = global.jsext.String.replaceAll(string, "\\$title",
-                 global.jsext.String.replaceAll(this.m_title, "%s", title));
-    string = global.jsext.String.replaceAll(string, "\\$genre",
-                 global.jsext.String.replaceAll(this.m_genre, "%s", genre));
-    string = global.jsext.String.replaceAll(string, "\\$path",
-                 global.jsext.String.replaceAll(this.m_path, "%s", path));
+    string = jsext.String.replaceAll(string, "\\$extension",
+                 jsext.String.replaceAll(this.m_extension, "%s", extension));
+    string = jsext.String.replaceAll(string, "\\$artist",
+                 jsext.String.replaceAll(this.m_artist, "%s", artist));
+    string = jsext.String.replaceAll(string, "\\$album",
+                 jsext.String.replaceAll(this.m_album, "%s", album));
+    string = jsext.String.replaceAll(string, "\\$title",
+                 jsext.String.replaceAll(this.m_title, "%s", title));
+    string = jsext.String.replaceAll(string, "\\$genre",
+                 jsext.String.replaceAll(this.m_genre, "%s", genre));
+    string = jsext.String.replaceAll(string, "\\$path",
+                 jsext.String.replaceAll(this.m_path, "%s", path));
     process.stdout.write(string + '\n');
 }
 
 method.print_path = function(extension, artist, album, title, genre, path)
 {
     var string = this.m_print_path;
-    string = global.jsext.String.replaceAll(string, "\\$extension",
-                 global.jsext.String.replaceAll(this.m_extension, "%s", extension));
-    string = global.jsext.String.replaceAll(string, "\\$artist",
-                 global.jsext.String.replaceAll(this.m_artist, "%s", artist));
-    string = global.jsext.String.replaceAll(string, "\\$album",
-                 global.jsext.String.replaceAll(this.m_album, "%s", album));
-    string = global.jsext.String.replaceAll(string, "\\$title",
-                 global.jsext.String.replaceAll(this.m_title, "%s", title));
-    string = global.jsext.String.replaceAll(string, "\\$genre",
-                 global.jsext.String.replaceAll(this.m_genre, "%s", genre));
-    string = global.jsext.String.replaceAll(string, "\\$path",
-                 global.jsext.String.replaceAll(this.m_path, "%s", path));
+    string = jsext.String.replaceAll(string, "\\$extension",
+                 jsext.String.replaceAll(this.m_extension, "%s", extension));
+    string = jsext.String.replaceAll(string, "\\$artist",
+                 jsext.String.replaceAll(this.m_artist, "%s", artist));
+    string = jsext.String.replaceAll(string, "\\$album",
+                 jsext.String.replaceAll(this.m_album, "%s", album));
+    string = jsext.String.replaceAll(string, "\\$title",
+                 jsext.String.replaceAll(this.m_title, "%s", title));
+    string = jsext.String.replaceAll(string, "\\$genre",
+                 jsext.String.replaceAll(this.m_genre, "%s", genre));
+    string = jsext.String.replaceAll(string, "\\$path",
+                 jsext.String.replaceAll(this.m_path, "%s", path));
     process.stdout.write(string + '\n');
 }
 

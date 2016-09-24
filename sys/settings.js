@@ -8,6 +8,7 @@
 const join = require("path").join;
 const env = process.env;
 const fs = require('fs');
+const mkdirp = require('extern/node-mkdirp');
 const jsonfile = require('jsonfile');
 const touch = require('extern/node-touch');
 const resolve_env = require('extern/node-resolve-env');
@@ -38,7 +39,7 @@ function SettingsManager()
     this.m_file_players = this.m_dir + "/players.json";
 
     // attempt to create the settings directory
-    global.mkdirp.sync(this.m_dir);
+    mkdirp.sync(this.m_dir);
 
     // make sure the config directory exists and is readable
     try

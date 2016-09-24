@@ -16,14 +16,15 @@ global.jsext = require('utils/js-extensions');
 
 // global objects
 global.pjson = require(__dirname + "/package.json");
-global.ansi = require('ansi-escape-sequences');
-global.termcolor = require('utils/termcolor.js');
 global.pkg_version = new (require('extern/NodeSwVersionParser'));
+global.is = require('check-types');
 
-global.mkdirp = require('extern/node-mkdirp');
+// pidlock: for the instance check
+const pidlock = require('pidlock');
 
-// local objects
-var pidlock = require('pidlock');
+// terminal formatting
+const ansi = require('ansi-escape-sequences');
+const termcolor = require('utils/termcolor.js');
 
 // print application header to terminal
 function print_header()
@@ -48,10 +49,10 @@ function print_header()
         // second line
         header += "│ "
                + ansi.style.bold + pjson.display_name + ansi.style.reset
-               + " " + global.pkg_version.version();
+               + " " + pkg_version.version();
 
         for (let i = 2 + pjson.display_name.length
-                       + global.pkg_version.version().length; i < cols; i++)
+                       + pkg_version.version().length; i < cols; i++)
         {
             header += " ";
         }
@@ -67,7 +68,7 @@ function print_header()
     {
         header += ansi.style.reset
                + ansi.style.bold + pjson.display_name + ansi.style.reset
-               + " " + global.pkg_version.version() + "\n";
+               + " " + pkg_version.version() + "\n";
     }
 
     console.log(header);
@@ -178,7 +179,7 @@ function init_medialib()
 
     if (!medialib.setPath(settings.library().rootpath))
     {
-        console.error("Unable to read from the specific path: " + settings.library().rootpath);
+        console.error("Unable to read from the specified path: " + settings.library().rootpath);
         console.error("There is nothing to do, exiting...");
         global.process_cleanup_and_exit(3);
     }

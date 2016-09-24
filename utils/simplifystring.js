@@ -27,7 +27,7 @@ module.exports = function(string, keepfirstspace)
     {
         if (buf[i] == ' ' && buf[i + 1] == ' ')
         {
-            buf = global.jsext.String.splice(buf, i, 2, ' ');
+            buf = jsext.String.splice(buf, i, 2, ' ');
             i--;
         }
     }
