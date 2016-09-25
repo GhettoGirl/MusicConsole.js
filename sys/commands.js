@@ -23,6 +23,7 @@ const commands = [
     new (require(cmd("history")))     (n_cmd.history),
     new (require(cmd("statistics")))  (n_cmd.statistics),
     new (require(cmd("rescan")))      (n_cmd.rescan),
+    new (require(cmd("playlist")))    (n_cmd.playlist),
     new (require(cmd("exit")))        (n_cmd.exit)
 ];
 

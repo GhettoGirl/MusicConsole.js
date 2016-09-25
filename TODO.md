@@ -52,7 +52,7 @@
       - [x] *browse* (open external file browse in library root path)
       - [x] *history* (print history to screen)
       - [x] *statistics* (prints details about the media library)
-      - [ ] *playlist* (generate playlist using search terms)
+      - [x] *playlist* (generate playlist using search terms)
       - [ ] *playlistfile* (load playlist from Music Console Playlist file)
       - [x] *rescan* (to rescan the filesystem without restarting the app)
       - [x] *exit*
