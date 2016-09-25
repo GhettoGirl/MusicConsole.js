@@ -45,6 +45,7 @@ const paths = {
         "utils/js-extensions/*.js",
 
         "extern/**/*.js",
+        "!extern/**/test*.js",
 
         "lib/kbhit/*.js",
         "lib/medialibrarymodel/*.js",
