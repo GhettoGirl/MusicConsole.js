@@ -91,6 +91,6 @@ Execute the app using the `-h/--help` parameter to get started.
  - `1` Failed to parse command line
  - `2` Problem in the command list, most likely due to duplicate names
  - `3` The library path isn't valid or accessible
- - `4` *`<unused>`*
+ - `4` The library has no media files
  - `5` An instance of **Music Console** is already running
 

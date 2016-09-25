@@ -196,7 +196,6 @@ function init_medialib()
     if (!medialib.setPath(settings.library().rootpath))
     {
         console.error("Unable to read from the specified path: " + settings.library().rootpath);
-        console.error("There is nothing to do, exiting...");
         global.process_cleanup_and_exit(3);
     }
 
@@ -209,6 +208,19 @@ function init_medialib()
     medialib.setPrefixDeletionPatterns(settings.library().prefixdeletionpatterns);
 
     medialib.setRandomizerHistorySize(settings.randomizer().historysize);
+
+    if (!medialib.scan())
+    {
+        console.error("Unable to scan the specified path: " + settings.library().rootpath);
+        global.process_cleanup_and_exit(3);
+    }
+
+    if (medialib.count() == 0)
+    {
+        console.log("Notice: No media found in the specified path: " + settings.library().rootpath);
+        console.log("There is nothing to do, exiting...");
+        global.process_cleanup_and_exit(4);
+    }
 }
 
 function init_mediaplayercontroller()
