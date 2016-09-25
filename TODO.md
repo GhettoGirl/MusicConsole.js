@@ -46,7 +46,7 @@
       - [ ] The 'command-less' command, alias 'hidden audio command'
       - [ ] Media filter commands, *audio*, *video*, *module*
       - [x] *random* (plays a random media file)
-      - [ ] *shuffle* (shuffles through the media library, takes filters)
+      - [x] *shuffle* (shuffles through the media library, takes filters)
       - [ ] *repeat* (repeats the same media over and over again)
       - [x] *search* (searches the media library using a search term)
       - [x] *browse* (open external file browse in library root path)
