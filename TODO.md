@@ -45,7 +45,7 @@
        <sub>For a detailed description of all the commands see the README of the old Music Console.</sub>
       - [ ] The 'command-less' command, alias 'hidden audio command'
       - [ ] Media filter commands, *audio*, *video*, *module*
-      - [ ] *random*
+      - [x] *random*
       - [ ] *shuffle*
       - [ ] *repeat*
       - [x] *search*
