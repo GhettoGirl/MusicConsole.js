@@ -45,14 +45,15 @@
        <sub>For a detailed description of all the commands see the README of the old Music Console.</sub>
       - [ ] The 'command-less' command, alias 'hidden audio command'
       - [ ] Media filter commands, *audio*, *video*, *module*
-      - [x] *random*
-      - [ ] *shuffle*
-      - [ ] *repeat*
-      - [x] *search*
+      - [x] *random* (plays a random media file)
+      - [ ] *shuffle* (shuffles through the media library, takes filters)
+      - [ ] *repeat* (repeats the same media over and over again)
+      - [x] *search* (searches the media library using a search term)
       - [x] *browse* (open external file browse in library root path)
       - [x] *history* (print history to screen)
-      - [x] *statistics*
-      - [ ] *playlist*
+      - [x] *statistics* (prints details about the media library)
+      - [ ] *playlist* (generate playlist using search terms)
+      - [ ] *playlistfile* (load playlist from Music Console Playlist file)
       - [x] *rescan* (to rescan the filesystem without restarting the app)
       - [x] *exit*
 </br></br>
