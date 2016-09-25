@@ -17,6 +17,9 @@ replaceAt: function(string, index, character)
 replaceAll: function(string, search, replacement)
 {
     return string.replace(RegExp(search, 'g'), replacement);
+
+    //replacement = replacement.replace(/\$/g,"$$$$");
+    //return string.replace(RegExp(search.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|<>\-\&])/g, "\\$&"), 'g'), replacement);
 },
 
 // Changes the content of a string by removing a range of
