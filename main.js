@@ -17,7 +17,6 @@ global.jsext = require('utils/js-extensions');
 // global objects
 global.pjson = require(__dirname + "/package.json");
 global.pkg_version = new (require('extern/NodeSwVersionParser'));
-global.is = require('check-types');
 
 // pidlock: for the instance check
 const pidlock = require('pidlock');

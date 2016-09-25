@@ -56,6 +56,8 @@
       - [ ] *playlistfile* (load playlist from Music Console Playlist file)
       - [x] *rescan* (to rescan the filesystem without restarting the app)
       - [x] *exit*
+ - [ ] Implement favorites feature
+ - [ ] Do something nice with genres (not sure at the moment)
 </br></br>
  - [x] Simplify `require` statements, get rid of relative paths </br>
        Every relative path was removed, except `./`
@@ -64,11 +66,11 @@
  - [x] Command line parser and options </br>
        To modify first start options, like the library path and other options in the future.
 </br></br>
- - [ ] Make use of [check-types](https://www.npmjs.com/package/check-types) to simplify a lot of things and make my application robust against JavaScript's data type madness.
+ - [x] ~~Make use of [check-types](https://www.npmjs.com/package/check-types) to simplify a lot of things and make my application robust against JavaScript's data type madness.~~ Not for this project.
 
 </br></br>
 
  - [x] Write "installer" which minifies the code to a bare minimum to reduce the size of release builds </br>
        There is no point in hundreds of empty lines and code comments when you are never see the code anyway. </br>
        As an extend this can also improve the performance.
- - [ ] Write **test suite**, run **BEFORE** AND **AFTER** the installation, to make sure the minifier doesn't fuck up anything.
+ - [x] ~~Write **test suite**, run **BEFORE** AND **AFTER** the installation, to make sure the minifier doesn't fuck up anything.~~ Actually not necessary.
