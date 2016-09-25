@@ -48,7 +48,7 @@
       - [ ] *random*
       - [ ] *shuffle*
       - [ ] *repeat*
-      - [ ] *search*
+      - [x] *search*
       - [x] *browse* (open external file browse in library root path)
       - [x] *history* (print history to screen)
       - [x] *statistics*
