@@ -207,8 +207,6 @@ method.findPlayerForFiletype = function(filetype)
 // changes an field within the settings
 method.set = function(key, value)
 {
-    // fixme: implement this by myself!
-    // don't use a 500kb external library for this
     _.set(this.m_settings, key, value);
 }
 

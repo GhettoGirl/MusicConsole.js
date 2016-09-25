@@ -23,16 +23,13 @@ execute: function(args)
 {
     var filter = FilterCommand(args);
 
-    console.log("'"+filter.command+"'");
-    console.log(filter.type);
-
     // play random media
-    if (filter.command == '')
+    if (filter.command == '' && filter.type == MediaType.None)
     {
         var result = medialib.randomMedia(filter.type);
         if (typeof result != "undefined")
         {
-            console.log(result);
+            mediaplayer.execute(result, filter.type);
         }
 
         else
@@ -44,15 +41,27 @@ execute: function(args)
     // play random media file which matches the given search terms
     else
     {
-        var result = medialib.randomMediaFiltered(filter.command, filter.type);
-        if (typeof result != "undefined")
+        if (filter.command == '')
         {
-            console.log(result);
+            var result = medialib.randomMedia(filter.type);
+            if (typeof result != "undefined")
+            {
+                mediaplayer.execute(result, filter.type);
+            }
         }
 
-        else
+        else if (filter.command != '')
         {
-            console.log("No media found.");
+            var result = medialib.randomMediaFiltered(filter.command, filter.type);
+            if (typeof result != "undefined")
+            {
+                mediaplayer.execute(result, filter.type);
+            }
+
+            else
+            {
+                console.log("No media found.");
+            }
         }
     }
 }
