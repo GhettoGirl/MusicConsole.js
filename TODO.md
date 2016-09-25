@@ -47,7 +47,7 @@
       - [ ] Media filter commands, *audio*, *video*, *module*
       - [x] *random* (plays a random media file)
       - [x] *shuffle* (shuffles through the media library, takes filters)
-      - [ ] *repeat* (repeats the same media over and over again)
+      - [x] *repeat* (repeats the same media over and over again)
       - [x] *search* (searches the media library using a search term)
       - [x] *browse* (open external file browse in library root path)
       - [x] *history* (print history to screen)
