@@ -1,10 +1,10 @@
 # NodeJS
-node_modules/
-build/
-lib/*.node
+/node_modules/
+/build/
+/lib/*.node
 
 # Release distribution
-dist/
+/dist/
 
 # Common
 *~
@@ -20,6 +20,6 @@ notes
 .tern-project
 
 # for testing purposes only
-test.js
-ftw_test/
-cache_test/
+/test.js
+/ftw_test/
+/cache_test/
