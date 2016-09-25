@@ -4,24 +4,8 @@ A simple console app which organizes all of your media files for fast and easy a
 
 #### What is Music Console?
 
-**Music Console** is a console application which scans your filesystem for media files and stores a list in memory. You can search this list using a simple search term, the first match is opened in a player of your choice.</br>
-*Sounds kinda boring?* Don't worry! Music Console has so much features to offer which makes it unique.
-
-</br>
-
-**PLEASE NOTE THE DEV NOTICE BELOW, BEFORE CONTINUE READING**
-
-## ~ Dev Notice ~
-
-This project is a continuation of my old [Music Console](https://github.com/GhettoGirl/MusicConsole) written in C++14 and Qt5. I'm in the progess of learning NodeJS and Electron for any of my apps I will write in the future. C++ for GUI development got too lazy for me and it takes way too long. I need something future proof and Node/Electron got really popular these days.
-
-For learning purposes and to gain experience in JavaScript, I decided to rewrite one of my favorite tools in Node. And not just rewrite it, but also improve it from the ground up :grinning:
-
-At the moment there isn't anything interesting in here. If you are interested in this app, head over to the old C++ version and use that. Make sure to regulary check back here, since the C++ version is deprecated and shouldn't be used anymore in the future.
-
-This rewrite will be finished soon™ :)
-
-</br></br>
+**Music Console** is a console application which scans your filesystem for media files. You can search for your favorite songs and videos using simple search terms, the results are opened in a player of your choice.</br>
+*Sounds kinda boring?* Don't worry! Music Console has so much features to offer which makes it a unique and powerful tool.
 
 
 ## Requirements
@@ -49,13 +33,17 @@ This rewrite will be finished soon™ :)
 
 ### Creating a release distribution
 
-This is highly recommended if you plan to use the application on a daily basis. A release distribution contains just the files and node modules which are required for normal use.
-
-To create a release distribution just issue the command `gulp`. You will find the distribution in the `./dist` directory.
-
+This is highly recommended if you plan to use the application on a daily basis. A release distribution contains just the files and node modules which are required for normal use. </br>
+To create a release distribution just issue the command `gulp`. You will find the distribution in the `./dist` directory. </br>
 To start the application use the provided launcher script `music` you will find in the release directory.
 
-</br></br></br>
+The release dist has the following dependencies:
+ - NodeJS 6.5+
+ - GNU/Readline
+ - TagLib
+
+
+</br>
 
 
 ## Basics
@@ -64,9 +52,10 @@ To start the application use the provided launcher script `music` you will find 
 
 Starting the program for the first time will create a directory with a configuration file in
 ```
-$XDG_CONFIG_DIR/GhettoGirl/musicconsole-js
+Linux/FreeBSD/Solaris: $XDG_CONFIG_DIR/GhettoGirl/musicconsole-js
+Apple macOS:           ~/Library/Preferences/GhettoGirl/musicconsole-js
 ```
-and than start to scan your `$HOME` folder for media files.
+and than start to scan your `$HOME` folder for media files. If you don't want the home path to be scanned during the first run, see the **command line options** below.
 
 The first start, depending on how much music and videos you own, can take up to 3 minutes.
 During this process *Music Console* is searching for media files, reading tags and generating advanced
@@ -93,4 +82,11 @@ Execute the app using the `-h/--help` parameter to get started.
  - `3` The library path isn't valid or accessible
  - `4` The library has no media files
  - `5` An instance of **Music Console** is already running
+
+
+## Command Prompt
+
+*under construction* </br>
+**TODO: write the documentation**
+
 
