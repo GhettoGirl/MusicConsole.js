@@ -114,7 +114,21 @@ method.console = function()
                 if (i.command == c.m_name)
                 {
                     c.execute(i.args);
+                    break;
                 }
+            }
+
+            // no command matches, search directly for media and play in audio player
+            // or player override if any
+            var result = medialib.find(i.command + ' ' + i.args);
+            if (typeof result != "undefined")
+            {
+                mediaplayer.execute(result, MediaType.Audio);
+            }
+
+            else
+            {
+                console.log("No media found.");
             }
         }
     }

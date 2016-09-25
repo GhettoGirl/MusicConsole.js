@@ -15,6 +15,9 @@ function cmd(name)
 }
 
 const commands = [
+    new (require(cmd("audio")))       (n_cmd.audio),
+    new (require(cmd("video")))       (n_cmd.video),
+    new (require(cmd("module")))      (n_cmd.module),
     new (require(cmd("search")))      (n_cmd.search),
     new (require(cmd("browse")))      (n_cmd.browse),
     new (require(cmd("random")))      (n_cmd.random),

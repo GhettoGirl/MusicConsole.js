@@ -43,8 +43,8 @@
  - [x] Implement a solid and extendable command line parser
  - [ ] Implement all the commands `:^)` </br>
        <sub>For a detailed description of all the commands see the README of the old Music Console.</sub>
-      - [ ] The 'command-less' command, alias 'hidden audio command'
-      - [ ] Media filter commands, *audio*, *video*, *module*
+      - [x] The 'command-less' command, alias 'hidden audio command'
+      - [x] Media filter commands, *audio*, *video*, *module*
       - [x] *random* (plays a random media file)
       - [x] *shuffle* (shuffles through the media library, takes filters)
       - [x] *repeat* (repeats the same media over and over again)
