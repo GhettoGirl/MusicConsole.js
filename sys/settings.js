@@ -5,8 +5,8 @@
  *
  */
 
-const join = require("path").join;
-const env = process.env;
+const standardpaths = require('extern/node-standardpaths');
+const path = require("path");
 const fs = require('fs');
 const mkdirp = require('extern/node-mkdirp');
 const jsonfile = require('jsonfile');
@@ -18,23 +18,8 @@ const method = SettingsManager.prototype;
 
 function SettingsManager()
 {
-    this.m_dir = (function()
-    {
-        function find_xdg_config_dir()
-        {
-            if (env["XDG_CONFIG_HOME"])
-            {
-                return env[key];
-            }
-
-            else
-            {
-                return join(env.HOME, ".config");
-            }
-        };
-
-        return find_xdg_config_dir() + '/' + global.pjson.author + "/" + global.pjson.name;
-    })();
+    this.m_dir = path.join(standardpaths.path(standardpaths.ConfigLocation),
+                           global.pjson.author, global.pjson.name);
 
     this.m_file = this.m_dir + "/settings.json";
     this.m_file_players = this.m_dir + "/players.json";

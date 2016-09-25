@@ -1,0 +1,12 @@
+This file(s) are part of an upcoming project of mine.
+
+This project is an attempt to port QStandardPaths to JavaScript and Node
+to get common operating system standard paths.
+
+At the moment this library only targets the generic config location.
+
+Linux:   $XDG_CONFIG_DIR, fallback ~/.confg
+macOS:   ~/Library/Preferences
+Windows: C:/Users/<USER>/AppData/Local/<APPNAME>", "C:/ProgramData/<APPNAME>"
+
+see http://doc.qt.io/qt-5/qstandardpaths.html for a full list
