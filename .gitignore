@@ -5,6 +5,7 @@
 
 # Release distribution
 /dist/
+/dist.archive/
 
 # Common
 *~
