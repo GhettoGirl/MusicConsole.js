@@ -29,7 +29,7 @@
        Feature implemented in a native addon, and it works like a charm :)
  - [x] Implement a user settings manager
  - [x] Implement a media player controller
- - [ ] Implement a playlist parser (for my custom playlist format, see README of old Music Console for syntax)
+ - [x] Implement a playlist parser (for my custom playlist format, see README of old Music Console for syntax)
  - [x] ~~Implement a path expander (if there is not a node module for this already)~~ </br>
        Send only absolute paths to players `path.resolve()` ~~alternative paths are ok~~ <- they are **NOT**
  - [x] Port the *SearchKeys* class from the C++ version to Node </br>
