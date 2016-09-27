@@ -11,7 +11,7 @@ A simple console app which organizes all of your media files for fast and easy a
 
 ### Features
 
- - **Over 14 commands** to get the best out of your overload of songs and videos :D
+ - **Over 13 commands** to get the best out of your overload of songs and videos :D
  - **Name filters** for audio, video and module tracker formats
  - **Advanced search algorithm** and **filter** to find exactly what you want
  - **Customizable players** to play every song and video in the player of your choice
@@ -68,7 +68,7 @@ Make sure to checkout the [**Releases**](https://github.com/GhettoGirl/MusicCons
 
 ## Basics
 
-**NOTICE!** The documentation is work-in-progress. I want to create something nice and special and easy to read and understand, without any clutter. The old documentation was a catastrophe and I want to avoid to create another one.
+**NOTICE!** The documentation is work-in-progress. I want to create something nice and special and easy to read and understand, without any clutter. The old documentation was a catastrophe and I want to avoid it to create another one. Some neat features are still undocumented. You always can read the old documentation.
 
 
 #### First Start
@@ -111,7 +111,7 @@ Execute the app using the `-h/--help` parameter to get started.
 
 ## Command Prompt
 
-The command prompt is the place where you can active all the magic of Music Console ;P </br>
+The command prompt is the place where you activate all the magic of Music Console ;P
 
 ###### Keyboard Interactions
 
@@ -174,3 +174,85 @@ Clears all output from the terminal and prints the header again.
 
 × `exit` </br>
 You know what it does :P
+
+## Settings
+
+There are a lot of customizable options in Music Console, because everyone is different and prefers different things. Here is a quick overview off all the options and its explanation.
+
+#### × `settings.json` ─ Core Settings
+
+This file contains the core settings. As the file extension says, its a JSON file. It contains the following fields. If the file contains syntax errors it will be destroyed and recreated, watch out for errors before starting Music Console again or keep a backup to not lose your settings. Missing or faulty options will be readded from the defaults.
+
+× `commands` </br>
+All command strings. You can modify every command. If there are duplicates, Music Console will tell you and refuses to start. To disable a command just make it empty ;) </br>
+**ATTENTION!** Disabling the `exit` command will steal you the opportunity to quit the app. You need to send `SIGTERM` to the process then. I will disallow this in future releases.
+
+× `library` </br>
+Everything related to the library.
+  - `rootpath` </br>
+    The path which Music Console should scan and use at startup. </br></br>
+  - `playlist_paths` </br>
+    Is an array of paths where Music Console should look for playlist files using the `plistfile` command. More details are mentioned in the **Playlist** guide below. </br></br>
+    `$MUSICCONSOLE_CONFIG_DIR` will be replaced by the configuration directory. </br></br>
+  - `prefixdeletionpatterns` </br>
+    Is an array of phrases which should be excluded from the search terms of each file. It gives you the possibility to get more relevant results by ignoring common prefixes in your library, like `Music/` or `Videos/`. This phrases are only prefixes and have no support for wildcards or regular expressions. </br></br>
+  - `audioformats`/`videoformats`/`moduleformats` </br>
+    This are arrays of file extensions which should be recognized as media files. By default this includes a lot of common and uncommon media formats.
+
+× `player` </br>
+This are the default players. Every player has a `command` and an array or `arguments` which will be passed to the player. The `%f` is a placeholder which is replaced by the media file. If there is no placeholder in the argument list, it will be added as last argument to the player. </br></br>
+Names of the default players are `audioplayer`, `videoplayer` and `modplayer`. You can also have per filetype overrides. For this scroll down to the `players.json` description. It also includes an example.
+
+× `tools` </br>
+Contains tools. At the moment the only available tool is a file browser which is used by the `browse` command. The configuration of the tools is identical to the player configuration (`command` and `arguments`). There are 2 placeholders available for tools: `%f` which is replaced by the file and `%d` which is replaced by the directory. If no placeholder is available the file/directory will be used as last argument.
+
+× `prompt` </br>
+Customize the prompt and history ignore patterns.
+  - `line` </br>
+    The string which should be used to display the prompt. In the future this setting will support escape sequences to format this even more (like **bold** or *italic* for example). </br></br>
+  - `histignore` </br>
+    Array of regular expressions. Every input which matches any of this patterns are not added to the command line history. The regular expressions must be compatible with JavaScript.</br></br>
+    **Pro tip!** Lines starting with a space are never added to the history.
+
+× `randomizer` </br>
+This options give you the ability to customize the built-in randomizer which is used by the `random` and `shuffle` command.
+  - `historysize` </br>
+    The history size is used to remember a fixed amount of numbers which were generated previously by the generator. If any of the number in the history matches the currently generated number a new number will be generated, to prevent infinite loops there is a protection which stops the loop when the maximum possible attempts were made. To disable the memorization, set this value to `0`. Expect the same song/video to play twice in a row without this feature ;)
+
+× `appearance` </br>
+Here you can change the display appearance of the media files and what tags should be shown. All this fields have full ANSI escape sequence support. If your terminal emulator supports True Color you can create a rainbow :D </br>
+Oh and you can use any kind of character too besides the default fields.
+  - `extension`: the file extension.
+  - `artist`, `album`, `title`, `genre`: the available tag fields.
+  - `path`: the relative path of the media.
+
+All the listed fields above must contain a `%s` which is replaced by the actual value, or leave it away to hide that field. To customize the actual line which is displayed in the terminal you need to modify this 2 fields.
+  - `print_tagged`: is used when the media files has at least one tagged field.
+  - `print_path`: is used when there are no tags available (mostly videos).
+
+This 2 fields should have the following placeholders which are replaced by the formatted fields from above: `$extension`, `$path`, `$artist`, `$album`, `$title`, `$genre`. You can also add any other characters and phrases which will be printed as static text. </br>
+The default configuration is already a great example how to use this feature correctly.
+
+#### × `players.json` ─ Player overrides per filetype
+
+This file contains all player overrides per filetype. Its a JSON file. Besides the default players you can also specify another player for a specific filetype. This is useful if the default player can't handle a specific format. For example `mpv` can't play Bink2 videos, but the official Bink Player can.
+
+The JSON must be structured like this
+```json
+{
+  "extension": {
+    "command": "your_player_here",
+    "arguments": [
+      "--im-a-param",
+      "%f"
+    ]
+  },
+  "bk2": {
+    "command": "BinkPlayer",
+    "arguments": [
+      "%f"
+    ]
+  }
+}
+```
+Where `extension` is, is any filetype which should use another player. If the file contains syntax errors, Music Console will inform you about this. The file stays intact and all player overrides will be unavailable until you fix the file. If the file doesn't exists or is empty it will be recreated with a template to get started easily.
