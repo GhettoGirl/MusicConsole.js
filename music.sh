@@ -7,4 +7,4 @@
 cd "$(dirname "$(realpath "$0")")"
 
 # run app
-node . "$@"
+exec node . "$@"
