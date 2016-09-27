@@ -179,6 +179,18 @@ Clears all output from the terminal and prints the header again.
 × `exit` </br>
 You know what it does :P
 
+
+##### Wait? Did I just saw some commands causing infinite loops?
+
+No worries :) </br>
+This are no real infinite loops, you can stop them at any time by hitting Enter. All loops are stoppable.
+
+**Notice:** The default players are `mplayer` and `mpv`. You can stop these players by pressing Enter, which makes them my default choice for this app. When hitting Enter to stop the player it will return to the loop sequence, here you need to hit Enter again if you want to stop the loop. In short: hit Enter twice to get back to the prompt.
+
+**Pro tip!** There is a wait time of a half second before the loop continues. In future releases you will be able to customize this timeout.
+
+*For curious developers:* see `lib/kbhit` for the implementation and how this breakable infinite loop mechanism works.
+
 ## Settings
 
 There are a lot of customizable options in Music Console, because everyone is different and prefers different things. Here is a quick overview off all the options and its explanation.
