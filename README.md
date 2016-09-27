@@ -125,6 +125,10 @@ Arguments within `(parenthesis)` are optimal.
 
 **Pro tip!** Every command can be customized in the settings.
 
+###### One-liner
+
+The prompt has the ability to write one-liner. This means you can execute multiple commands in one go. Commands are separated using a `&&`.
+
 #### Commands
 
 × *(nothing)* </br>
@@ -256,3 +260,51 @@ The JSON must be structured like this
 }
 ```
 Where `extension` is, is any filetype which should use another player. If the file contains syntax errors, Music Console will inform you about this. The file stays intact and all player overrides will be unavailable until you fix the file. If the file doesn't exists or is empty it will be recreated with a template to get started easily.
+
+## The Search Algorithm and filter possibilities
+
+Let me describe my search algorithm in detail here, so that you understand what happens under to hood after you hit Enter on the prompt.
+
+The input is just a simple space separated phrase, nothing really special. This simple phrase will be converted to all lowercase characters and then transformed into a case insensitive regular expression. Every space will be converted into a wildcard which matches anything.
+
+But wait there is even more. I talked about advanced filter possibilities earlier. What are those anyway? To fine tune results and to match more than just one pattern I developed a multi-match system. It allows you to enter multiple search terms and combine them in many ways.
+
+The different multi-match types described in detail:
+
+ - **Default** </br>
+   This is a regular search term and also the base match when it gets combined with the other types. Nothing much to explain here.
+
+
+ - **Append To Main Search** (`|a`) </br>
+   This type expands the **Default** search term with additional phrases.
+
+
+ - **Include Into Main Search** (`|w`) </br>
+   This type adds a regular search to the multi-match filter. Which means it will either match the **Default** or any of this type.
+
+
+ - **Without Any Of This** (`|wo`) </br>
+   This type allows you to exclude phrases which should not match. Whenever one of the above types match a pattern but also match this one, the search continues until a result is found which doesn't match this type, but one from the above.
+
+
+ - **Without Genre** (`|wg`) </br>
+   Specific to tagged media files. Will exclude every songs of a specific genre.
+
+</br>
+Enough theory, now its time for some examples.
+
+1. `初音ミク` </br>
+   Will match everything which contains the phrase `初音ミク` in it.
+2. `VOCALOID |a 初音ミク |a GUMI` </br>
+   This phrase expands to the following array of **Default** types -> </br>
+   &nbsp;&nbsp;&nbsp;&nbsp; × `VOCALOID 初音ミク` </br>
+   &nbsp;&nbsp;&nbsp;&nbsp; × `VOCALOID GUMI` </br>
+   This will match everything which contains one of the 2 phrases in it.
+3. `VOCALOID |w BEMANI` </br>
+   This will match everything which contains the phrases `VOCALOID` or `BEMANI` in it.
+4. `初音ミク |wo VOCALOID` </br>
+   This will match everything which contains the phrase `初音ミク`, but **not** the phrase `VOCALOID` in it.
+
+You can combine as much of this multi-match types as you want. Fine tune your search and get the songs or videos you wanna listen to. This system works best for the following commands: `random`, `shuffle` and `playlist`, but you can use them in any command as you wish.
+
+
