@@ -47,10 +47,7 @@ const paths = {
         "extern/**/*.js",
         "!extern/**/test*.js",
 
-        "lib/kbhit/*.js",
-        "lib/medialibrarymodel/*.js",
-        "lib/mediaplayercontroller/*.js",
-        "lib/searchtermgen/*.js",
+        "lib/**/*.js",
 
         "commands/*.js",
         "!commands/template.js"
