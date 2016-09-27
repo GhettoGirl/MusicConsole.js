@@ -147,6 +147,15 @@ function SettingsManager()
     this.m_settings.library.rootpath = resolve_env(this.m_settings.library.rootpath);
     this.m_default_settings.library.rootpath = this.m_settings.library.rootpath;
 
+    // resolve variables in [library.playlist_paths]
+    for (const i in this.m_settings.library.playlist_paths)
+    {
+        this.m_settings.library.playlist_paths[i] =
+            jsext.String.replaceAll(this.m_settings.library.playlist_paths[i],
+                                    "\\$MUSICCONSOLE_CONFIG_DIR", this.m_dir);
+    }
+    this.m_default_settings.library.playlist_paths = this.m_settings.library.playlist_paths;
+
     // create histignore regex array
     this.m_histignore = [];
     for (const i of this.m_settings.prompt.histignore)

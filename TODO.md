@@ -53,7 +53,7 @@
       - [x] *history* (print history to screen)
       - [x] *statistics* (prints details about the media library)
       - [x] *playlist* (generate playlist using search terms)
-      - [ ] *playlistfile* (load playlist from Music Console Playlist file)
+      - [x] *playlistfile* (load playlist from Music Console Playlist file)
       - [x] *rescan* (to rescan the filesystem without restarting the app)
       - [x] *exit*
  - [ ] Implement favorites feature
