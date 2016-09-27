@@ -5,19 +5,15 @@
  *
  * Installer
  *
- *  - (Runs tests) - at the moment there aren't any
  *  - Minifies every JavaScript and JSON file, removes the 'devDependencies' array too
  *  - Skips every unneeded files, except LICENSES
  *  - Builds native addons
- *  - Installs node modules in production mode, excludes optimals
+ *  - Installs node modules in production mode, excludes optimal dependencies as they are unnecessary
  *  - Copies LICENSES into their respective place
  *  - Cleans up everything after the installation is complete
  *
  *  - Installs the release in the './dist' directory
  *  - Installs a launcher script (shell)
- *
- * TODO:
- *  - write tests
  *
  *
  */
