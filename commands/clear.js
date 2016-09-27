@@ -6,7 +6,7 @@
  *
  */
 
-const clear_terminal = require('utils/clear-terminal');
+const termformat = require('utils/termformat.js');
 
 const Command = require('sys/command.js');
 
@@ -20,7 +20,7 @@ CmdClear.prototype = {
 
 execute: function(args)
 {
-    clear_terminal();
+    termformat.clear();
     global.print_header();
 }
 
