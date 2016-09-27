@@ -60,6 +60,7 @@ function SettingsManager()
             rescan: "rescan",
             playlist: "playlist",
             plistfile: "plistfile",
+            clear: "clear",
             exit: "exit"
         },
         library: {
@@ -300,6 +301,8 @@ method.validateSettings = function()
         this.m_settings.commands.statistics = this.m_default_settings.commands.statistics;
     if (!isString(this.m_settings.commands.exit))
         this.m_settings.commands.exit = this.m_default_settings.commands.exit;
+    if (!isString(this.m_settings.commands.clear))
+        this.m_settings.commands.clear = this.m_default_settings.commands.clear;
     if (!isString(this.m_settings.commands.rescan))
         this.m_settings.commands.rescan = this.m_default_settings.commands.rescan;
     if (!isString(this.m_settings.commands.plistfile))

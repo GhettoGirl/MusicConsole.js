@@ -27,3 +27,9 @@ global.process_cleanup_and_exit = function(ret)
 process.on('SIGINT', global.process_cleanup_and_exit);
 process.on('SIGTERM', global.process_cleanup_and_exit);
 process.on('SIGHUP', global.process_cleanup_and_exit);
+
+// todo: display exceptions a bit cleaner and more friendly
+//       don't spam one million 'at' lines to the terminal
+//       i know my project structure and files, i don't need
+//       a spammy backtrace...
+// process.on('uncaughtException')

@@ -26,7 +26,7 @@ const ansi = require('ansi-escape-sequences');
 const termcolor = require('utils/termcolor.js');
 
 // print application header to terminal
-function print_header()
+global.print_header = function()
 {
     var cols = process.stdout.columns;
     var line = "", header = "";

@@ -14,6 +14,7 @@ global.readline.setPrompt(global.settings.prompt().line);
 global.commands = require('sys/commands.js');
 
 const simplifystring = require('utils/simplifystring.js');
+const clear_terminal = require('utils/clear-terminal.js');
 
 const method = MusicConsole.prototype;
 
@@ -104,6 +105,10 @@ method.userInput = function()
 
 method.console = function()
 {
+    // clear the terminal when entering the console
+    clear_terminal();
+    global.print_header();
+
     while (true)
     {
         var commands = this.userInput();

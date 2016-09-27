@@ -167,5 +167,8 @@ Generates a playlist of songs and videos which matches the given search terms. B
 × `plistfile` *playlist name* </br>
 Loads the given Music Console Playlist and plays all entries. See the **Playlist** guide below how to work with playlists.
 
+× `clear` </br>
+Clears all output from the terminal and prints the header again.
+
 × `exit` </br>
 You know what it does :P

@@ -28,6 +28,7 @@ const commands = [
     new (require(cmd("rescan")))      (n_cmd.rescan),
     new (require(cmd("playlist")))    (n_cmd.playlist),
     new (require(cmd("plistfile")))   (n_cmd.plistfile),
+    new (require(cmd("clear")))       (n_cmd.clear),
     new (require(cmd("exit")))        (n_cmd.exit)
 ];
 
