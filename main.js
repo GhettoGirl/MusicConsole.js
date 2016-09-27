@@ -18,9 +18,6 @@ global.jsext = require('utils/js-extensions');
 global.pjson = require(__dirname + "/package.json");
 global.pkg_version = new (require('extern/NodeSwVersionParser'));
 
-// pidlock: for the instance check
-const pidlock = require('pidlock');
-
 // terminal formatting
 const termformat = require('utils/termformat.js');
 
@@ -170,21 +167,6 @@ function parse_arguments()
     }
 }
 
-// ensure only a single instance of this application is running
-function singleinstance_check()
-{
-    pidlock.guard('/tmp', pjson.name + '_singleton.lock', function(error, data, cleanup)
-    {
-        if (error)
-        {
-            console.log(termformat.ansi.bold + termformat.foreground.rgb(166, 74, 0) +
-                        "NOTICE:" + termformat.ansi.reset + " " + termformat.ansi.italic +
-                        "only one instance is allowed!" + termformat.ansi.reset);
-            global.process_cleanup_and_exit(5);
-        }
-    });
-}
-
 function init_medialib()
 {
     const MediaLibraryModel = require('lib/medialibrarymodel');
@@ -240,7 +222,6 @@ function init_mediaplayercontroller()
 function main()
 {
     print_header();
-    singleinstance_check();
     var opt = parse_arguments();
 
     // initialize components
