@@ -6,7 +6,7 @@
  *
  */
 
-const ansi = require('ansi-escape-sequences');
+const ansi = require('utils/termformat.js').ansi;
 const tilde = require('utils/home-tilde.js');
 
 const Command = require('sys/command.js');
@@ -23,18 +23,18 @@ execute: function(args)
 {
     console.log(
 
-        " ┌──── " + ansi.style.bold + "Library Paths" + ansi.style.reset + '\n' +
+        " ┌──── " + ansi.bold + "Library Paths" + ansi.reset + '\n' +
         " │" + '\n' +
         " ├─ Root Path:        " + tilde(medialib.path()) + '\n' +
         " ├─ Cache Path:       " + tilde(medialib.cachePath()) + '\n' +
         " │" + '\n' +
-        " ├──── " + ansi.style.bold + "Media Types" + ansi.style.reset + '\n' +
+        " ├──── " + ansi.bold + "Media Types" + ansi.reset + '\n' +
         " │" + '\n' +
         " ├─ Audio: " + medialib.mediaTypes(MediaType.Audio) + '\n' +
         " ├─ Video: " + medialib.mediaTypes(MediaType.Video) + '\n' +
         " ├─ Module Tracker: " + medialib.mediaTypes(MediaType.ModuleTracker) + '\n' +
         " │" + '\n' +
-        " ├──── " + ansi.style.bold + "Counters" + ansi.style.reset + '\n' +
+        " ├──── " + ansi.bold + "Counters" + ansi.reset + '\n' +
         " │" + '\n' +
         " ├─ # of audio files:       " + medialib.count(MediaType.Audio) + '\n' +
         " ├─ # of video files:       " + medialib.count(MediaType.Video) + '\n' +

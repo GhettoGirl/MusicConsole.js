@@ -1,8 +1,9 @@
 /* Music Console
- * @termcolor.js
+ * @termformat.js
  *
- * Terminal color
- * True color RGB codes
+ * Terminal formatting
+ *  - ANSI escape sequences (just the basic ones needed for this app)
+ *  - True color RGB codes
  *
  */
 
@@ -36,7 +37,16 @@ const background =
     }
 }
 
+const ansi =
+{
+    reset:      "\x1b[0m",
+    bold:       "\x1b[1m",
+    italic:     "\x1b[3m",
+    underlined: "\x1b[4m"
+}
+
 module.exports = {
     foreground,
-    background
+    background,
+    ansi
 }

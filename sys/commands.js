@@ -5,7 +5,7 @@
  *
  */
 
-const ansi = require('ansi-escape-sequences');
+const termformat = require('utils/termformat.js');
 
 const n_cmd = global.settings.commands();
 
@@ -42,8 +42,8 @@ for (let i = 0; i < commands.length; i++)
             // terminate program when command list has duplicates
             // i will not support this behavior and the user should
             // not do this in the first place anyway
-            console.error(ansi.style.bold + termcolor.foreground.rgb(195, 0, 0)
-                + "FATAL:" + ansi.style.reset + " "
+            console.error(termformat.ansi.bold + termformat.foreground.rgb(195, 0, 0)
+                + "FATAL:" + termformat.ansi.reset + " "
                 + "The command list has duplicates, this behavior is not supported!");
             console.error("Please fix this before you continue using this program.");
             global.process_cleanup_and_exit(2);

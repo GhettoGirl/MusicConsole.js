@@ -22,8 +22,7 @@ global.pkg_version = new (require('extern/NodeSwVersionParser'));
 const pidlock = require('pidlock');
 
 // terminal formatting
-const ansi = require('ansi-escape-sequences');
-const termcolor = require('utils/termcolor.js');
+const termformat = require('utils/termformat.js');
 
 // print application header to terminal
 global.print_header = function()
@@ -43,11 +42,11 @@ global.print_header = function()
         }
 
         // first line
-        header += ansi.style.reset + "┌" + line + "┐\n";
+        header += termformat.ansi.reset + "┌" + line + "┐\n";
 
         // second line
         header += "│ "
-               + ansi.style.bold + pjson.display_name + ansi.style.reset
+               + termformat.ansi.bold + pjson.display_name + termformat.ansi.reset
                + " " + pkg_version.version();
 
         for (let i = 2 + pjson.display_name.length
@@ -65,8 +64,8 @@ global.print_header = function()
     // generate normal header, when terminal size cannot be determined
     else
     {
-        header += ansi.style.reset
-               + ansi.style.bold + pjson.display_name + ansi.style.reset
+        header += termformat.ansi.reset
+               + termformat.ansi.bold + pjson.display_name + termformat.ansi.reset
                + " " + pkg_version.version() + "\n";
     }
 
@@ -130,9 +129,9 @@ function parse_arguments()
     })
     .bindHelp()
     .setHelp(
-        "Usage: " + ansi.style.bold + "music " + ansi.style.reset
-                  + "\"command\" or " + ansi.style.italic + "{options}"
-                  + ansi.style.reset + "\n\n" +
+        "Usage: " + termformat.ansi.bold + "music " + termformat.ansi.reset
+                  + "\"command\" or " + termformat.ansi.italic + "{options}"
+                  + termformat.ansi.reset + "\n\n" +
 
         "[[OPTIONS]]\n\n" +
 
@@ -178,9 +177,9 @@ function singleinstance_check()
     {
         if (error)
         {
-            console.log(ansi.style.bold + termcolor.foreground.rgb(166, 74, 0) +
-                        "NOTICE:" + ansi.style.reset + " " + ansi.style.italic +
-                        "only one instance is allowed!" + ansi.style.reset);
+            console.log(termformat.ansi.bold + termformat.foreground.rgb(166, 74, 0) +
+                        "NOTICE:" + termformat.ansi.reset + " " + termformat.ansi.italic +
+                        "only one instance is allowed!" + termformat.ansi.reset);
             global.process_cleanup_and_exit(5);
         }
     });
