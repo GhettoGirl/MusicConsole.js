@@ -59,7 +59,7 @@ function SettingsManager()
             statistics: "statistics",
             rescan: "rescan",
             playlist: "playlist",
-            playlistfile: "plistfile",
+            plistfile: "plistfile",
             exit: "exit"
         },
         library: {
@@ -290,8 +290,8 @@ method.validateSettings = function()
         this.m_settings.commands.exit = this.m_default_settings.commands.exit;
     if (!isString(this.m_settings.commands.rescan))
         this.m_settings.commands.rescan = this.m_default_settings.commands.rescan;
-    if (!isString(this.m_settings.commands.playlistfile))
-        this.m_settings.commands.playlistfile = this.m_default_settings.commands.playlistfile;
+    if (!isString(this.m_settings.commands.plistfile))
+        this.m_settings.commands.plistfile = this.m_default_settings.commands.plistfile;
 
     if (!isString(this.m_settings.library.rootpath))
         this.m_settings.library.rootpath = this.m_default_settings.library.rootpath;
