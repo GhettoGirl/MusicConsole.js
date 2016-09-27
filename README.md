@@ -1,5 +1,7 @@
 # Music Console
 
+![dependencies](https://david-dm.org/GhettoGirl/MusicConsole.js.svg)
+
 A simple console app which organizes all of your media files for fast and easy access.
 
 #### What is Music Console?
