@@ -64,6 +64,9 @@ function SettingsManager()
         },
         library: {
             rootpath: "$HOME", // scan the whole users home directory by default
+            playlist_paths: [
+                "$MUSICCONSOLE_CONFIG_DIR/playlists"
+            ],
             prefixdeletionpatterns: ["Music/", "Video/", "Videos/"],
             audioformats: ["wav", "flac", "tta",  "aiff", "ape",  "pcm", "alac", "dts",
                            "m4a", "ogg",  "mka",  "wma",  "asf",  "ra",  "aac",  "mp3"],
@@ -295,6 +298,8 @@ method.validateSettings = function()
 
     if (!isString(this.m_settings.library.rootpath))
         this.m_settings.library.rootpath = this.m_default_settings.library.rootpath;
+    if (!isObject(this.m_settings.library.playlist_paths))
+        this.m_settings.library.playlist_paths = this.m_default_settings.library.playlist_paths;
     if (!isObject(this.m_settings.library.prefixdeletionpatterns))
         this.m_settings.library.prefixdeletionpatterns = this.m_default_settings.library.prefixdeletionpatterns;
     if (!isObject(this.m_settings.library.audioformats))
