@@ -319,6 +319,37 @@ Enough theory, now its time for some examples.
 4. `初音ミク |wo VOCALOID` </br>
    This will match everything which contains the phrase `初音ミク`, but **not** the phrase `VOCALOID` in it.
 
-You can combine as much of this multi-match types as you want. Fine tune your search and get the songs or videos you wanna listen to. This system works best for the following commands: `random`, `shuffle` and `playlist`, but you can use them in any command as you wish.
+You can combine as much of this multi-match types as you want. Fine tune your search and get the songs and videos you wanna listen and watch to. This system works best for the following commands: `random`, `shuffle` and `playlist`, but you can use them in any command as you wish.
+
+#### Search Term Generators
+
+Search Term Generators are another neat thing which acts under the hood of my search algorithm. Its an attempt to break the complexibility of todays Unicode characters. The work of this generators is to generate a similar or similar-looking phrase for a given input. The given search term will be compared with all generated strings.
+
+There are many scenarios where this makes sense, one of this I want to mention is the chaos and overload of the latin writing system in todays Unicode: there is basic latin, wide latin and a bunch of fancy (examples: ℱ𝓪𝓷𝓬𝔂, 𝕋ℍ𝔼, ᗷY ᗩ), reversed and head over latin characters. Obviously regular matching won't work beyond different variants of the "same" character because it is actually not the same character, it just looks the same.
+
+To break this barrier I made several generators to make it easier to find things in exotic libraries and music/video collections.
+
+ - `Latin` (work-in-progress) </br>
+   Converts any latin character to its Unicode counterparts and vise versa. Supports the following variants at the moment: </br>
+    × Basic Latin </br>
+    × Wide Latin (known in CJK environments)
+
+
+ - `Kana` </br>
+   Converts any japanese kana to its Hiragana, Katakana and Halfwidth Katakana variant. </br>
+   `あ` <─> `ア` <─> `ｱ`
+
+
+ - `Kana Dakuten` </br>
+   In Unicode there are kana with the sound marks (dakuten) included and separated. The sound marks are available as standalone combining characters. This generator converts any kana to its kana with dakuten included and separated variant.
+   
+   **Note:** I added this generator mostly because of different IME behaviors. I own some stuff by myself where kana with the dakuten seperated are used, but my IME uses the kana with the dakuten included.
+
+
+ - `Whitespace` </br>
+   There are over 31+ different whitespace characters in the Unicode table. The most used ones are `0x20` (the regular whitespace character) and `U+3000` (a long whitespace to match CJK characters). This generator converts any known whitespace to a regular whitespace (`0x20`). This generator is the only one I apply to both, the prompt input and the filenames.
+
+
+In the future I will implement more generators. If you have any ideas or suggestions, let me know :)
 
 
