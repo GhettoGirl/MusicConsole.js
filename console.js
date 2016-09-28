@@ -115,7 +115,16 @@ method.console = function()
         var cmd_executed = false;
         for (const i of commands)
         {
-            for (const c of global.commands)
+            // the exit command must match absolutely,
+            // if you pass arguments to it, it wil not be executed
+            // this makes it possible to not accidently quit the app when something
+            // in the library starts with "exit" and you wanna look it up :)
+            if ((i.command + i.args) == global.commands.exit.m_name)
+            {
+                global.commands.exit.execute();
+            }
+
+            for (const c of global.commands.commands)
             {
                 if (i.command == c.m_name)
                 {

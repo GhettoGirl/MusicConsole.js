@@ -176,7 +176,8 @@ Loads the given Music Console Playlist and plays all entries. See the **Playlist
 Clears all output from the terminal and prints the header again.
 
 × `exit` </br>
-You know what it does :P
+This command quits the application. But there is something you should know about it: This command is the only command in the application which needs to match absolutely, which means it will not be executed when you pass arguments to it. This makes it possible to not accidently quit the app when something in your library starts with the word "exit" and you wanna look it up :) </br>
+If you need an example here: `EXIT TUNES` will not quit the app but start to search for the phrase in the library.
 
 
 ##### Wait? Did I just saw some commands causing infinite loops?
@@ -200,7 +201,7 @@ This file contains the core settings. As the file extension says, its a JSON fil
 
 × `commands` </br>
 All command strings. You can modify every command. If there are duplicates, Music Console will tell you and refuses to start. To disable a command just make it empty ;) </br>
-**ATTENTION!** Disabling the `exit` command will steal you the opportunity to quit the app. You need to send `SIGTERM` to the process then. I will disallow this in future releases.
+**NOTICE!** The `exit` command can not be disabled.
 
 × `library` </br>
 Everything related to the library.

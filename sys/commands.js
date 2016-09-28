@@ -37,7 +37,7 @@ for (let i = 0; i < commands.length; i++)
 {
     for (let j = 0; j < commands.length; j++)
     {
-        if (i != j && commands[i].m_name == commands[j].m_name)
+        if (i != j && commands[i].m_name != '' && commands[j].m_name != '' && commands[i].m_name == commands[j].m_name)
         {
             // terminate program when command list has duplicates
             // i will not support this behavior and the user should
@@ -51,4 +51,8 @@ for (let i = 0; i < commands.length; i++)
     }
 }
 
-module.exports = commands;
+// remove 'exit' command from the main list and return it separately
+module.exports = {
+    "commands": commands,
+    "exit": commands.pop()
+};
