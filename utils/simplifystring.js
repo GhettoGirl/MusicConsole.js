@@ -1,4 +1,4 @@
-/* Music Console
+/* Utils
  * @stringsimplify.js
  *
  * Simplifies strings

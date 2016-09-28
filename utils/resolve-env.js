@@ -1,4 +1,4 @@
-/* Music Console
+/* Utils
  * @resolve-env.js
  *
  * Resolves environment variables in strings

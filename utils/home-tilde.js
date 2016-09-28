@@ -1,4 +1,4 @@
-/* Music Console
+/* Utils
  * @home-tilde.js
  *
  * Replaces the users home path in a string with a tilde (~)

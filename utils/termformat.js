@@ -1,4 +1,4 @@
-/* Music Console
+/* Utils
  * @termformat.js
  *
  * Terminal formatting

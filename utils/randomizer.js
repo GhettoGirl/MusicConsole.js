@@ -1,4 +1,4 @@
-/* Music Console
+/* Utils
  * @randomizer.js
  *
  * Returns a random number within the given range
