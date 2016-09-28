@@ -156,7 +156,50 @@ method.console = function()
 // just run a commmand without entering the console
 method.runCommand = function(command)
 {
-    console.log(command);
+    var pos = command.indexOf(' ');
+    var cmd_executed = false;
+
+    if (pos != -1)
+    {
+        command = {
+            "command": command.substr(0, pos),
+            "args": command.substr(pos + 1)
+        };
+    }
+
+    else
+    {
+        command = {
+            "command": command,
+            "args": ""
+        };
+    }
+
+    for (const c of global.commands.commands)
+    {
+        if (command.command == c.m_name)
+        {
+            c.execute(command.args);
+            cmd_executed = true;
+        }
+    }
+
+    if (!cmd_executed)
+    {
+        // no command matches, search directly for media and play in audio player
+        // or player override if any
+        var result = medialib.find(command.command + ' ' + command.args);
+        if (typeof result != "undefined")
+        {
+            mediaplayer.execute(result, MediaType.Audio);
+        }
+
+        else
+        {
+            console.log("No media found.");
+            global.process_cleanup_and_exit(6);
+        }
+    }
 }
 
 module.exports = MusicConsole;

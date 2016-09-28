@@ -107,6 +107,7 @@ Execute the app using the `-h/--help` parameter to get started.
  - `3` The library path isn't valid or accessible
  - `4` The library has no media files
  - `5` Uncaught JavaScript exception
+ - `6` Command Mode: no media found
 
 ## Command Prompt
 
