@@ -235,7 +235,20 @@ gulp.task('assets', ['clean'], function()
 // (re)-builds native addons
 gulp.task('native-build', ['clean'], function(cb)
 {
-    exec('node-gyp rebuild', function(err, stdout, stderr) {
+    exec('node-gyp rebuild', function(err, stdout, stderr)
+    {
+        console.log(stdout);
+        console.log(stderr);
+        cb(err);
+    });
+});
+
+// build native modules for 32-bit
+//  <internal task>
+gulp.task('native-build-32', function(cb)
+{
+    exec('node-gyp rebuild --arch=ia32', function(err, stdout, stderr)
+    {
         console.log(stdout);
         console.log(stderr);
         cb(err);
