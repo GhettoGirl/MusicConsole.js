@@ -33,7 +33,7 @@ const gp_stripcomments = require('gulp-strip-comments');
 
 const paths = {
     scripts: [
-        "main.js", "console.js",
+        "main.js", "console.js", "version.js",
 
         "sys/*.js",
 
