@@ -11,7 +11,7 @@ const fs = require('fs');
 const mkdirp = require('extern/node-mkdirp');
 const jsonfile = require('jsonfile');
 const touch = require('extern/node-touch');
-const resolve_env = require('extern/node-resolve-env');
+const resolve_env = require('utils/resolve-env.js');
 const _ = require('extern/lodash');
 
 const method = SettingsManager.prototype;

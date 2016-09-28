@@ -1,8 +1,0 @@
-{
-  "name": "resolve-env",
-  "version": "1.0.0",
-  "license": "MIT",
-  "author": "Linus Unnebäck <linus@folkdatorn.se>",
-  "main": "index.js",
-  "repository": "https://github.com/LinusU/node-resolve-env"
-}
