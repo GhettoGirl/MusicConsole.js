@@ -63,6 +63,86 @@ const paths = {
     ]
 };
 
+// clean up dependencies and install only the required files, minify them too
+//
+//  i have an idea for a project: gulp-deps-deploy
+//  which purpose is to clean up dependencies and store all files
+//  which are part of the actual library into an array
+//  look for nested dependencies and resolve all require() statements
+//  to find all files
+//  get rid of all tests, test suits, unnecessary files and READMEs and
+//  documentations to reduce the size of the node_modules folder to a bare
+//  minimum
+/// LICENSE files will be always kept for legal purposes
+//
+//  the array can be used for other gulp tasks, like minifier to reduce
+//  the size even more
+//
+//
+const node_modules = {
+
+    scripts: [
+        "node_modules/call-me-maybe/*.js",
+
+        "node_modules/charenc/*.js",
+        "!node_modules/charenc/README.js",
+
+        "node_modules/crypt/*.js",
+
+        "node_modules/es6-promise/dist/es6-promise.js",
+
+        "node_modules/glob-to-regexp/*.js",
+        "!node_modules/glob-to-regexp/test*.js",
+
+        "node_modules/jsonfile/*.js",
+
+        "node_modules/node-pack/*.js",
+        "!node_modules/node-pack/test*.js",
+
+        "node_modules/readdir-enhanced/lib/**/*.js",
+
+        "node_modules/rootpath/*.js",
+
+        "node_modules/sequential-buffer/*.js",
+
+        "node_modules/sha1/*.js",
+        "!node_modules/sha1/test*.js"
+    ],
+
+    assets: [
+        "node_modules/es6-promise/dist/es6-promise.map"
+    ],
+
+    pjsons: [
+        "node_modules/rootpath/package.json",
+        "node_modules/sequential-buffer/package.json",
+        "node_modules/call-me-maybe/package.json",
+        "node_modules/crypt/package.json",
+        "node_modules/readdir-enhanced/package.json",
+        "node_modules/charenc/package.json",
+        "node_modules/sha1/package.json",
+        "node_modules/glob-to-regexp/package.json",
+        "node_modules/node-pack/package.json",
+        "node_modules/jsonfile/package.json",
+        "node_modules/es6-promise/package.json"
+    ],
+
+    licenses: [
+        "node_modules/call-me-maybe/LICENSE*",
+        "node_modules/charenc/LICENSE*",
+        "node_modules/crypt/LICENSE*",
+        "node_modules/es6-promise/LICENSE*",
+        "node_modules/glob-to-regexp/LICENSE*",
+        "node_modules/jsonfile/LICENSE*",
+        "node_modules/node-pack/LICENSE*",
+        "node_modules/readdir-enhanced/LICENSE*",
+        "node_modules/rootpath/LICENSE*",
+        "node_modules/sequential-buffer/LICENSE*",
+        "node_modules/sha1/LICENSE*"
+    ]
+
+};
+
 // clean old build
 gulp.task('clean', function()
 {
@@ -87,7 +167,7 @@ gulp.task('launcher-script', ['clean'], function()
 gulp.task('scripts', ['clean'], function()
 {
     var combined = combiner.obj([
-        gulp.src(paths.scripts, {base: '.'}),
+        gulp.src(paths.scripts.concat(node_modules.scripts), {base: '.'}),
         gp_stripcomments(),
         gp_babel({presets: ['babili']}),
         gulp.dest("./dist")
@@ -99,14 +179,25 @@ gulp.task('scripts', ['clean'], function()
 });
 
 // minify package.json's and install them
-gulp.task('pjsons', ['clean', 'install-modules'], function()
+gulp.task('pjsons', ['clean'/*, 'install-modules'*/], function()
 {
     var combined = combiner.obj([
-        gulp.src(paths.pjsons, {base: '.'}),
+        gulp.src(paths.pjsons.concat(node_modules.pjsons), {base: '.'}),
         gp_jeditor(function(json)
         {
-            delete json.devDependencies;
-            return json;
+            //delete json.devDependencies;
+
+            return {
+                name: json.name,
+                display_name: json.display_name,
+                version: json.version,
+                revision: json.revision,
+                author: json.author,
+                license: json.license,
+                homepage: json.homepage,
+                main: json.main,
+                dependencies: json.dependencies
+            };
         }),
         gp_jsonmin(),
         gulp.dest("./dist")
@@ -121,7 +212,19 @@ gulp.task('pjsons', ['clean', 'install-modules'], function()
 gulp.task('licenses', ['clean'], function()
 {
     var combined = combiner.obj([
-        gulp.src(paths.licenses, {base: '.'}),
+        gulp.src(paths.licenses.concat(node_modules.licenses), {base: '.'}),
+        gulp.dest("./dist")
+    ]);
+
+    combined.on('error', console.error.bind(console));
+
+    return combined;
+});
+
+gulp.task('assets', ['clean'], function()
+{
+    var combined = combiner.obj([
+        gulp.src(node_modules.assets, {base: '.'}),
         gulp.dest("./dist")
     ]);
 
@@ -131,7 +234,7 @@ gulp.task('licenses', ['clean'], function()
 });
 
 // install nodule modules (production)
-gulp.task('install-modules', ['clean'], function()
+/*gulp.task('install-modules', ['clean'], function()
 {
     gulp.src('./package.json')
         .pipe(gulp.dest("./dist"))
@@ -139,7 +242,7 @@ gulp.task('install-modules', ['clean'], function()
             production: true,
             noOptional: true
         }));
-});
+});*/
 
 // (re)-builds native addons
 gulp.task('native-build', ['clean'], function(cb)
@@ -172,9 +275,10 @@ gulp.task('native-clear', ['clean', 'native-install'], function()
 
 gulp.task('default', [
     'clean',
-    'install-modules',
+    //'install-modules',
     'launcher-script',
     'scripts',
+    'assets',
     'pjsons',
     'licenses',
     'native-build',
