@@ -6,6 +6,7 @@
  * Installer
  *
  *  - Minifies every JavaScript and JSON file, removes the 'devDependencies' array too
+ *  - Minifies dependencies and install only required files and the licenses
  *  - Skips every unneeded files, except LICENSES
  *  - Builds native addons
  *  - Installs node modules in production mode, excludes optimal dependencies as they are unnecessary
@@ -26,7 +27,6 @@ const exec = require('child_process').exec;
 const gulp = require('gulp');
 const gp_babel = require('gulp-babel');
 const gp_jsonmin = require('gulp-jsonminify');
-const gp_install = require('gulp-install');
 const gp_jeditor = require('gulp-json-editor');
 const gp_rename = require('gulp-rename');
 const gp_stripcomments = require('gulp-strip-comments');
@@ -132,12 +132,12 @@ const node_modules = {
         "node_modules/charenc/LICENSE*",
         "node_modules/crypt/LICENSE*",
         "node_modules/es6-promise/LICENSE*",
-        "node_modules/glob-to-regexp/LICENSE*",
+        "node_modules/glob-to-regexp/README*",       // license is embedded into the README
         "node_modules/jsonfile/LICENSE*",
         "node_modules/node-pack/LICENSE*",
         "node_modules/readdir-enhanced/LICENSE*",
-        "node_modules/rootpath/LICENSE*",
-        "node_modules/sequential-buffer/LICENSE*",
+        "node_modules/rootpath/LICENSE*",            // doesn't has a license (file)
+        "node_modules/sequential-buffer/LICENSE*",   // doesn't has a license (file)
         "node_modules/sha1/LICENSE*"
     ]
 
@@ -185,8 +185,6 @@ gulp.task('pjsons', ['clean'/*, 'install-modules'*/], function()
         gulp.src(paths.pjsons.concat(node_modules.pjsons), {base: '.'}),
         gp_jeditor(function(json)
         {
-            //delete json.devDependencies;
-
             return {
                 name: json.name,
                 display_name: json.display_name,
@@ -221,6 +219,7 @@ gulp.task('licenses', ['clean'], function()
     return combined;
 });
 
+// install external assets
 gulp.task('assets', ['clean'], function()
 {
     var combined = combiner.obj([
@@ -232,17 +231,6 @@ gulp.task('assets', ['clean'], function()
 
     return combined;
 });
-
-// install nodule modules (production)
-/*gulp.task('install-modules', ['clean'], function()
-{
-    gulp.src('./package.json')
-        .pipe(gulp.dest("./dist"))
-        .pipe(gp_install({
-            production: true,
-            noOptional: true
-        }));
-});*/
 
 // (re)-builds native addons
 gulp.task('native-build', ['clean'], function(cb)
@@ -275,7 +263,6 @@ gulp.task('native-clear', ['clean', 'native-install'], function()
 
 gulp.task('default', [
     'clean',
-    //'install-modules',
     'launcher-script',
     'scripts',
     'assets',

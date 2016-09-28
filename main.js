@@ -16,7 +16,7 @@ global.jsext = require('utils/js-extensions');
 
 // global objects
 global.pjson = require(__dirname + "/package.json");
-global.pkg_version = new (require('extern/NodeSwVersionParser'));
+global.pkg_version = new (require('./version.js'));
 
 // terminal formatting
 const termformat = require('utils/termformat.js');
