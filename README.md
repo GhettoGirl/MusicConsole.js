@@ -102,11 +102,11 @@ Execute the app using the `-h/--help` parameter to get started.
 #### Exit Codes
 
  - `0` No error
- - `1` Failed to parse command line, or JavaScript exception
+ - `1` Failed to parse command line
  - `2` Problem in the command list, most likely due to duplicate names
  - `3` The library path isn't valid or accessible
  - `4` The library has no media files
-
+ - `5` Uncaught JavaScript exception
 
 ## Command Prompt
 
