@@ -229,6 +229,8 @@ Customize the prompt and history ignore patterns.
   - `histignore` </br>
     Array of regular expressions. Every input which matches any of this patterns are not added to the command line history. The regular expressions must be compatible with JavaScript.</br></br>
     **Pro tip!** Lines starting with a space are never added to the history.
+  - `histignore_size` </br>
+    A counter of last matching items in the history which should never be added to the history file. Makes it possible to prevent a spammy history file with a lot of duplicates. Default is `1`. Set to `0` to append everything to the history, *may the spam be with you* :D
 
 × `randomizer` </br>
 This options give you the ability to customize the built-in randomizer which is used by the `random` and `shuffle` command.

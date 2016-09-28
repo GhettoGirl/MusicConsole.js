@@ -10,10 +10,12 @@
 
 const method = HistoryManager.prototype;
 
-function HistoryManager(file)
+function HistoryManager(file, ignore_size)
 {
     global.readline.historySet(file);
     global.readline.historyLoad();
+
+    this.m_ignore_size = ignore_size;
 }
 
 method.append = function(string)
@@ -23,19 +25,18 @@ method.append = function(string)
     // skip every item which matches any of the ignore patterns
     for (const i of global.settings.histignore())
     {
-        if (item.match(i) != null)
+        if (item.match(i))
         {
             return;
         }
     }
 
-    // check if last 2 items are identical to current item
-    var HIST = global.readline.historyGet(2);
-    if (!(HIST[HIST.length - 1] == item || HIST[HIST.length - 2] == item))
+    // check if last n items are identical to the current item
+    // don't append if this is the case
+    if (!global.readline.historyGet(this.m_ignore_size).includes(item))
     {
         global.readline.historyAppend(item);
     }
-    HIST.length = 0;
 }
 
 module.exports = HistoryManager;

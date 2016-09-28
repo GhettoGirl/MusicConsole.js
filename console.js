@@ -7,7 +7,8 @@
 
 // initialize prompt and history manager
 global.readline = new (require('lib/GnuReadline')).GnuReadline();
-global.history = new (require('sys/history.js'))(global.settings.directory() + "/history");
+global.history = new (require('sys/history.js'))(global.settings.directory() + "/history",
+                                                 global.settings.prompt().histignore_size);
 global.readline.setPrompt(global.settings.prompt().line);
 
 // initialize commands

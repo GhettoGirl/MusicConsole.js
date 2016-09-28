@@ -122,7 +122,8 @@ function SettingsManager()
         },
         prompt: {
             line: "# ",
-            histignore: ["statistics.*", "browse.*", "exit.*", "rescan.*", "history.*"]
+            histignore: ["^statistics.*$", "^browse.*$", "^exit$", "^rescan.*$", "^history.*$"],
+            histignore_size: 1
         },
         randomizer: {
             historysize: 2
@@ -369,6 +370,8 @@ method.validateSettings = function()
         this.m_settings.prompt.line = this.m_default_settings.prompt.line;
     if (!isObject(this.m_settings.prompt.histignore))
         this.m_settings.prompt.histignore = this.m_default_settings.prompt.histignore;
+    if (!isNumber(this.m_settings.prompt.histignore_size))
+        this.m_settings.prompt.histignore_size = this.m_default_settings.prompt.histignore_size;
 
     if (!isNumber(this.m_settings.randomizer.historysize))
         this.m_settings.randomizer.historysize = this.m_default_settings.randomizer.historysize;
