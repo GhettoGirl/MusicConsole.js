@@ -35,6 +35,15 @@
       "sources": [ '<!@(ls -1 lib/kbhit/*.cpp)' ]
     },
 
+    # random_mt19937
+    {
+      "target_name": "random_mt19937",
+      "sources": [ '<!@(ls -1 lib/random_mt19937/*.cpp)' ],
+      "cflags": [
+        "-std=c++11"
+      ]
+    },
+
 
     # copies all modules to a universal location to keep the code simple
     {
@@ -43,7 +52,8 @@
       "dependencies": [
         "TagReader",
         "GnuReadline",
-        "kbhit"
+        "kbhit",
+        "random_mt19937"
       ],
       "copies": [
         {
@@ -51,7 +61,8 @@
           "files": [
             "<(module_root_dir)/build/$(BUILDTYPE)/TagReader.node",
             "<(module_root_dir)/build/$(BUILDTYPE)/GnuReadline.node",
-            "<(module_root_dir)/build/$(BUILDTYPE)/kbhit.node"
+            "<(module_root_dir)/build/$(BUILDTYPE)/kbhit.node",
+            "<(module_root_dir)/build/$(BUILDTYPE)/random_mt19937.node"
           ]
         }
       ]

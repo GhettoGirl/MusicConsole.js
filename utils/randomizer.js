@@ -6,14 +6,11 @@
  *
  */
 
-// initialize MersenneTwister
-const MersenneTwister = new (require('./mersenne-twister.js'));
-
-// helper function to get ranged results
-function rand_helper(num, min, max)
-{
-    return Math.floor(num * (max - min + 1) + min);
-}
+// mt19937 random device
+// gives better results than _any_ JavaScript/Node randomizer in my opinion
+// C++11 chrono FTW! :)
+// see lib/random_mt19937 for the implementation
+const random_mt19937 = require('lib/random_mt19937').random_mt19937;
 
 const method = Randomizer.prototype;
 
@@ -58,7 +55,7 @@ method.random = function(min, max)
             break;
         }
 
-        this.m_now = rand_helper(MersenneTwister.random(), min, max);
+        this.m_now = random_mt19937(min, max);
         this.m_maxattempts--;
     }
 
