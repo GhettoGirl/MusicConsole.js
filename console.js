@@ -139,7 +139,7 @@ method.console = function()
                 // no command matches, search directly for media and play in audio player
                 // or player override if any
                 var result = medialib.find(i.command + ' ' + i.args);
-                if (typeof result != "undefined")
+                if (result)
                 {
                     mediaplayer.execute(result, MediaType.Audio);
                 }
@@ -189,7 +189,7 @@ method.runCommand = function(command)
         // no command matches, search directly for media and play in audio player
         // or player override if any
         var result = medialib.find(command.command + ' ' + command.args);
-        if (typeof result != "undefined")
+        if (result)
         {
             mediaplayer.execute(result, MediaType.Audio);
         }
