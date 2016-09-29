@@ -189,11 +189,20 @@ function init_medialib()
 
     medialib.setRandomizerHistorySize(settings.randomizer().historysize);
 
+    // \x1b[1A move cursor one line up
+    // \x1b[nD move cursor n columns to the left
+    // \x1b[K  clear to the end of line
+    var msg_plswait = "Scanning, please wait...";
+    console.log(msg_plswait);
+
     if (!medialib.scan())
     {
+        process.stdout.write('\x1b[1A\x1b[' + msg_plswait.length + 'D\x1b[K');
         console.error("Unable to scan the specified path: " + settings.library().rootpath);
         global.process_cleanup_and_exit(3);
     }
+
+    process.stdout.write('\x1b[1A\x1b[' + msg_plswait.length + 'D\x1b[K');
 
     if (medialib.count() == 0)
     {
