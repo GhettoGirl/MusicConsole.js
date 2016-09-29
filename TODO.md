@@ -11,7 +11,9 @@
       - [ ] for the Cyrillic writing system
       - [ ] ...?
  - [ ] Implement favorites feature
- - [ ] Do something nice with genres (not sure at the moment)
+ - [ ] Do something nice with genres
+      - [ ] `shuffle`
+      - [ ] ???
 
 --
 
