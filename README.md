@@ -95,9 +95,9 @@ The rescan process repeats the scan and uses data from the cache if any.
 Command line options are only used to change settings. There are no plans for an interactive
 settings manager.
 
-Execute the app using the `-h/--help` parameter to get started.
+Execute the app using the `-h/--help` parameter to get started. Everything is documented there :)
 
-**NOTICE:** The settings manager is work in progress, at the moment you can only change the library path. Change the other settings manually by editing the configuration file.
+**NOTICE:** The settings manager is work in progress, at the moment you can only change the library path and commands. Change the other settings manually by editing the configuration file.
 
 #### Exit Codes
 

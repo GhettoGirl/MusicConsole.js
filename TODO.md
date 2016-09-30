@@ -7,6 +7,15 @@
  - [ ] Improve the user settings manager
       - [ ] Simplify validation
       - [ ] Make every single config changeable from the command line
+           - [x] Library path
+           - [ ] Playlist paths
+           - [x] Commands
+           - [ ] Prefix Deletion Patterns
+           - [ ] Name filters
+           - [ ] Players and Tools
+           - [ ] Appearance Preferences
+           - [ ] Prompt Preferences
+           - [ ] Randomizer Settings
  - [ ] Implement *new* search term generators (comprehensive universal unicode/intl lookup)
       - [ ] for the Cyrillic writing system
       - [ ] ...?

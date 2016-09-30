@@ -145,19 +145,6 @@ function SettingsManager()
         this.m_settings = this.m_default_settings;
     }
 
-    // resolve environment variables in [library.rootpath]
-    this.m_settings.library.rootpath = resolve_env(this.m_settings.library.rootpath);
-    this.m_default_settings.library.rootpath = this.m_settings.library.rootpath;
-
-    // resolve variables in [library.playlist_paths]
-    for (const i in this.m_settings.library.playlist_paths)
-    {
-        this.m_settings.library.playlist_paths[i] =
-            jsext.String.replaceAll(this.m_settings.library.playlist_paths[i],
-                                    "\\$MUSICCONSOLE_CONFIG_DIR", this.m_dir);
-    }
-    this.m_default_settings.library.playlist_paths = this.m_settings.library.playlist_paths;
-
     // create histignore regex array
     this.m_histignore = [];
     for (const i of this.m_settings.prompt.histignore)
@@ -198,6 +185,26 @@ function SettingsManager()
     }
 }
 
+method.resolveEnvVariables = function()
+{
+    // resolve environment variables in [library.rootpath]
+    this.m_settings.library.rootpath = resolve_env(this.m_settings.library.rootpath);
+    this.m_default_settings.library.rootpath = this.m_settings.library.rootpath;
+
+    // resolve variables in [library.playlist_paths]
+    for (const i in this.m_settings.library.playlist_paths)
+    {
+        // $MUSICCONSOLE_CONFIG_DIR is an internal variable
+        this.m_settings.library.playlist_paths[i] =
+            jsext.String.replaceAll(this.m_settings.library.playlist_paths[i],
+                                    "\\$MUSICCONSOLE_CONFIG_DIR", this.m_dir);
+
+        // resolve all other environment variables
+        this.m_settings.library.playlist_paths[i] = resolve_env(this.m_settings.library.playlist_paths[i]);
+    }
+    this.m_default_settings.library.playlist_paths = this.m_settings.library.playlist_paths;
+}
+
 // tries to find a player override for the given filetype
 // returns either a object of '{command: "", arguments: []}'
 // or undefined
@@ -230,15 +237,58 @@ method.save = function()
     jsonfile.writeFileSync(this.m_file, this.m_settings, {spaces: 2});
 }
 
+method.isValidCommand = function(cmd)
+{
+    return RegExp("^(audio|video|module|search|browse|random|shuffle|repeat" +
+                  "|history|statistics|rescan|playlist|plistfile|clear|exit)$",
+                  'g').test(cmd);
+}
+
 // settings manager
 method.manager = function(args)
 {
-    if (args["library-path"] != '')
+    const isValid = function(option)
+    {
+        return (option && option != '');
+    };
+
+    if (isValid(args["library-path"]))
     {
         this.set("library.rootpath", args["library-path"]);
     }
 
+    if (isValid(args["command"]))
+    {
+        var commands = args["command"].split(',');
+        for (const i of commands)
+        {
+            var cmd = i.split('=');
+
+            if (!this.isValidCommand(cmd[0]))
+            {
+                console.warn("warning: %s skipped, because its not a valid command.", cmd[0]);
+                continue;
+            }
+
+            if (cmd.length != 2)
+            {
+                console.warn("warning: %s skipped, because its argument was empty.", cmd[0]);
+                continue;
+            }
+
+            cmd[0] = cmd[0].trim();
+            cmd[1] = cmd[1].trim();
+
+            this.set("commands." + cmd[0], cmd[1]);
+        }
+    }
+
     this.save();
+}
+
+method.managerTest = function(args)
+{
+    console.log(args);
 }
 
 ////////////////////////////////////////////

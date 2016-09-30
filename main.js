@@ -69,6 +69,60 @@ global.print_header = function()
     console.log(header);
 }
 
+function cmd_notice()
+{
+    var cols = process.stdout.columns;
+    var notice = "";
+
+    const notice_text = termformat.ansi.bold + "ＮＯＴＩＣＥ" + termformat.ansi.reset;
+    const notice_text_len = 12 + 7; // wide-chars needs 2 columns in the terminal
+    const notice_msg = [
+        "Starting the app with options just changes settings and quits it afterwards.",
+        "To use it start it either without arguments to enter the console or just specify",
+        "a simple search term."
+    ];
+
+    if (cols != 0)
+    {
+        notice = "┌──[" + notice_text + "]─";
+        for (let i = 0; i < cols - notice_text_len; i++)
+        {
+            notice += "─";
+        }
+
+        notice += "┐\n";
+
+        for (const i of notice_msg)
+        {
+            notice += "│ " + i;
+            for (let j = i.length + 3; j < cols; j++)
+            {
+                notice += " ";
+            }
+
+            notice += "│\n";
+        }
+
+        notice += "└";
+        for (let i = 0; i < cols - 2; i++)
+        {
+            notice += "─";
+        }
+        notice += "┘\n";
+    }
+
+    else
+    {
+        notice = notice_text + "\n";
+        for (const i of notice_msg)
+        {
+            notice += "│ " + i + "\n";
+        }
+    }
+
+    return notice;
+}
+
 const startup_mode = {
     normal: 0,
     command: 1,
@@ -80,7 +134,8 @@ function parse_arguments()
     // fixme: change the command line parsing library someday...
     //        or write my own :)
     const opt = require('extern/node-getopt').create([
-        ['',  "library-path[=path]", "Changes the library path of the media library"],
+        ['',  "library-path=path",   "Changes the path of the media library"],
+        ['',  "command=args",        "Changes the name of commands"],
         ['h', "help",                "Display this help"]
     ])
     .error(function(error)
@@ -112,9 +167,9 @@ function parse_arguments()
         {
             switch (option)
             {
-                //case "library-path":
-                //    console.error("--scan-path: You need to specify a valid path.");
-                //    break;
+                case "library-path":
+                    console.error("--library-path: You need to specify a valid path.");
+                    break;
 
                 default:
                     console.error("Option '%s' needs an argument!", option);
@@ -130,12 +185,23 @@ function parse_arguments()
                   + "\"command\" or " + termformat.ansi.italic + "{options}"
                   + termformat.ansi.reset + "\n\n" +
 
-        "[[OPTIONS]]\n\n" +
+        "[[OPTIONS]]\n\n\n" +
 
-        "Notice:\n" +
-        " │ Starting the app with options just changes settings and quits it afterwards.\n" +
-        " │ To use it start it either without arguments to enter the console or just specify\n" +
-        " │ a simple search term.\n"
+        // command guide
+        " " + termformat.ansi.bold + "《Commands》" + termformat.ansi.reset +
+        "  --command=[command=(new name)],...\n\n" +
+
+        "   audio,video,module,search,browse,random,shuffle,repeat\n" +
+        "   history,statistics,rescan,playlist,plistfile,clear,exit\n" +
+
+        "\n" +
+        " Examples:\n\n" +
+        "   audio=a               Changes the command 'audio' to 'a'\n" +
+        "   module=mod,audio=a    Changes the command 'module' to 'mod' and 'audio' to 'a'\n" +
+        "   module=mod,audio=     Changes the command 'module' to 'mod' and disables the 'audio' command\n" +
+
+        // final notice
+        "\n\n" + cmd_notice()
     )
     .parseSystem();
 
@@ -231,14 +297,22 @@ function init_mediaplayercontroller()
 function main()
 {
     print_header();
-    var opt = parse_arguments();
 
     // initialize components
     global.settings = new (require('sys/settings.js'));
     global.musicconsole = new (require('./console.js'));
 
-    init_medialib();
-    init_mediaplayercontroller();
+    // parse command line arguments
+    var opt = parse_arguments();
+
+    // do this things only when starting up normally
+    // i makes no sense while chaning settings from the command line
+    if (opt.mode != startup_mode.options)
+    {
+        global.settings.resolveEnvVariables();
+        init_medialib();
+        init_mediaplayercontroller();
+    }
 
     switch (opt.mode)
     {
