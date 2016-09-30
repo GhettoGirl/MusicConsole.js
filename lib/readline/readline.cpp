@@ -1,6 +1,7 @@
 #include "readline.hpp"
 
 #include <iostream>
+#include <string>
 
 #include <csignal>
 #include <setjmp.h>
@@ -22,9 +23,7 @@ void on_SIGINT(int)
 
 void on_TERMINATE(int)
 {
-    // for cosmetic reasons :)
     std::endl(std::cout);
-
     exit(0);
 }
 
@@ -137,10 +136,7 @@ void GnuReadline::Prompt(const FunctionCallbackInfo<Value> &args)
     // when the node process receives the TERM signal
     std::string input;
     char *buf = readline(obj->m_prompt.c_str());
-    if (buf)
-    {
-        input = std::string(buf);
-    }
+    input = buf ? std::string(buf) : "";
 
     args.GetReturnValue().Set(String::NewFromUtf8(isolate, input.c_str()));
 
