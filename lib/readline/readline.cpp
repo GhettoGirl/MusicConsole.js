@@ -143,6 +143,13 @@ void GnuReadline::Prompt(const FunctionCallbackInfo<Value> &args)
     }
 
     args.GetReturnValue().Set(String::NewFromUtf8(isolate, input.c_str()));
+
+    // restore original signal handlers
+    std::signal(SIGINT, SIG_DFL);
+    std::signal(SIGTERM, SIG_DFL);
+    std::signal(SIGQUIT, SIG_DFL);
+    std::signal(SIGHUP, SIG_DFL);
+    std::signal(SIGABRT, SIG_DFL);
 }
 
 void GnuReadline::HistorySet(const FunctionCallbackInfo<Value> &args)

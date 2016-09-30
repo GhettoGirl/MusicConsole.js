@@ -36,7 +36,14 @@ method.userInput = function()
     var splitbuf;
     var commands = [];
 
+    // remove signal handlers
+    global.process_deregister_signal_handlers();
+
+    // start GNU/Readline addon (which has its own signal handlers internally)
     inputbuf = readline.prompt();
+
+    // restore signal handlers
+    global.process_register_signal_handlers();
 
     // simplify string, keep first whitespace if any
     inputbuf = simplifystring(inputbuf, true);

@@ -22,9 +22,23 @@ global.process_cleanup_and_exit = function(ret)
     }
 }
 
-process.on('SIGINT', global.process_cleanup_and_exit);
-process.on('SIGTERM', global.process_cleanup_and_exit);
-process.on('SIGHUP', global.process_cleanup_and_exit);
+global.process_register_signal_handlers = function()
+{
+    process.on('SIGINT', ()=>{}); // don't quit in SIGINT
+    process.on('SIGTERM', global.process_cleanup_and_exit);
+    process.on('SIGQUIT', global.process_cleanup_and_exit);
+    process.on('SIGHUP', global.process_cleanup_and_exit);
+    process.on('SIGABRT', global.process_cleanup_and_exit);
+}
+
+global.process_deregister_signal_handlers = function()
+{
+    process.removeAllListeners('SIGINT');
+    process.removeAllListeners('SIGTERM');
+    process.removeAllListeners('SIGQUIT');
+    process.removeAllListeners('SIGHUP');
+    process.removeAllListeners('SIGABRT');
+}
 
 // display exceptions a bit cleaner and more friendly
 // don't spam one million 'at' lines to the terminal

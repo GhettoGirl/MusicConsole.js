@@ -2,7 +2,8 @@
 
  - [ ] Improve the prompt
       - [ ] Change display appearance using escape sequences
-      - [ ] Improve signal handling, there are some scenarios which can cause a SEGFAULT in Node itself
+      - [x] Improve signal handling, there are some scenarios which can cause a SEGFAULT in Node itself </br>
+            Shit's fixed now, finally!!!
  - [ ] **[Maybe?]** GNU/Readline: implement custom auto-completer for the media library
  - [ ] Improve the user settings manager
       - [ ] Simplify validation

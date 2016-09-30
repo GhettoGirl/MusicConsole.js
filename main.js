@@ -10,6 +10,7 @@ require('rootpath')();
 
 // install signal handler
 require('sys/signalhandler.js');
+global.process_register_signal_handlers();
 
 // javascript extensions
 global.jsext = require('utils/js-extensions');
