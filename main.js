@@ -306,7 +306,7 @@ function main()
     var opt = parse_arguments();
 
     // do this things only when starting up normally
-    // i makes no sense while chaning settings from the command line
+    // i makes no sense while changing settings from the command line
     if (opt.mode != startup_mode.options)
     {
         global.settings.resolveEnvVariables();

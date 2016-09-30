@@ -32,6 +32,19 @@ const commands = [
     new (require(cmd("exit")))        (n_cmd.exit)
 ];
 
+// check if all commands are valid
+for (const i of commands)
+{
+    if (!i.m_valid)
+    {
+        console.error(termformat.ansi.bold + termformat.foreground.rgb(195, 0, 0)
+            + "FATAL:" + termformat.ansi.reset + " "
+            + "One or more commands contains spaces, this behavior is not supported!");
+        console.error("Please fix this before you continue using this program.");
+        global.process_cleanup_and_exit(2);
+    }
+}
+
 // check command list for duplicate names
 for (let i = 0; i < commands.length; i++)
 {

@@ -5,9 +5,14 @@
  *
  */
 
+const simplifystring = require('utils/simplifystring.js');
+
 function Command(name)
 {
-    this.m_name = name.toLowerCase();
+    this.m_name = simplifystring(name.toLowerCase());
+
+    // spaces are not allowed in command names
+    this.m_name.indexOf(' ') != -1 ? this.m_valid = false : this.m_valid = true;
 }
 
 Command.prototype = {
