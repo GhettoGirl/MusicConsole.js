@@ -36,6 +36,9 @@ A simple console app which organizes all of your media files for fast and easy a
  - [Gulp](https://www.npmjs.com/package/gulp) ─ for the installer
  - GNU/[Readline](http://ftp.gnu.org/gnu/readline/) ─ for the prompt; yes you read right, I'm using GNU/Readline together with NodeJS
  - [TagLib](https://taglib.github.io/) 1.10+ (1.11 highly recommended) ─ for the tag reader
+</br></br>
+ - *Optimal:* **UTF-8** and **24-bit Color** compatible Terminal Emulator </br>
+   Music Console works best with 150+ columns. I highly recommend to use a drop-down Terminal for best experience :)
 
 #### Building
 
