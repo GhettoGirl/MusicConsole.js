@@ -9,7 +9,7 @@
 global.readline = new (require('lib/GnuReadline')).GnuReadline();
 global.history = new (require('sys/history.js'))(global.settings.directory() + "/history",
                                                  global.settings.prompt().histignore_size);
-global.readline.setPrompt(global.settings.prompt().line);
+global.readline.setPrompt(eval('"' + global.settings.prompt().line + '"'));
 
 // initialize commands
 global.commands = require('sys/commands.js');
@@ -41,6 +41,9 @@ method.userInput = function()
 
     // start GNU/Readline addon (which has its own signal handlers internally)
     inputbuf = readline.prompt();
+
+    // restore default formatting
+    process.stdout.write(termformat.ansi.reset);
 
     // restore signal handlers
     global.process_register_signal_handlers();
