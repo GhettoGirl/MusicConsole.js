@@ -44,6 +44,7 @@ const paths = {
         "!extern/**/test*.js",
 
         "lib/**/*.js",
+        "!lib/searchtermgen/template.js",
 
         "commands/*.js",
         "!commands/template.js"
