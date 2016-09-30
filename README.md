@@ -118,8 +118,7 @@ The command prompt is the place where you activate all the magic of Music Consol
 
 ###### Keyboard Interactions
 
- - `Ctrl+C` (`SIGINT`) cancels the current prompt and starts a new one. Handy if you are to lazy to remove the current one.
- - `Ctrl+D` quits the app when the prompt is empty, otherwise does nothing.
+ - `Ctrl+C` (`SIGINT`) cancels the current prompt and starts a new one. Handy if you are to lazy to remove the current line.
 
 ###### Arguments
 
