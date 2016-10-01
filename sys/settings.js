@@ -122,7 +122,7 @@ function SettingsManager()
         },
         prompt: {
             line: "# ",
-            histignore: ["^statistics.*$", "^browse.*$", "^exit$", "^rescan.*$", "^history.*$"],
+            histignore: ["^statistics.*$", "^browse.*$", "^exit$", "^rescan.*$", "^history.*$", "^clear.*$"],
             histignore_size: 1
         },
         randomizer: {
