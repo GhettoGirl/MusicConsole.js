@@ -64,7 +64,7 @@ function SettingsManager()
             exit: "exit"
         },
         library: {
-            rootpath: "$HOME", // scan the whole users home directory by default
+            rootpath: standardpaths.path(standardpaths.HomePath, false), // scan the whole users home directory by default
             playlist_paths: [
                 "$MUSICCONSOLE_CONFIG_DIR/playlists"
             ],
