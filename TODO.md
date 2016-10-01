@@ -1,5 +1,7 @@
 # Todo list
 
+ - [ ] Windows support </br>
+       I hardcoded a lot of UNIX-style paths, this was bad. Now I need to change some things to make them cross-platform.
  - [x] Improve the prompt
       - [x] Change display appearance using escape sequences
       - [x] Improve signal handling, there are some scenarios which can cause a SEGFAULT in Node itself </br>
