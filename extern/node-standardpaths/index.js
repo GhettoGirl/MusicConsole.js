@@ -6,6 +6,8 @@
  * This project is an attempt to bring QStandardPaths from the Qt Project
  * to JavaScript and Node.
  *
+ * There is a neat feature: It is possible to skip environment variable resolving and
+ * return the path with the environment variables.
  *
  * Supported paths (so far):
  *
@@ -44,8 +46,27 @@ const path = require('path');
 const os = process.platform; // 'darwin', 'freebsd', 'linux', 'sunos', 'win32'
 const env = process.env;
 
-function homePath()
+function xdg_config_dir(resolve_path)
 {
+    if (env['XDG_CONFIG_DIR'])
+    {
+        return (resolve_path ? env['XDG_CONFIG_DIR'] : "$XDG_CONFIG_DIR");
+    }
+
+    else
+    {
+        return (resolve_path ? path.join(env['HOME'], ".config") : path.join(homePath(resolve_path), "/.config"));
+    }
+}
+
+function homePath(resolve_path)
+{
+    var HOME = resolve_path ? env['HOME'] : '$HOME';
+    var USER = resolve_path ? env['USER'] : '$USER';
+    var SYSTEMDRIVE = resolve_path ? env['SYSTEMDRIVE'] : '%SYSTEMDRIVE%';
+    var USERPROFILE = resolve_path ? env['USERPROFILE'] : '%USERPROFILE%';
+    var HOMEPATH = resolve_path ? env['HOMEPATH'] : '%HOMEPATH%';
+
     switch (os)
     {
         // $HOME, fallbacks to /home/$USER (may be wrong)
@@ -53,18 +74,21 @@ function homePath()
         case 'freebsd':
         case 'linux':
         case 'sunos':
-            return (env['HOME'] ? env['HOME'] : path.join("/home", env['USER']));
+            return (HOME ? HOME : path.join("/home", USER));
             break;
 
         // %USERPROFILE%, fallbacks to %SYSTEMDRIVE%/%HOMEPATH%
         case 'win32':
-            return (env['USERPROFILE'] ? env['USERPROFILE'] : path.join(env['SYSTEMDRIVE'], env['HOMEPATH']));
+            return (USERPROFILE ? USERPROFILE : path.join(SYSTEMDRIVE, HOMEPATH));
             break;
     }
 }
 
-function configLocation()
+function configLocation(resolve_path)
 {
+    var XDG_CONFIG_DIR = xdg_config_dir(resolve_path);
+    var LOCALAPPDATA = resolve_path ? env['LOCALAPPDATA'] : '%LOCALAPPDATA%';
+
     switch (os)
     {
         // ~/Library/Preferences
@@ -76,18 +100,20 @@ function configLocation()
         case 'freebsd':
         case 'linux':
         case 'sunos':
-            return (env['XDG_CONFIG_DIR'] ? env['XDG_CONFIG_DIR'] : path.join(homePath(), ".config"));
+            return (XDG_CONFIG_DIR ? XDG_CONFIG_DIR : path.join(homePath(resolve_path), ".config"));
             break;
 
         // %LOCALAPPDATA%, fallbacks to {HomePath}/AppData/Local
         case 'win32':
-            return (env['LOCALAPPDATA'] ? env['LOCALAPPDATA'] : path.join(homePath(), "AppData", "Local"));
+            return (LOCALAPPDATA ? LOCALAPPDATA : path.join(homePath(resolve_path), "AppData", "Local"));
             break;
     }
 }
 
-function systemConfigLocation()
+function systemConfigLocation(resolve_path)
 {
+    var SYSTEMDRIVE = resolve_path ? env['SYSTEMDRIVE'] : '%SYSTEMDRIVE%';
+
     switch (os)
     {
         // FIXME: where does macOS stores system configuration files??
@@ -103,7 +129,7 @@ function systemConfigLocation()
 
         // %SYSTEMDRIVE%/ProgramData
         case 'win32':
-            return path.join(env['SYSTEMDRIVE'], "ProgramData");
+            return path.join(SYSTEMDRIVE, "ProgramData");
             break;
     }
 }
@@ -116,18 +142,16 @@ module.exports = {
     SystemConfigLocation: 2,
 
     // Returns the path for the given ID or undefined if not found
-    path: function(id)
+    path: function(id, resolve_path)
     {
-        if (typeof id != "number")
-        {
-            return;
-        }
+        if (typeof id != "number") return;
+        resolve_path = (typeof resolve_path == "boolean" && !resolve_path) ? false : true;
 
         switch (id)
         {
-            case 0: return homePath(); break;
-            case 1: return configLocation(); break;
-            case 2: return systemConfigLocation(); break;
+            case 0: return homePath(resolve_path); break;
+            case 1: return configLocation(resolve_path); break;
+            case 2: return systemConfigLocation(resolve_path); break;
         }
     }
 };
