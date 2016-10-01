@@ -48,14 +48,17 @@ const env = process.env;
 
 function xdg_config_dir(resolve_path)
 {
-    if (env['XDG_CONFIG_DIR'])
+    if (os != 'win32')
     {
-        return (resolve_path ? env['XDG_CONFIG_DIR'] : "$XDG_CONFIG_DIR");
-    }
+        if (env['XDG_CONFIG_DIR'])
+        {
+            return (resolve_path ? env['XDG_CONFIG_DIR'] : "$XDG_CONFIG_DIR");
+        }
 
-    else
-    {
-        return (resolve_path ? path.join(env['HOME'], ".config") : path.join(homePath(resolve_path), "/.config"));
+        else
+        {
+            return (resolve_path ? path.join(env['HOME'], ".config") : path.join(homePath(resolve_path), "/.config"));
+        }
     }
 }
 
