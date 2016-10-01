@@ -4,7 +4,11 @@
     # TagReader
     {
       "target_name": "tagreader",
-      "sources": [ '<!@(ls -1 lib/tagreader/*.cpp)' ],
+      "sources": [
+        "lib/tagreader/module_init.cpp",
+        "lib/tagreader/tagreader.cpp",
+        "lib/tagreader/tagreaderprivate.cpp"
+      ],
       "link_settings": {
         "libraries": [
           "-ltag"
@@ -18,12 +22,24 @@
     # GnuReadline / WinEditline
     {
       "target_name": "readline",
-      "sources": [ '<!@(ls -1 lib/readline/*.cpp)' ], # does this work on windows?
+      "sources": [
+        "lib/readline/module_init.cpp",
+        "lib/readline/readline.cpp"
+      ],
       "conditions": [
         ['OS=="windows"', {
           "link_settings": {
-            "libraries": [
-              "-lwineditline" # placeholder
+            "conditions": [
+              ['ARCH=="i686"', {
+                "libraries": [
+                  "-lwineditline32" # placeholder
+                ]
+              }],
+              ['ARCH=="x86_64"', {
+                "libraries": [
+                  "-lwineditline64" # placeholder
+                ]
+              }]
             ]
           }
         }],
@@ -43,13 +59,17 @@
     # kbhit
     {
       "target_name": "kbhit",
-      "sources": [ '<!@(ls -1 lib/kbhit/*.cpp)' ]
+      "sources": [
+        "lib/kbhit/kbhit.cpp"
+      ]
     },
 
     # random_mt19937
     {
       "target_name": "random_mt19937",
-      "sources": [ '<!@(ls -1 lib/random_mt19937/*.cpp)' ],
+      "sources": [
+        "lib/random_mt19937/mt19937.cpp"
+      ],
       "cflags": [
         "-std=c++11"
       ]
