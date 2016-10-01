@@ -27,7 +27,7 @@ A simple console app which organizes all of your media files for fast and easy a
 ## Requirements
 
  - OS: anything UN\*X-related (Linux, \*BSD, macOS, etc.) </br>
-   [there is no Windows support at the moment (*WIP*)]
+   [there is no Windows support at the moment (*WIP*) ─ don't attempt to run this on Windows before I don't give green lights, you have been warned]
 </br></br>
  - [NodeJS](https://www.nodejs.org) 6.5+ and `npm`
  - [node-gyp](https://github.com/nodejs/node-gyp): to build the native addons </br>
@@ -76,12 +76,13 @@ Make sure to checkout the [**Releases**](https://github.com/GhettoGirl/MusicCons
 
 #### First Start
 
-Starting the program for the first time will create a directory with a configuration file in
+Starting the program for the first time will create a directory with the configuration files in
 ```
 Linux/FreeBSD/Solaris: $XDG_CONFIG_DIR/GhettoGirl/musicconsole-js
 Apple macOS:           ~/Library/Preferences/GhettoGirl/musicconsole-js
+Windows:               %APPDATA%/Local/GhettoGirl/musicconsole-js
 ```
-and than start to scan your `$HOME` folder for media files. If you don't want the home path to be scanned during the first run, see the **command line options** below.
+and than start to scan your `$HOME`/`%USERPROFILE%` folder for media files. If you don't want the home path to be scanned during the first run, see the **command line options** below.
 
 The first start, depending on how much music and videos you own, can take up to 3 minutes.
 During this process *Music Console* is searching for media files, reading tags and generating advanced
