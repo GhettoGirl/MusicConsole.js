@@ -9,6 +9,7 @@
  *
  * Supported paths (so far):
  *
+ *  × HomePath                  : users home directory
  *  × ConfigLocation            : user configuration directory
  *  × SystemConfigLocation      : system configuration directory
  *
@@ -43,26 +44,44 @@ const path = require('path');
 const os = process.platform; // 'darwin', 'freebsd', 'linux', 'sunos', 'win32'
 const env = process.env;
 
+function homePath()
+{
+    switch (os)
+    {
+        // $HOME, fallbacks to /home/$USER (may be wrong)
+        case 'darwin':
+        case 'freebsd':
+        case 'linux':
+        case 'sunos':
+            return (env['HOME'] ? env['HOME'] : path.join("/home", env['USER']));
+            break;
+
+        // %USERPROFILE%, fallbacks to %SYSTEMDRIVE%/%HOMEPATH%
+        case 'win32':
+            return (env['USERPROFILE'] ? env['USERPROFILE'] : path.join(env['SYSTEMDRIVE'], env['HOMEPATH']));
+            break;
+    }
+}
+
 function configLocation()
 {
     switch (os)
     {
         // ~/Library/Preferences
         case 'darwin':
-            return path.join(env['HOME'], "Library", "Preferences");
+            return path.join(homePath(), "Library", "Preferences");
             break;
 
         // $XDG_CONFIG_DIR, fallback ~/.confg
         case 'freebsd':
         case 'linux':
         case 'sunos':
-            return (env['XDG_CONFIG_DIR'] ? env['XDG_CONFIG_DIR'] : path.join(env['HOME'], ".config"));
+            return (env['XDG_CONFIG_DIR'] ? env['XDG_CONFIG_DIR'] : path.join(homePath(), ".config"));
             break;
 
-        // %APPDATA%/Local", fallback %SYSTEMDRIVE%/Users/%USER%/AppData/Local
+        // %LOCALAPPDATA%, fallbacks to {HomePath}/AppData/Local
         case 'win32':
-            return (env['APPDATA'] ? path.join(env['APPDATA'], "Local")
-                                   : path.join(env['SYSTEMDRIVE'], "Users", env['USER'], "AppData", "Local"));
+            return (env['LOCALAPPDATA'] ? env['LOCALAPPDATA'] : path.join(homePath(), "AppData", "Local"));
             break;
     }
 }
@@ -71,6 +90,7 @@ function systemConfigLocation()
 {
     switch (os)
     {
+        // FIXME: where does macOS stores system configuration files??
         case 'darwin':
             break;
 
@@ -91,8 +111,9 @@ function systemConfigLocation()
 module.exports = {
 
     // Named Path IDs
-    ConfigLocation: 0,
-    SystemConfigLocation: 1,
+    HomePath: 0,
+    ConfigLocation: 1,
+    SystemConfigLocation: 2,
 
     // Returns the path for the given ID or undefined if not found
     path: function(id)
@@ -104,13 +125,9 @@ module.exports = {
 
         switch (id)
         {
-            case 0:
-                return configLocation();
-                break;
-
-            case 1:
-                return systemConfigLocation();
-                break;
+            case 0: return homePath(); break;
+            case 1: return configLocation(); break;
+            case 2: return systemConfigLocation(); break;
         }
     }
 };
