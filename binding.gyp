@@ -3,7 +3,7 @@
 
     # TagReader
     {
-      "target_name": "TagReader",
+      "target_name": "tagreader",
       "sources": [ '<!@(ls -1 lib/tagreader/*.cpp)' ],
       "link_settings": {
         "libraries": [
@@ -15,15 +15,26 @@
       ]
     },
 
-    # GnuReadline
+    # GnuReadline / WinEditline
     {
-      "target_name": "GnuReadline",
-      "sources": [ '<!@(ls -1 lib/readline/*.cpp)' ],
-      "link_settings": {
-        "libraries": [
-          "-lreadline"
-        ]
-      },
+      "target_name": "readline",
+      "sources": [ '<!@(ls -1 lib/readline/*.cpp)' ], # does this work on windows?
+      "conditions": [
+        ['OS=="windows"', {
+          "link_settings": {
+            "libraries": [
+              "-lwineditline" # placeholder
+            ]
+          }
+        }],
+        ['OS!="windows"', {
+          "link_settings": {
+            "libraries": [
+              "-lreadline"
+            ]
+          }
+        }]
+      ],
       "cflags": [
         "-std=c++11"
       ]
@@ -50,8 +61,8 @@
       "target_name": "_LibCopy",
       "type": "none",
       "dependencies": [
-        "TagReader",
-        "GnuReadline",
+        "tagreader",
+        "readline",
         "kbhit",
         "random_mt19937"
       ],
@@ -59,8 +70,8 @@
         {
           "destination": "<(module_root_dir)/lib",
           "files": [
-            "<(module_root_dir)/build/$(BUILDTYPE)/TagReader.node",
-            "<(module_root_dir)/build/$(BUILDTYPE)/GnuReadline.node",
+            "<(module_root_dir)/build/$(BUILDTYPE)/tagreader.node",
+            "<(module_root_dir)/build/$(BUILDTYPE)/readline.node",
             "<(module_root_dir)/build/$(BUILDTYPE)/kbhit.node",
             "<(module_root_dir)/build/$(BUILDTYPE)/random_mt19937.node"
           ]
