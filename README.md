@@ -80,7 +80,7 @@ Starting the program for the first time will create a directory with the configu
 ```
 Linux/FreeBSD/Solaris: $XDG_CONFIG_DIR/GhettoGirl/musicconsole-js
 Apple macOS:           ~/Library/Preferences/GhettoGirl/musicconsole-js
-Windows:               %APPDATA%/Local/GhettoGirl/musicconsole-js
+Windows:               %LOCALAPPDATA%/GhettoGirl/musicconsole-js
 ```
 and than start to scan your `$HOME`/`%USERPROFILE%` folder for media files. If you don't want the home path to be scanned during the first run, see the **command line options** below.
 
