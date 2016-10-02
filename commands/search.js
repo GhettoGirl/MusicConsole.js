@@ -40,6 +40,7 @@ execute: function(args)
     for (const i of results)
     {
         i.print();
+        medialib.setLastResult(i);
     }
 }
 

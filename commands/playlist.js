@@ -46,6 +46,7 @@ execute: function(args)
                     break;
                 }
 
+                medialib.setLastResult(result[index]);
                 mediaplayer.execute(result[index], filter.type);
                 index++;
             }

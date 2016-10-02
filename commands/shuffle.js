@@ -67,7 +67,9 @@ execute: function(args)
             {
                 kbhit(function()
                 {
-                    mediaplayer.execute(results[medialib.m_randomizer.random(0, results.length - 1)], filter.type);
+                    var mediafile = results[medialib.m_randomizer.random(0, results.length - 1)];
+                    medialib.setLastResult(mediafile);
+                    mediaplayer.execute(mediafile, filter.type);
                 });
             }
 
