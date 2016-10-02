@@ -1,0 +1,8 @@
+# GitHub Language Metrics Configuration
+# https://github.com/github/linguist#overrides
+
+# don't add a C metrics to the repository
+lib/readline/wineditline/* linguist-vendored
+
+# don't count this file as Python code
+binding.gyp linguist-vendored

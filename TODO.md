@@ -2,7 +2,7 @@
 
  - [ ] Windows support </br>
        I hardcoded a lot of UNIX-style paths, this was bad. Now I need to change some things to make them cross-platform.
-      - [ ] Use **WinEditline** on Windows, redistribute in binary form and link statically
+      - [x] Use **WinEditline** on Windows, redistribute the source code and use it directly (no libraries and shit)
       - [ ] Make all paths cross-platform compatible -> `/` becomes `path.join()` everywhere, except for `require()`
       - [x] Write environment variable resolver for Windows to support %ENV% style variables
       - [x] Improve `node-standardpaths` to give more accurate results on Windows

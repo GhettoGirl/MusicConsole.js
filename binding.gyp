@@ -22,33 +22,31 @@
     # GnuReadline / WinEditline
     {
       "target_name": "readline",
-      "sources": [
-        "lib/readline/module_init.cpp",
-        "lib/readline/readline.cpp"
-      ],
       "conditions": [
-        ['OS=="windows"', {
-          "link_settings": {
-            "conditions": [
-              ['ARCH=="i686"', {
-                "libraries": [
-                  "-lwineditline32" # placeholder
-                ]
-              }],
-              ['ARCH=="x86_64"', {
-                "libraries": [
-                  "-lwineditline64" # placeholder
-                ]
-              }]
-            ]
-          }
-        }],
-        ['OS!="windows"', {
+        ['OS!="win"', {
+          "sources": [
+            "lib/readline/module_init.cpp",
+            "lib/readline/readline.cpp"
+          ],
           "link_settings": {
             "libraries": [
               "-lreadline"
             ]
           }
+        }],
+        ['OS=="win"', {
+          "sources": [
+            "lib/readline/module_init.cpp",
+            "lib/readline/readline.cpp",
+            "lib/readline/wineditline/src/editline.c",
+            "lib/readline/wineditline/src/history.c",
+            "lib/readline/wineditline/src/fn_complete.c"
+          ],
+          "include_dirs": [
+            "lib/readline/wineditline/include",
+            "lib/readline/wineditline/src",
+            "lib/readline/wineditline/src/editline"
+          ],
         }]
       ],
       "cflags": [

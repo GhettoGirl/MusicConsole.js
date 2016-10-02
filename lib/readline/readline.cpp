@@ -3,12 +3,15 @@
 #include <iostream>
 #include <string>
 
+#ifdef _WIN32
+#include <editline/readline.h>
+#else
+#include <readline/readline.h>
+#include <readline/history.h>
+
 #include <csignal>
 #include <setjmp.h>
 #include <unistd.h>
-
-#include <readline/readline.h>
-#include <readline/history.h>
 
 sigjmp_buf ctrlc_buf;
 
@@ -26,6 +29,15 @@ void on_TERMINATE(int)
     std::endl(std::cout);
     exit(0);
 }
+
+#endif
+
+// WinEditline needs char* instead of const char*
+#ifdef _WIN32
+#define CHAR(c) (char*) c
+#else
+#define CHAR(c) c
+#endif
 
 std::string ExceptionString(const std::string &method_name, const std::string &msg)
 {
@@ -119,6 +131,7 @@ void GnuReadline::Prompt(const FunctionCallbackInfo<Value> &args)
     Isolate *isolate = args.GetIsolate();
     GnuReadline *obj = ObjectWrap::Unwrap<GnuReadline>(args.Holder());
 
+#ifndef _WIN32
     // register interrupt signal for address jumper
     std::signal(SIGINT, on_SIGINT);
 
@@ -131,21 +144,25 @@ void GnuReadline::Prompt(const FunctionCallbackInfo<Value> &args)
     // register jump address
     while (sigsetjmp(ctrlc_buf, 1) != 0);
 
+#endif
+
     // the check is required, otherwise the stdlib will throw a std::logic_error
     //                             --- basic_string::_M_construct null not valid
     // when the node process receives the TERM signal
     std::string input;
-    char *buf = readline(obj->m_prompt.c_str());
+    char *buf = readline(CHAR(obj->m_prompt.c_str()));
     input = buf ? std::string(buf) : "";
 
     args.GetReturnValue().Set(String::NewFromUtf8(isolate, input.c_str()));
 
+#ifndef _WIN32
     // restore original signal handlers
     std::signal(SIGINT, SIG_DFL);
     std::signal(SIGTERM, SIG_DFL);
     std::signal(SIGQUIT, SIG_DFL);
     std::signal(SIGHUP, SIG_DFL);
     std::signal(SIGABRT, SIG_DFL);
+#endif
 }
 
 void GnuReadline::HistorySet(const FunctionCallbackInfo<Value> &args)
@@ -184,7 +201,7 @@ void GnuReadline::HistoryLoad(const FunctionCallbackInfo<Value> &args)
             std::ios_base::out | std::ios_base::in | std::ios_base::app);
         while (std::getline(obj->m_history_file, line))
         {
-            add_history(line.c_str());
+            add_history(CHAR(line.c_str()));
             obj->m_history.push_back(line);
         }
         obj->m_history_file.close();
@@ -213,7 +230,7 @@ void GnuReadline::HistoryAppend(const FunctionCallbackInfo<Value> &args)
         String::Utf8Value param(args[0]->ToString());
         std::string item = std::string(*param);
 
-        add_history(item.c_str());
+        add_history(CHAR(item.c_str()));
         obj->m_history.push_back(item);
 
         obj->m_history_file.open(obj->m_history_loc.c_str(),
