@@ -34,7 +34,8 @@ A simple console app which organizes all of your media files for fast and easy a
    Install with `npm install -g node-gyp` (if it not comes bundled with `npm` already) </br>
    *C++11 compiler required*
  - [Gulp](https://www.npmjs.com/package/gulp) ─ for the installer
- - GNU/[Readline](http://ftp.gnu.org/gnu/readline/) ─ for the prompt; yes you read right, I'm using GNU/Readline together with NodeJS
+ - GNU/[Readline](http://ftp.gnu.org/gnu/readline/) ─ for the prompt; yes you read right, I'm using GNU/Readline together with NodeJS </br>
+   *not required when building on Windows*; on Windows [**WinEditline**](http://mingweditline.sourceforge.net/) is used (bundled)
  - [TagLib](https://taglib.github.io/) 1.10+ (1.11 highly recommended) ─ for the tag reader
 </br></br>
  - *Optimal:* **UTF-8** and **24-bit Color** compatible Terminal Emulator </br>
@@ -61,7 +62,7 @@ To start the application, use the provided launcher script `music` you will find
 
 The release dist has the following dependencies:
  - NodeJS 6.5+
- - GNU/Readline
+ - GNU/Readline (*not on Windows*)
  - TagLib
 
 Make sure to checkout the [**Releases**](https://github.com/GhettoGirl/MusicConsole.js/releases) for prebuilt distributions ready for you to use.
