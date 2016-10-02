@@ -1,5 +1,6 @@
 #include "tagreader.hpp"
 
+#ifndef _WIN32
 #include <sys/stat.h>
 #include <unistd.h>
 #include <limits.h>
@@ -17,6 +18,7 @@ std::string do_readlink(const std::string &path)
 
     return std::string();
 }
+#endif
 
 using namespace v8;
 
@@ -86,12 +88,16 @@ void TagReader::LoadFile(const FunctionCallbackInfo<Value> &args)
     obj->m_tags.clear();
     bool result = false;
 
+#ifndef _WIN32
     // check if regular file and readable by user, taglib crashes otherwise
     struct stat sb;
     if (stat(file.c_str(), &sb) == 0 && S_ISREG(sb.st_mode) && sb.st_mode & S_IRUSR)
     {
         result = TagReaderPrivate::read(file, obj->m_tags);
     }
+#else
+    result = TagReaderPrivate::read(file, obj->m_tags);
+#endif
 
     args.GetReturnValue().Set(BooleanObject::New(isolate, result));
 }
