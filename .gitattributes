@@ -6,3 +6,6 @@ lib/readline/wineditline/* linguist-vendored
 
 # don't count this file as Python code
 binding.gyp linguist-vendored
+
+# don't count the launcher script as shell script
+music.sh linguist-vendored
