@@ -27,7 +27,7 @@ A simple console app which organizes all of your media files for fast and easy a
 ## Requirements
 
  - OS: anything UN\*X-related (Linux, \*BSD, macOS, etc.) </br>
-   [there is no Windows support at the moment (*WIP*) ─ don't attempt to run this on Windows before I don't give green lights, you have been warned]
+   [there is no real Windows support and there will never be ─ run this on Windows at your own risk, you have been warned]
 </br></br>
  - [NodeJS](https://www.nodejs.org) 6.5+ and `npm`
  - [node-gyp](https://github.com/nodejs/node-gyp): to build the native addons </br>
@@ -36,7 +36,8 @@ A simple console app which organizes all of your media files for fast and easy a
  - [Gulp](https://www.npmjs.com/package/gulp) ─ for the installer
  - GNU/[Readline](http://ftp.gnu.org/gnu/readline/) ─ for the prompt; yes you read right, I'm using GNU/Readline together with NodeJS </br>
    *not required when building on Windows*; on Windows [**WinEditline**](http://mingweditline.sourceforge.net/) is used (bundled)
- - [TagLib](https://taglib.github.io/) 1.10+ (1.11 highly recommended) ─ for the tag reader
+ - [TagLib](https://taglib.github.io/) 1.10+ (1.11 highly recommended) ─ for the tag reader </br>
+   *disabled on Windows, so not required there*
 </br></br>
  - *Optimal:* **UTF-8** and **24-bit Color** compatible Terminal Emulator </br>
    Music Console works best with 150+ columns. I highly recommend to use a drop-down Terminal for best experience :)
