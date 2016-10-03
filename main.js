@@ -246,8 +246,18 @@ function init_medialib()
         global.process_cleanup_and_exit(3);
     }
 
-    // should not throw due to the previous check
-    process.chdir(medialib.path());
+    // should not throw due to the previous check, but lets check for it anyway
+    try
+    {
+        process.chdir(medialib.path());
+    }
+
+    catch (error)
+    {
+        console.warn("Warning: Unable to change the working directory. The tab completion will not");
+        console.warn("         be very helpful.");
+        console.warn(error.name + ": " + error.message);
+    }
 
     medialib.setCachePath(settings.directory() + "/cache");
 
