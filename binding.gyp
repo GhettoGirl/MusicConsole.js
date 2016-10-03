@@ -9,11 +9,15 @@
         "lib/tagreader/tagreader.cpp",
         "lib/tagreader/tagreaderprivate.cpp"
       ],
-      "link_settings": {
-        "libraries": [
-          "-ltag"
-        ]
-      },
+      "conditions": [
+        ['OS!="win"', {
+          "link_settings": {
+            "libraries": [
+              "-ltag"
+            ]
+          }
+        }]
+      ],
       "cflags": [
         "-std=c++11"
       ]
