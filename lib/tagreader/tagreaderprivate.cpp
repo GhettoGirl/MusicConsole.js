@@ -1,3 +1,5 @@
+#ifndef _WIN32
+
 #include "tagreaderprivate.hpp"
 
 #include <taglib/taglib.h>
@@ -99,3 +101,5 @@ bool read(const std::string &file, Tags &tags)
 }
 
 } // namespace TagReaderPrivate
+
+#endif
