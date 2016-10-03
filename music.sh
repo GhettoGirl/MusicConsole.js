@@ -3,8 +3,5 @@
 # Music Console                                                      #
 #====================================================================#
 
-# cd into script path
-cd "$(dirname "$(realpath "$0")")"
-
 # run app
-exec node . "$@"
+exec node "$(dirname "$(realpath "$0")")" "$@"

@@ -246,6 +246,9 @@ function init_medialib()
         global.process_cleanup_and_exit(3);
     }
 
+    // should not throw due to the previous check
+    process.chdir(medialib.path());
+
     medialib.setCachePath(settings.directory() + "/cache");
 
     medialib.setMediaTypes(MediaType.Audio, settings.library().audioformats);
