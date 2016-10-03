@@ -44,8 +44,7 @@
           ],
           "include_dirs": [
             "lib/readline/wineditline/include",
-            "lib/readline/wineditline/src",
-            "lib/readline/wineditline/src/editline"
+            "lib/readline/wineditline/src"
           ],
         }]
       ],
