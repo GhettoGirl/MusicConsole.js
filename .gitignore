@@ -22,5 +22,8 @@ notes
 
 # for testing purposes only
 /test.js
+/test.c
+/test.cpp
+/a.out
 /ftw_test/
 /cache_test/
