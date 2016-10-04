@@ -46,13 +46,13 @@ const path = require('path');
 const os = process.platform; // 'darwin', 'freebsd', 'linux', 'sunos', 'win32'
 const env = process.env;
 
-function xdg_config_dir(resolve_path)
+function xdg_config_home(resolve_path)
 {
     if (os != 'win32')
     {
-        if (env['XDG_CONFIG_DIR'])
+        if (env['XDG_CONFIG_HOME'])
         {
-            return (resolve_path ? env['XDG_CONFIG_DIR'] : "$XDG_CONFIG_DIR");
+            return (resolve_path ? env['XDG_CONFIG_HOME'] : "$XDG_CONFIG_HOME");
         }
 
         else
@@ -89,7 +89,7 @@ function homePath(resolve_path)
 
 function configLocation(resolve_path)
 {
-    var XDG_CONFIG_DIR = xdg_config_dir(resolve_path);
+    var XDG_CONFIG_HOME = xdg_config_home(resolve_path);
     var LOCALAPPDATA = resolve_path ? env['LOCALAPPDATA'] : '%LOCALAPPDATA%';
 
     switch (os)
@@ -99,11 +99,11 @@ function configLocation(resolve_path)
             return path.join(homePath(), "Library", "Preferences");
             break;
 
-        // $XDG_CONFIG_DIR, fallback ~/.confg
+        // $XDG_CONFIG_HOME, fallback ~/.confg
         case 'freebsd':
         case 'linux':
         case 'sunos':
-            return (XDG_CONFIG_DIR ? XDG_CONFIG_DIR : path.join(homePath(resolve_path), ".config"));
+            return (XDG_CONFIG_HOME ? XDG_CONFIG_HOME : path.join(homePath(resolve_path), ".config"));
             break;
 
         // %LOCALAPPDATA%, fallbacks to {HomePath}/AppData/Local
