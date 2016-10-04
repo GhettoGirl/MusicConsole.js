@@ -80,7 +80,7 @@ Make sure to checkout the [**Releases**](https://github.com/GhettoGirl/MusicCons
 
 Starting the program for the first time will create a directory with the configuration files in
 ```
-Linux/FreeBSD/Solaris: $XDG_CONFIG_DIR/GhettoGirl/musicconsole-js
+Linux/FreeBSD/Solaris: $XDG_CONFIG_HOME/GhettoGirl/musicconsole-js
 Apple macOS:           ~/Library/Preferences/GhettoGirl/musicconsole-js
 Windows:               %LOCALAPPDATA%/GhettoGirl/musicconsole-js
 ```
