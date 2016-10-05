@@ -60,6 +60,7 @@ function SettingsManager()
             rescan: "rescan",
             playlist: "playlist",
             plistfile: "plistfile",
+            plistlist: "list",
             clear: "clear",
             exit: "exit"
         },
@@ -358,6 +359,8 @@ method.validateSettings = function()
         this.m_settings.commands.rescan = this.m_default_settings.commands.rescan;
     if (!isString(this.m_settings.commands.plistfile))
         this.m_settings.commands.plistfile = this.m_default_settings.commands.plistfile;
+    if (!isString(this.m_settings.commands.plistlist))
+        this.m_settings.commands.plistlist = this.m_default_settings.commands.plistlist;
 
     if (!isString(this.m_settings.library.rootpath))
         this.m_settings.library.rootpath = this.m_default_settings.library.rootpath;

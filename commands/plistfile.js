@@ -7,9 +7,12 @@
  */
 
 const path = require('path');
+const fs = require('fs');
 
 const plistparser = require('lib/playlistparser');
 const kbhit = require('lib/kbhit.node');
+
+const tilde = require('utils/home-tilde.js');
 
 const Command = require('sys/command.js');
 
@@ -23,6 +26,27 @@ CmdPlistFile.prototype = {
 
 execute: function(args)
 {
+    if (args == global.settings.commands().plistlist)
+    {
+        for (const plist_path of global.settings.library().playlist_paths)
+        {
+            var dir = fs.readdirSync(plist_path);
+            if (dir.length != 0)
+            {
+                console.log("in: " + tilde(plist_path));
+                for (const i of dir)
+                {
+                    if (fs.statSync(path.join(plist_path, i)).isFile())
+                    {
+                        console.log(" × " + i.substr(0, i.length - ".plist".length));
+                    }
+                }
+            }
+        }
+
+        return;
+    }
+
     for (const plist_path of global.settings.library().playlist_paths)
     {
         var results = plistparser.parse(path.join(plist_path, args + ".plist"));
