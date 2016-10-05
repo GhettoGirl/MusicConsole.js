@@ -47,17 +47,23 @@ const paths = {
         "!lib/searchtermgen/template.js",
 
         "commands/*.js",
-        "!commands/template.js"
+        "!commands/template.js",
+
+        "node_modules/node-standardpaths/lib/*.js"
     ],
     pjsons: [
         "package.json",
         "lib/**/package.json",
         "utils/js-extensions/package.json",
-        "extern/**/package.json"
+        "extern/**/package.json",
+
+        "node_modules/node-standardpaths/package.json"
     ],
     licenses: [
         "LICENSE",
-        "extern/**/LICENSE"
+        "extern/**/LICENSE",
+
+        "node_modules/node-standardpaths/LICENSE"
     ],
     native_modules: [
         "lib/*.node"

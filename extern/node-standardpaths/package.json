@@ -1,8 +1,0 @@
-{
-    "name": "node-standardpaths",
-    "description": "Receive common operating system standard paths",
-    "version": "0.0.1",
-    "author": "GhettoGirl",
-    "license": "MIT",
-    "main": "index.js"
-}

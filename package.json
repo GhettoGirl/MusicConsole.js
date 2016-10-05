@@ -3,7 +3,7 @@
     "display_name": "Music Console",
     "description": "A simple console app which organizes all of your media files for fast and easy access.",
     "version": "1.2.1",
-    "revision": "27",
+    "revision": "28",
     "author": "GhettoGirl",
     "homepage": "https://github.com/GhettoGirl/MusicConsole.js",
     "license": "GPL-3.0",
@@ -11,6 +11,8 @@
 
     "main": "main.js",
     "dependencies": {
+        "node-standardpaths": "*",
+
         "readdir-enhanced": "^1.4.3",
         "jsonfile": "^2.4.0",
         "sha1": ">=1.1.1",

@@ -5,7 +5,7 @@
  *
  */
 
-const standardpaths = require('extern/node-standardpaths');
+const standardpaths = require('node-standardpaths');
 const path = require("path");
 const fs = require('fs');
 const mkdirp = require('extern/node-mkdirp');
