@@ -5,6 +5,10 @@
  *
  */
 
+// manipulate the visible process name
+// 'node' just sounds to generic
+process.title = "musicconsole-js";
+
 // add root path to require()
 require('rootpath')();
 
