@@ -1,6 +1,6 @@
-#ifndef _WIN32
-
 #include "tagreader.hpp"
+
+#ifndef _WIN32
 
 #include <sys/stat.h>
 #include <unistd.h>
@@ -81,8 +81,9 @@ void TagReader::New(const FunctionCallbackInfo<Value> &args)
 
 void TagReader::LoadFile(const FunctionCallbackInfo<Value> &args)
 {
-#ifndef _WIN32
     Isolate *isolate = args.GetIsolate();
+
+#ifndef _WIN32
     TagReader *obj = ObjectWrap::Unwrap<TagReader>(args.Holder());
 
     String::Utf8Value param(args[0]->ToString());
@@ -114,56 +115,60 @@ void TagReader::Clear(const FunctionCallbackInfo<Value> &args)
 
 void TagReader::Artist(const FunctionCallbackInfo<Value> &args)
 {
-#ifndef _WIN32
     Isolate *isolate = args.GetIsolate();
+
+#ifndef _WIN32
     TagReader *obj = ObjectWrap::Unwrap<TagReader>(args.Holder());
 
     args.GetReturnValue().Set(String::NewFromUtf8(isolate,
         obj->m_tags.artist.c_str()
     ));
 #else
-    args.GetReturnValue().Set(String::NewFromUtf8(isolate, "");
+    args.GetReturnValue().Set(String::NewFromUtf8(isolate, ""));
 #endif
 }
 
 void TagReader::Album(const FunctionCallbackInfo<Value> &args)
 {
-#ifndef _WIN32
     Isolate *isolate = args.GetIsolate();
+
+#ifndef _WIN32
     TagReader *obj = ObjectWrap::Unwrap<TagReader>(args.Holder());
 
     args.GetReturnValue().Set(String::NewFromUtf8(isolate,
         obj->m_tags.album.c_str()
     ));
 #else
-    args.GetReturnValue().Set(String::NewFromUtf8(isolate, "");
+    args.GetReturnValue().Set(String::NewFromUtf8(isolate, ""));
 #endif
 }
 
 void TagReader::Title(const FunctionCallbackInfo<Value> &args)
 {
-#ifndef _WIN32
     Isolate *isolate = args.GetIsolate();
+
+#ifndef _WIN32
     TagReader *obj = ObjectWrap::Unwrap<TagReader>(args.Holder());
 
     args.GetReturnValue().Set(String::NewFromUtf8(isolate,
         obj->m_tags.title.c_str()
     ));
 #else
-    args.GetReturnValue().Set(String::NewFromUtf8(isolate, "");
+    args.GetReturnValue().Set(String::NewFromUtf8(isolate, ""));
 #endif
 }
 
 void TagReader::Genre(const FunctionCallbackInfo<Value> &args)
 {
-#ifndef _WIN32
     Isolate *isolate = args.GetIsolate();
+
+#ifndef _WIN32
     TagReader *obj = ObjectWrap::Unwrap<TagReader>(args.Holder());
 
     args.GetReturnValue().Set(String::NewFromUtf8(isolate,
         obj->m_tags.genre.c_str()
     ));
 #else
-    args.GetReturnValue().Set(String::NewFromUtf8(isolate, "");
+    args.GetReturnValue().Set(String::NewFromUtf8(isolate, ""));
 #endif
 }

@@ -26,8 +26,7 @@ A simple console app which organizes all of your media files for fast and easy a
 
 ## Requirements
 
- - OS: anything UN\*X-related (Linux, \*BSD, macOS, etc.) </br>
-   [there is no real Windows support and there will never be ─ run this on Windows at your own risk, you have been warned]
+ - OS: anything UN\*X-related (Linux, \*BSD, macOS, etc.) or Windows (only Windows 10 was tested)
 </br></br>
  - [NodeJS](https://www.nodejs.org) 6.5+ and `npm`
  - [node-gyp](https://github.com/nodejs/node-gyp): to build the native addons </br>
@@ -42,12 +41,21 @@ A simple console app which organizes all of your media files for fast and easy a
  - *Optimal:* **UTF-8** and **24-bit Color** compatible Terminal Emulator </br>
    Music Console works best with 150+ columns. I highly recommend to use a drop-down Terminal for best experience :)
 
+##### Notes about Windows
+
+Music Console is functional under Windows with very limited functionality. I will not support this OS due to the lack of proper Unicode and Color support in the Terminal. There are many bugs and the Tag Reader is disabled. The media player controller is not very stable and there is also no signal handling (blame Microsoft not me). Developing command line apps for Windows is not fun at all. Don't expect very much from this app when you use Windows.
+
+Using a UN\*X-related system is highly recommended.
+
+
 #### Building
 
  - Run `npm install` to install and build all dependencies. </br>
    If this command doesn't build the native C++ addons for some reason, run `node-gyp configure build`.
 
 > The native addons are copied to `./lib`. You can issue `node-gyp clean` to delete the build directory and still have the modules in place. The modules are re-copied each time you issue `node-gyp build` so no worries about outdated code.
+>
+> **Please note:** on Windows you need to manually copy all `*.node` files from the `build/Release` directory to the `./lib` directory, because the copy target is ignored during the build process. I don't know how to fix this :(
 
 To clear the build tree, issue `gulp clean` or remove the `./build` directory manually.
 

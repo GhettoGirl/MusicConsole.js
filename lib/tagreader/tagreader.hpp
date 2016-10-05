@@ -4,7 +4,9 @@
 #include <node.h>
 #include <node_object_wrap.h>
 
+#ifndef _WIN32
 #include "tagreaderprivate.hpp"
+#endif
 
 class TagReader : public node::ObjectWrap
 {
@@ -32,7 +34,9 @@ private:
     static void Genre(const v8::FunctionCallbackInfo<v8::Value> &args);
 
 private:
+#ifndef _WIN32
     Tags m_tags;
+#endif
 };
 
 #endif // TAGLIB_HPP

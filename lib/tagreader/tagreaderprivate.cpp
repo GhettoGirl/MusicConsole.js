@@ -1,6 +1,6 @@
-#ifndef _WIN32
-
 #include "tagreaderprivate.hpp"
+
+#ifndef _WIN32
 
 #include <taglib/taglib.h>
 #include <taglib/fileref.h>
