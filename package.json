@@ -21,7 +21,7 @@
     },
     "devDependencies": {
         "gulp": "^3.9.1",
-        "gulp-babel": "^6.1.2",
+        "gulp-babel": "^6.1.x",
         "babel-preset-babili": "*",
         "gulp-jsonminify": ">=1.0.0",
         "gulp-json-editor": "^2.2.1",
