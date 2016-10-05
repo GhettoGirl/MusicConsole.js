@@ -1,0 +1,41 @@
+MUSICCONSOLE PLAYLIST
+
+#
+# This is an example playlist for Music Console
+#
+
+# Searches for an audio file with the given search term
+# and plays that in the audio player.
+A:"DECO_27 GUMI 弱虫モンブラン"
+
+# Searches for a video file with the given search term
+# and plays that in the audio player.
+V:"ティアーズ・トゥ・ティアラⅡ ー OP【Many Futures】" audio
+
+# Searches for a video and plays that in the video player.
+V:"下川みくに — tomorrow"
+
+# Searches for anything and plays the result in the audio player.
+N:"moumoon wild child"
+
+# Plays a random media which matches the search term in the audio player.
+R:N:"IOSYS"
+
+# Plays a random songs which matches the search term in the audio player.
+R:A:"IOSYS"
+
+# Plays a completely random video in the video player.
+R:V:""
+
+# Plays a completely random video in the audio player.
+R:V:"" audio
+
+# Plays the given file in the video player.
+# This is a relative path which expands to ~/path/to/some/video.mp4
+F:"path/to/some/video.mp4"
+
+F:"path/to/some/video.mp4" audio # same as above, but the audio player is used now
+
+# Plays the given file in the audio player.
+# This is an absolute path which stays as-is.
+F:"/path/to/some/audio.flac"

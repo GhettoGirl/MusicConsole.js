@@ -348,20 +348,20 @@ There are many scenarios where this makes sense, one of this I want to mention i
 To break this barrier I made several generators to make it easier to find things in exotic libraries and music/video collections.
 
  - `Latin` (work-in-progress) </br>
-   Converts any latin character to its Unicode counterparts and vise versa. Supports the following variants at the moment: </br>
+   Converts any Latin character to its Unicode counterparts and vise versa. Supports the following variants at the moment: </br>
     × Basic Latin </br>
-    × Wide Latin (known in CJK environments)
+    × Wide Latin (found in CJK environments)
 
 
  - `Kana` </br>
-   Converts any japanese kana to its Hiragana, Katakana and Halfwidth Katakana variant. </br>
+   Converts any Japanese Kana to its Hiragana, Katakana and Halfwidth Katakana variant. </br>
    `あ` <─> `ア` <─> `ｱ`
 
 
  - `Kana Dakuten` </br>
-   In Unicode there are kana with the sound marks (dakuten) included and separated. The sound marks are available as standalone combining characters. This generator converts any kana to its kana with dakuten included and separated variant.
+   In Unicode there are Kana with the sound marks (dakuten) included and separated. The sound marks are available as standalone combining characters. This generator converts any Kana to its Kana with dakuten included and separated variant.
    
-   **Note:** I added this generator mostly because of different IME behaviors. I own some stuff by myself where kana with the dakuten seperated are used, but my IME uses the kana with the dakuten included.
+   **Note:** I added this generator mostly because of different IME behaviors. I own some stuff by myself where Kana with the dakuten seperated are used, but my IME uses the Kana with the dakuten included.
 
 
  - `Whitespace` </br>
@@ -371,3 +371,109 @@ To break this barrier I made several generators to make it easier to find things
 In the future I will implement more generators. If you have any ideas or suggestions, let me know :)
 
 
+## Playlists
+
+Music Console comes with its own easy-to-use and customizable playlist format. While the playlist generator is very limited you can do so much more by creating a playlist manually.
+
+Playlists can be stored where you want them to be, just tell Music Console where to look for them. You can add additional paths in the settings under `library.playlist_paths`.
+
+By default they are stored in the configuration directory under `./playlists`.
+
+##### Filename
+
+A playlist file must always end with the `.plist` extension to be recognized by Music Console. The filename can by anything, there are no restrictions. Just note that all whitespaces are transformed into a regular space on the prompt, so you should only use regular spaces in filenames.
+
+##### File header
+
+The first line of a playlist must be always `MUSICCONSOLE PLAYLIST` or Music Console will reject the file.
+
+##### Empty lines and comments
+
+Empty lines or lines starting with a hash sign (`#`) are always ignored. Everything after the hash sign in any other line will be ignored too. It can be used to add comments to your playlist file.
+
+#### Getting Started
+
+Creating a playlist is simple. An entry looks as follows:
+```
+T:"search term or file" player
+T:'search term of file' player
+```
+
+`T` *(type)* is the format or filter which should be used. There are 6 different types to select from.
+
+× `A` filters by songs </br>
+× `V` filters by videos </br>
+× `M` filters by module tracker files </br>
+× `N` doesn't filter by format </br>
+× `R` random </br>
+× `F` specify a file (can be outside of the library too)
+
+After the type follows a colon followed by a *search term* or a *filename*. The `player` at the end is optimal and is used to enforce a different player (player overrides). Leave it away to use the default player for the given type.
+
+The *search term* or *filename* must be within double or single quotes. If you want to use a quote in the search term or if a filename has quotes in it, you need to prepend the quote character with a backslash (example: `\"`, `\'`).
+
+**Pro tip!** </br>
+There are 2 different quote characters you can choose from. If you use double quotes you can use single quotes normally inside the string, while double quotes must be prepended by a backslash. If you use single quotes you can use double quotes normally inside the string, while single quotes must be prepended by a backslash now.
+
+Examples:
+```
+"this is an \"example\""
+"this is an 'example'"
+'this is an \'example\''
+'this is an "example"'
+```
+
+</br>
+
+#### Types
+
+### `A`, `V`, `M`, `N`
+
+This are the basic filters, which equals the commands `audio`, `video` and `module` on the prompt. `N` equals no command.
+
+### `R` (random)
+
+This type can be used to select random media files from the library to create dynamic playlists. To this type you need to append another type before you can specify a search term. Valid types for `R` are the 4 types mentioned above.
+
+Leave the string empty to disable any additional filters.
+
+Examples:
+```
+R:N:"filter term"
+R:A:""
+```
+
+### `F` (file)
+
+This type can be used to add songs or videos outside of the library to the playlist. You still use this for files which are in the library. Relative paths are always relative to the users home directory.
+
+When not specifying a player override, the player will be determined using the file extension of the given file.
+
+#### Default players
+
+An overview of the default players used, when not specifying a player override.
+
+```
+│ A = audio             <──┐
+│ V = video             <──┤
+│ M = module            <──┤
+│ N = audio             <──┤
+│                          │
+│ F = (auto-detect)        │
+│                          │
+│ R:[type] = [type]   >────┘
+```
+
+#### Starting a playlist
+
+On the prompt: write down the `plistfile` command followed by the filename of the playlist without the `.plist` extension. This will search all configured directories for the given name. If no playlist was found or if the playlist contains syntax errors or is invalid, the app will tell you. It will even show you the faulty line which couldn't be understood so you can easily find and fix the problem.
+
+#### Navigation
+
+Navigating through a playlist is the same as navigating through a generated playlist or `shuffle`. Hit Enter to jump to the next entry in the playlist or hit enter twice in a row to stop the playlist and return to the prompt.
+
+#### Example
+
+For an example playlist covering all the possibilities see [**this**](./.github/example.plist) file.
+
+What are you waiting for, now that you know all that create your awesome playlists  and enjoy your music and videos as never before :)
