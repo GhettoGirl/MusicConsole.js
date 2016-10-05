@@ -72,7 +72,7 @@ To start the application, use the provided launcher script `music` you will find
 The release dist has the following dependencies:
  - NodeJS 6.5+
  - GNU/Readline (*not on Windows*)
- - TagLib
+ - TagLib (*not on Windows*)
 
 Make sure to checkout the [**Releases**](https://github.com/GhettoGirl/MusicConsole.js/releases) for prebuilt distributions ready for you to use.
 
