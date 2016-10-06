@@ -26,7 +26,7 @@ CmdPlistFile.prototype = {
 
 execute: function(args)
 {
-    if (args == global.settings.commands().plistlist)
+    if (args == global.settings.subcommands().plistlist)
     {
         for (const plist_path of global.settings.library().playlist_paths)
         {

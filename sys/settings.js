@@ -60,9 +60,11 @@ function SettingsManager()
             rescan: "rescan",
             playlist: "playlist",
             plistfile: "plistfile",
-            plistlist: "list",
             clear: "clear",
             exit: "exit"
+        },
+        subcommands: {
+            plistlist: "list"
         },
         library: {
             rootpath: standardpaths.path(standardpaths.HomePath, false), // scan the whole users home directory by default
@@ -316,6 +318,8 @@ method.validateSettings = function()
 
     if (!isObject(this.m_settings.commands))
         this.m_settings.commands = this.m_default_settings.commands;
+    if (!isObject(this.m_settings.subcommands))
+        this.m_settings.subcommands = this.m_default_settings.subcommands;
     if (!isObject(this.m_settings.library))
         this.m_settings.library = this.m_default_settings.library;
     if (!isObject(this.m_settings.player))
@@ -359,8 +363,9 @@ method.validateSettings = function()
         this.m_settings.commands.rescan = this.m_default_settings.commands.rescan;
     if (!isString(this.m_settings.commands.plistfile))
         this.m_settings.commands.plistfile = this.m_default_settings.commands.plistfile;
-    if (!isString(this.m_settings.commands.plistlist))
-        this.m_settings.commands.plistlist = this.m_default_settings.commands.plistlist;
+
+    if (!isString(this.m_settings.subcommands.plistlist))
+        this.m_settings.subcommands.plistlist = this.m_default_settings.subcommands.plistlist;
 
     if (!isString(this.m_settings.library.rootpath))
         this.m_settings.library.rootpath = this.m_default_settings.library.rootpath;
@@ -440,6 +445,11 @@ method.directory = function()
 method.commands = function()
 {
     return this.m_settings.commands;
+}
+
+method.subcommands = function()
+{
+    return this.m_settings.subcommands;
 }
 
 method.library = function()
