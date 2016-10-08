@@ -228,6 +228,8 @@ Everything related to the library.
     `$MUSICCONSOLE_CONFIG_DIR` will be replaced by the configuration directory. </br></br>
   - `prefixdeletionpatterns` </br>
     Is an array of phrases which should be excluded from the search terms of each file. It gives you the possibility to get more relevant results by ignoring common prefixes in your library, like `Music/` or `Videos/`. This phrases are only prefixes and have no support for wildcards or regular expressions. </br></br>
+  - `movetobottomphrases` </br>
+    Is an array of phrases which should move matching filenames to the bottom of the internal filelist to manipulate its order. This is useful for example to move instrumental tracks behind its vocal tracks so that you need to explicitly add `instrumental` to the search term to play that track. As default this array has already some common phrases which indicate instrumental tracks. </br></br>
   - `audioformats`/`videoformats`/`moduleformats` </br>
     This are arrays of file extensions which should be recognized as media files. By default this includes a lot of common and uncommon media formats.
 

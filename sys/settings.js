@@ -72,6 +72,10 @@ function SettingsManager()
                 "$MUSICCONSOLE_CONFIG_DIR/playlists"
             ],
             prefixdeletionpatterns: ["Music/", "Video/", "Videos/"],
+            movetobottomphrases: [
+                "instrumental", "ｉｎｓｔｒｕｍｅｎｔａｌ",
+                "off vocal", "ｏｆｆ ｖｏｃａｌ", "ｏｆｆ　ｖｏｃａｌ"
+            ],
             audioformats: ["wav", "flac", "tta",  "aiff", "ape",  "pcm", "alac", "dts",
                            "m4a", "ogg",  "mka",  "wma",  "asf",  "ra",  "aac",  "mp3"],
             videoformats: ["mp4", "h264", "h263", "ts",   "m2ts", "mov", "ogm",  "avi",
@@ -373,6 +377,8 @@ method.validateSettings = function()
         this.m_settings.library.playlist_paths = this.m_default_settings.library.playlist_paths;
     if (!isObject(this.m_settings.library.prefixdeletionpatterns))
         this.m_settings.library.prefixdeletionpatterns = this.m_default_settings.library.prefixdeletionpatterns;
+    if (!isObject(this.m_settings.library.movetobottomphrases))
+        this.m_settings.library.movetobottomphrases = this.m_default_settings.library.movetobottomphrases;
     if (!isObject(this.m_settings.library.audioformats))
         this.m_settings.library.audioformats = this.m_default_settings.library.audioformats;
     if (!isObject(this.m_settings.library.videoformats))

@@ -270,6 +270,7 @@ function init_medialib()
     medialib.setMediaTypes(MediaType.ModuleTracker, settings.library().moduleformats);
 
     medialib.setPrefixDeletionPatterns(settings.library().prefixdeletionpatterns);
+    medialib.setMoveToBottomPhrases(settings.library().movetobottomphrases);
 
     medialib.setRandomizerHistorySize(settings.randomizer().historysize);
 
