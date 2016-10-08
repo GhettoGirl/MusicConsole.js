@@ -40,6 +40,8 @@ A simple console app which organizes all of your media files for fast and easy a
 </br></br>
  - *Optimal:* **UTF-8** and **24-bit Color** compatible Terminal Emulator </br>
    Music Console works best with 150+ columns. I highly recommend to use a drop-down Terminal for best experience :)
+ - *Recommended Player:* [**MPV**](https://mpv.io/) </br>
+   This is the default player of Music Console and also the player I use. I can only recommend it. Of course you can use any player of your choice :)
 
 ##### Notes about Windows
 
