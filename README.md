@@ -244,7 +244,7 @@ Contains tools. At the moment the only available tool is a file browser which is
 Customize the prompt and history ignore patterns.
   - `line` </br>
     The string which should be used to display the prompt. The use of escape sequences is supported here. </br></br>
-    **Be aware** that you need to wrap all escape sequences inside `\\011` (start) and `\\002` (end) to tell the prompt to ignore this characters. This has something to do with line wrapping and the history. If you don't do that, than expect strange display issues. </br></br>
+    **Be aware** that you need to wrap all escape sequences inside `\\001` (start) and `\\002` (end) to tell the prompt to ignore this characters. This has something to do with line wrapping and the history. If you don't do that, than expect strange display issues. </br></br>
     Example, without escape sequences: `"# "` -> shows as <code>#&nbsp;</code></br>
     Example, with escape sequences: `"\\001\\x1b[1;38;2;0;171;233m\\002# \\001\\x1b[0m\\x1b[38;2;0;97;167m\\002"` -> shows as <code>#&nbsp;</code>, while the 
    `#` has a different color than the rest of the prompt. If you forget the `\\001` and `\\002` here than the prompt will think the characters used to create the escape sequence are part of the line and this will cause display issues later, because escape sequences takes up no physical space, but the prompt expects actual characters there.</br></br>
