@@ -84,9 +84,9 @@ function SettingsManager()
         },
         player: {
             audioplayer: {
-                command: "mplayer",
+                command: "mpv",
                 arguments: [
-                    "-novideo",
+                    "--no-video",
                     "-really-quiet",
                     "%f"
                 ]
