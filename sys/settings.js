@@ -64,7 +64,8 @@ function SettingsManager()
             exit: "exit"
         },
         subcommands: {
-            plistlist: "list"
+            plistlist: "list",
+            plistview: "view"
         },
         library: {
             rootpath: standardpaths.path(standardpaths.HomePath, false), // scan the whole users home directory by default
@@ -370,6 +371,8 @@ method.validateSettings = function()
 
     if (!isString(this.m_settings.subcommands.plistlist))
         this.m_settings.subcommands.plistlist = this.m_default_settings.subcommands.plistlist;
+    if (!isString(this.m_settings.subcommands.plistview))
+        this.m_settings.subcommands.plistview = this.m_default_settings.subcommands.plistview;
 
     if (!isString(this.m_settings.library.rootpath))
         this.m_settings.library.rootpath = this.m_default_settings.library.rootpath;

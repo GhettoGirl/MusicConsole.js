@@ -47,6 +47,42 @@ execute: function(args)
         return;
     }
 
+    if (args.startsWith(global.settings.subcommands().plistview))
+    {
+        if (args.length == global.settings.subcommands().plistview.length)
+        {
+            console.error("Need a playlist file to view.");
+        }
+
+        else
+        {
+            for (const plist_path of global.settings.library().playlist_paths)
+            {
+                var results = plistparser.parse(path.join(plist_path,
+                    args.substr(global.settings.subcommands().plistview.length + 1) + ".plist"));
+
+                switch (results)
+                {
+                    case 0:
+                        for (const i of plistparser.playlist())
+                        {
+                            i[0].print();
+                        }
+
+                        plistparser.clear();
+                        break;
+
+                    default:
+                        plistparser.clear();
+                        continue;
+                        break;
+                }
+            }
+        }
+
+        return;
+    }
+
     for (const plist_path of global.settings.library().playlist_paths)
     {
         var results = plistparser.parse(path.join(plist_path, args + ".plist"));
@@ -90,12 +126,7 @@ execute: function(args)
                 return;
                 break;
 
-            case 1:
-                plistparser.clear();
-                continue;
-                break;
-
-            case 2:
+            default:
                 plistparser.clear();
                 continue;
                 break;
