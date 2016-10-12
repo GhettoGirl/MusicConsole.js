@@ -186,7 +186,7 @@ Rescans your library when it has been changed without leaving the app.
 Generates a playlist of songs and videos which matches the given search terms. By default the audio player is used. Provide a type to change the player.
 
 × `plistfile` *playlist name* </br>
-Loads the given Music Console Playlist and plays all entries. If the argument matches the subcommand `plistlist` (default value = `list`) it will display all available playlists in all given directories.
+Loads the given Music Console Playlist and plays all entries. If the argument matches the subcommand `plistlist` (default value = `list`) it will display all available playlists in all given directories. On the subcommand `plistview` (default value = `view`) it will display all entries of the given playlist file; at the moment there is no way to tell if an entry is a *random* (`R`) or *file* (`F`) entry.
 
 See the **Playlist** guide below how to work with playlists.
 
