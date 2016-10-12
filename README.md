@@ -83,8 +83,6 @@ Make sure to checkout the [**Releases**](https://github.com/GhettoGirl/MusicCons
 
 ## Basics
 
-**NOTICE!** The documentation is work-in-progress. I want to create something nice and special and easy to read and understand, without any clutter. The old documentation was a catastrophe and I want to avoid it to create another one. Some neat features are still undocumented. You always can read the old documentation.
-
 
 #### First Start
 
@@ -203,11 +201,11 @@ If you need an example here: `EXIT TUNES` will not quit the app but start to sea
 No worries :) </br>
 This are no real infinite loops, you can stop them at any time by hitting Enter. All loops are stoppable.
 
-**Notice:** The default players are `mplayer` and `mpv`. You can stop these players by pressing Enter, which makes them my default choice for this app. When hitting Enter to stop the player it will return to the loop sequence, here you need to hit Enter again if you want to stop the loop. In short: hit Enter twice to get back to the prompt.
+**Notice:** The default player is `mpv`. You can stop this player by hitting Enter, which makes it my default choice for this app. When hitting Enter to stop the player it will return to the loop sequence, here you need to hit Enter again if you want to stop the loop. In short: hit Enter twice to get back to the prompt.
 
 **Pro tip!** There is a wait time of a half second before the loop continues. The timeout can be customized in the settings.
 
-*For curious developers:* see `lib/kbhit` for the implementation and how this breakable infinite loop mechanism works.
+*For curious developers:* see [`lib/kbhit`](./lib/kbhit) for the implementation and how this breakable infinite loop mechanism works.
 
 ## Settings
 
@@ -252,9 +250,9 @@ Customize the prompt and history ignore patterns.
    `#` has a different color than the rest of the prompt. If you forget the `\\001` and `\\002` here than the prompt will think the characters used to create the escape sequence are part of the line and this will cause display issues later, because escape sequences takes up no physical space, but the prompt expects actual characters there.</br></br>
   - `histignore` </br>
     Array of regular expressions. Every input which matches any of this patterns are not added to the command line history. The regular expressions must be compatible with JavaScript.</br></br>
-    **Pro tip!** Lines starting with a space are never added to the history.
+    **Pro tip!** Lines starting with a space are never added to the history.</br></br>
   - `histignore_size` </br>
-    A counter of last matching items in the history which should never be added to the history file. Makes it possible to prevent a spammy history file with a lot of duplicates. Default is `1`. Set to `0` to append everything to the history, *may the spam be with you* :D
+    A counter of last matching items in the history which should never be added to the history file. Makes it possible to prevent a spammy history file with a lot of duplicates. Default is `1`. Set to `0` to append everything to the history, *may the spam be with you* :D</br></br>
   - `sleep_interval` </br>
     This is the time in **seconds** how long the commands `shuffle`, `playlist`, etc. should wait before playing the next entry. The default value is `0.5` seconds. You can use any amount of seconds here ─ please note that the *minimum* possible value is `0.15` seconds, everything below this value is too fast and you will most likely not be able to cancel any loops with it. The sleep interval will reset to `0.5` in this case. </br></br>
     **Pro tip!** For faster loops a value of `0.3` or `0.25` is recommended.
