@@ -11,6 +11,10 @@ global.history = new (require('sys/history.js'))(global.settings.directory() + "
                                                  global.settings.prompt().histignore_size);
 global.readline.setPrompt(eval('"' + global.settings.prompt().line + '"'));
 
+// set sleep interval for kbhit
+const kbhit = require('lib/kbhit.node');
+kbhit.set_sleep_interval(global.settings.prompt().sleep_interval);
+
 // initialize commands
 global.commands = require('sys/commands.js');
 

@@ -60,12 +60,16 @@ function SettingsManager()
             rescan: "rescan",
             playlist: "playlist",
             plistfile: "plistfile",
+            favorite: "favorite",
             clear: "clear",
             exit: "exit"
         },
         subcommands: {
             plistlist: "list",
-            plistview: "view"
+            plistview: "view",
+            favlast: "last",
+            favadd: "add",
+            favremove: "remove"
         },
         library: {
             rootpath: standardpaths.path(standardpaths.HomePath, false), // scan the whole users home directory by default
@@ -131,7 +135,8 @@ function SettingsManager()
         prompt: {
             line: "# ",
             histignore: ["^statistics.*$", "^browse.*$", "^exit$", "^rescan.*$", "^history.*$", "^clear.*$"],
-            histignore_size: 1
+            histignore_size: 1,
+            sleep_interval: 0.5 // in seconds
         },
         randomizer: {
             historysize: 2
@@ -368,11 +373,19 @@ method.validateSettings = function()
         this.m_settings.commands.rescan = this.m_default_settings.commands.rescan;
     if (!isString(this.m_settings.commands.plistfile))
         this.m_settings.commands.plistfile = this.m_default_settings.commands.plistfile;
+    if (!isString(this.m_settings.commands.favorite))
+        this.m_settings.commands.favorite = this.m_default_settings.commands.favorite;
 
     if (!isString(this.m_settings.subcommands.plistlist))
         this.m_settings.subcommands.plistlist = this.m_default_settings.subcommands.plistlist;
     if (!isString(this.m_settings.subcommands.plistview))
         this.m_settings.subcommands.plistview = this.m_default_settings.subcommands.plistview;
+    if (!isString(this.m_settings.subcommands.favlast))
+        this.m_settings.subcommands.favlast = this.m_default_settings.subcommands.favlast;
+    if (!isString(this.m_settings.subcommands.favadd))
+        this.m_settings.subcommands.favadd = this.m_default_settings.subcommands.favadd;
+    if (!isString(this.m_settings.subcommands.favremove))
+        this.m_settings.subcommands.favremove = this.m_default_settings.subcommands.favremove;
 
     if (!isString(this.m_settings.library.rootpath))
         this.m_settings.library.rootpath = this.m_default_settings.library.rootpath;
@@ -439,6 +452,8 @@ method.validateSettings = function()
         this.m_settings.prompt.histignore = this.m_default_settings.prompt.histignore;
     if (!isNumber(this.m_settings.prompt.histignore_size))
         this.m_settings.prompt.histignore_size = this.m_default_settings.prompt.histignore_size;
+    if (!isNumber(this.m_settings.prompt.sleep_interval))
+        this.m_settings.prompt.sleep_interval = this.m_default_settings.prompt.sleep_interval;
 
     if (!isNumber(this.m_settings.randomizer.historysize))
         this.m_settings.randomizer.historysize = this.m_default_settings.randomizer.historysize;

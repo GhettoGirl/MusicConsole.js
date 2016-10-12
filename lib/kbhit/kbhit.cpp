@@ -1,6 +1,9 @@
 #include <node.h>
-
 #include <iostream>
+
+// == kbhit ==
+// Waits a specific time for user response to break out of a(n) (infinite) loop.
+// Break key == Carriage Return [ONLY]
 
 #ifdef _WIN32
 #include <windows.h>
@@ -25,8 +28,22 @@ void usleep(__int64 usec)
 
 using namespace v8;
 
-// Waits a specific time for user response to break out of a(n) (infinite) loop.
-// Break key == Carriage Return [ONLY]
+// sets the sleep interval, use a function here to prevent unnecessary recalculation of the value each time
+int sleep_interval = 500000; // 0.5s, default
+void set_sleep_interval(const FunctionCallbackInfo<Value> &args)
+{
+    if (args.Length() > 0)
+    {
+        double val = args[0]->NumberValue();
+
+        // allow a minimum of 0.15s, everything below is way too short
+        if (val >= 0.15)
+        {
+            // 1s = 1e+6µs
+            sleep_interval = val * 1e+6;
+        }
+    }
+}
 
 void kbhit(const FunctionCallbackInfo<Value> &args)
 {
@@ -34,7 +51,7 @@ void kbhit(const FunctionCallbackInfo<Value> &args)
 
 #ifdef _WIN32
 
-    usleep(500000);
+    usleep(sleep_interval);
     args.GetReturnValue().Set(Integer::New(isolate, kbhit()));
 
 #else
@@ -42,12 +59,13 @@ void kbhit(const FunctionCallbackInfo<Value> &args)
     struct timeval tv;
     fd_set fds;
     tv.tv_sec = 0; // seconds
-    tv.tv_usec = 500000; // microseconds
+    tv.tv_usec = sleep_interval; // microseconds
     FD_ZERO(&fds);
     FD_SET(STDIN_FILENO, &fds); // STDIN_FILENO is 0
     select(STDIN_FILENO+1, &fds, NULL, NULL, &tv);
 
     args.GetReturnValue().Set(Integer::New(isolate, FD_ISSET(STDIN_FILENO, &fds)));
+
 #endif
 }
 
@@ -62,6 +80,7 @@ void getchar(const FunctionCallbackInfo<Value> &args)
 
 void Init(Local<Object> exports)
 {
+    NODE_SET_METHOD(exports, "set_sleep_interval", set_sleep_interval);
     NODE_SET_METHOD(exports, "kbhit", kbhit);
     NODE_SET_METHOD(exports, "getchar", getchar);
 }

@@ -159,10 +159,10 @@ Search only for video files, result will by played in the video player.
 Search only for module tracker files, result will be played in the mod player.
 
 × `search` (`type`) *search term* </br>
-Searches for media files maching the given search term and prints all results on screen. Can by filtered by media format.
+Searches for media files matching the given search term and prints all results on screen. Can by filtered by media format.
 
 × `browse` </br>
-Invokes the configured file browser in the library path. Default is Midnight Commander.
+Invokes the configured file browser in the library path. Default is Midnight Commander. In graphical environments I recommend to set this to `xdg-open` (or alternatives) or `open` (macOS) to launch the default graphical file browser. This commands has the advantage that they open the browser in background and doesn't block the app from continuous usage.
 
 × `random` (`type`) (*search term*) </br>
 Plays a random media in the audio player. When specifying a type the results are limited and will be played in the corresponding player. To filter the results and gain some control of what should be played, specify search terms.
@@ -185,7 +185,7 @@ Rescans your library when it has been changed without leaving the app.
 × `playlist` (`type`) *search term* </br>
 Generates a playlist of songs and videos which matches the given search terms. By default the audio player is used. Provide a type to change the player.
 
-× `plistfile` *playlist name* </br>
+× `plistfile` (subcommand) *playlist name* </br>
 Loads the given Music Console Playlist and plays all entries. If the argument matches the subcommand `plistlist` (default value = `list`) it will display all available playlists in all given directories. On the subcommand `plistview` (default value = `view`) it will display all entries of the given playlist file; at the moment there is no way to tell if an entry is a *random* (`R`) or *file* (`F`) entry.
 
 See the **Playlist** guide below how to work with playlists.
@@ -205,7 +205,7 @@ This are no real infinite loops, you can stop them at any time by hitting Enter.
 
 **Notice:** The default players are `mplayer` and `mpv`. You can stop these players by pressing Enter, which makes them my default choice for this app. When hitting Enter to stop the player it will return to the loop sequence, here you need to hit Enter again if you want to stop the loop. In short: hit Enter twice to get back to the prompt.
 
-**Pro tip!** There is a wait time of a half second before the loop continues. In future releases you will be able to customize this timeout.
+**Pro tip!** There is a wait time of a half second before the loop continues. The timeout can be customized in the settings.
 
 *For curious developers:* see `lib/kbhit` for the implementation and how this breakable infinite loop mechanism works.
 
@@ -255,6 +255,9 @@ Customize the prompt and history ignore patterns.
     **Pro tip!** Lines starting with a space are never added to the history.
   - `histignore_size` </br>
     A counter of last matching items in the history which should never be added to the history file. Makes it possible to prevent a spammy history file with a lot of duplicates. Default is `1`. Set to `0` to append everything to the history, *may the spam be with you* :D
+  - `sleep_interval` </br>
+    This is the time in **seconds** how long the commands `shuffle`, `playlist`, etc. should wait before playing the next entry. The default value is `0.5` seconds. You can use any amount of seconds here ─ please note that the *minimum* possible value is `0.15` seconds, everything below this value is too fast and you will most likely not be able to cancel any loops with it. The sleep interval will reset to `0.5` in this case. </br></br>
+    **Pro tip!** For faster loops a value of `0.3` or `0.25` is recommended.
 
 × `randomizer` </br>
 This options give you the ability to customize the built-in randomizer which is used by the `random` and `shuffle` command.
