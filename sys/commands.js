@@ -10,10 +10,7 @@ const termformat = require('utils/termformat.js');
 const g_cmd = global.settings.commands();
 const g_subcmd = global.settings.subcommands();
 
-function cmd(name)
-{
-    return "../commands/" + name + ".js";
-}
+function cmd(name) { return "commands/" + name + ".js"; }
 
 const commands = [
     new (require(cmd("audio")))       (g_cmd.audio),
@@ -29,6 +26,7 @@ const commands = [
     new (require(cmd("rescan")))      (g_cmd.rescan),
     new (require(cmd("playlist")))    (g_cmd.playlist),
     new (require(cmd("plistfile")))   (g_cmd.plistfile),
+    new (require(cmd("favorite")))    (g_cmd.favorite),
     new (require(cmd("clear")))       (g_cmd.clear),
     new (require(cmd("exit")))        (g_cmd.exit)
 ];
