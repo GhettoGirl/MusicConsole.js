@@ -484,3 +484,7 @@ Navigating through a playlist is the same as navigating through a generated play
 For an example playlist covering all the possibilities see [**this**](./.github/example.plist) file.
 
 What are you waiting for, now that you know all that create your awesome playlists  and enjoy your music and videos as never before :)
+
+--
+
+Need more help? If you didn't understood something or if something is still unclear you can join my community [Discord](https://discord.gg/4dpCQXv) server and ask for help in `#musicconsole`.
