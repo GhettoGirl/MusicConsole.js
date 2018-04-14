@@ -1,5 +1,11 @@
 # Music Console
 
+**THIS VERSION OF MUSIC CONSOLE IS OBSOLETE AND WON'T BE MAINTAINED ANYMORE!**
+
+**Superseded by the second rewrite of this application named [Music Console Reborn](https://github.com/magiruuvelvet/MusicConsoleReborn)!**
+
+
+
 ![dependencies](https://david-dm.org/GhettoGirl/MusicConsole.js.svg)
 
 A simple console app which organizes all of your media files for fast and easy access.
